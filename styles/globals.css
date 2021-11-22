@@ -1,0 +1,49 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+
+  .mainDiv{
+    @apply
+    mx-auto
+    max-w-7xl
+    bg-gray-200
+  }
+
+  .username{
+    @apply
+    hidden
+    md:inline-flex
+    ml-3
+    text-xl
+    font-medium
+    font-hind-font
+  }
+
+  .appName{
+    @apply
+    font-semibold 
+    font-google-sans 
+    text-lg
+    md:text-2xl
+  }
+
+  .teamScore{
+    @apply
+    text-white
+    font-medium
+    font-google-sans
+    text-2xl
+    md:text-3xl
+  }
+
+  .teamName{
+    @apply
+    font-semibold
+    font-google-sans
+    text-base
+    md:text-lg
+  }
+
+}
