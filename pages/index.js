@@ -2,18 +2,21 @@
 import Head from 'next/head'
 import Image from 'next/image'
 import Header from '../components/header/Header'
+import Banner from '../components/header/banner/Banner'
 //back-end
 import sports_news from '../utils/sports_news'
 import sports_scores from '../utils/sports_scores'
-import { auth, firestore, provider } from '../firebase'
+import { auth, store, provider } from '../firebase'
 import { useState } from 'react'
 import { useAuthState } from 'react-firebase-hooks/auth'
 
-export default function Home ({ results, second_results, third_results }) {
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
-
-  console.log(results, second_results, third_results)
+export default function Home ({
+  results,
+  nfl_results,
+  nhl_results,
+  nba_results
+}) {
+  console.log(results, nfl_results, nhl_results, nba_results)
 
   return (
     <div className='scrollbar-hide'>
@@ -23,15 +26,18 @@ export default function Home ({ results, second_results, third_results }) {
         <link rel='icon' href='/favicon.ico' />
       </Head>
 
-      <Header />
+      <Header results={results} />
       <main
         className='
+          justify-center
           mx-auto
           max-w-[1680px]
           bg-gray-100
           h-screen
       '
-      ></main>
+      >
+        <Banner />
+      </main>
     </div>
   )
 }
@@ -43,21 +49,27 @@ export async function getServerSideProps (context) {
     `https://api.sportsdata.io/v3/${sports_scores.fetchNBAScores.url}`
   ).then(res => res.json())
 
-  const second_request = await fetch(
+  const nfl_request = await fetch(
     `https://api.sportsdata.io/v3/${sports_news[genre]?.url ||
       sports_news.fetchNFLNews.url}`
   ).then(res => res.json())
 
-  const third_request = await fetch(
+  const nhl_request = await fetch(
     `https://api.sportsdata.io/v3/${sports_news[genre]?.url ||
       sports_news.fetchNHLNews.url}`
   ).then(res => res.json())
 
+  const nba_request = await fetch(
+    `https://api.sportsdata.io/v3/${sports_news[genre]?.url ||
+      sports_news.fetchNBANews.url}`
+  ).then(res => res.json())
+
   return {
     props: {
-      results: request
-      /*     second_results: second_request,
-      third_results: third_request */
+      results: request,
+      nfl_results: nfl_request,
+      nhl_results: nhl_request,
+      nba_results: nba_request
     }
   }
 }

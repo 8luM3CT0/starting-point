@@ -15,7 +15,6 @@
     @apply
     hidden
     md:inline-flex
-    ml-3
     text-xl
     font-medium
     font-hind-font
@@ -31,7 +30,6 @@
 
   .teamScore{
     @apply
-    text-white
     font-medium
     font-google-sans
     text-2xl

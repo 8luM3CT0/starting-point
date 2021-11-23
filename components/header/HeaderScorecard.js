@@ -1,7 +1,8 @@
 //front-end
+import { forwardRef } from 'react'
 //back-end
 
-function HeaderScorecard () {
+const HeaderScorecard = forwardRef(({ result }, ref) => {
   return (
     <div
       className='
@@ -23,19 +24,19 @@ function HeaderScorecard () {
       grid
       '
       >
-        <h4 className='teamName text-blue-100'>home team</h4>
-        <h2 className='teamScore'>100</h2>
+        <h4 className='teamName text-blue-100'>{result.HomeTeam}</h4>
+        <h2 className='teamScore text-blue-300'>{result.HomeTeamScore}</h2>
       </div>
       <div
         className='
       grid
       '
       >
-        <h4 className='teamName text-red-300'>away team</h4>
-        <h2 className='teamScore'>100</h2>
+        <h4 className='teamName text-red-300'>{result.AwayTeam}</h4>
+        <h2 className='teamScore text-red-500'>{result.AwayTeamScore}</h2>
       </div>
     </div>
   )
-}
+})
 
 export default HeaderScorecard
