@@ -3,6 +3,7 @@ import Head from 'next/head'
 import Image from 'next/image'
 import Header from '../components/header/Header'
 import Banner from '../components/header/banner/Banner'
+import NewsFeed from '../components/feed/NewsFeed'
 //back-end
 import sports_news from '../utils/sports_news'
 import sports_scores from '../utils/sports_scores'
@@ -16,7 +17,7 @@ export default function Home ({
   nhl_results,
   nba_results
 }) {
-  console.log(results, nfl_results, nhl_results, nba_results)
+  console.log(results, nba_results)
 
   return (
     <div className='scrollbar-hide'>
@@ -36,7 +37,19 @@ export default function Home ({
           h-screen
       '
       >
-        <Banner />
+        <img
+          loading='lazy'
+          src='https://sportshub.cbsistatic.com/i/r/2021/11/22/48b18d6f-e29e-47b5-8413-7f9c8e5b3b87/thumbnail/770x433/a44d48afc6d8927d12cb56d13ba622ad/curry-mvp.jpg'
+          alt=''
+          className='
+              w-[720] 
+              md:w-full 
+              h-[270px]
+              sm:h-[430px] 
+              md:h-[820px] 
+              opacity-75'
+        />
+        <NewsFeed nba_results={nba_results} />
       </main>
     </div>
   )

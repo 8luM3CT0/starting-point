@@ -17,24 +17,29 @@ function Header ({ results }) {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
-  {
-    /*const signIn = e => {
+  const signIn = e => {
     e.preventDefault()
 
     auth
-    .signInWithEmailAndPassword(email, password)
-    .then(auth => {
-      router.push('/')
-    })
+      .signInWithEmailAndPassword(email, password)
+      .then(auth => {
+        router.push('/')
+      })
+      .catch(alert)
+    setEmail('')
+    setPassword('')
   }
-*/
-  }
+
   const logInWithGoogle = () => {
     auth.signInWithPopup(provider).catch(alert)
   }
 
   const logOut = () => {
     auth.signOut()
+  }
+
+  const goToSignUp = () => {
+    router.push('/signup')
   }
 
   const [user] = useAuthState(auth)
@@ -115,9 +120,12 @@ function Header ({ results }) {
               buttonType='solid'
               color='lightBlue'
             >
-              <h2 className='username'>Sign in</h2>
+              <h2 className='text-base md:text-xl font-medium font-hind-font'>
+                Sign in
+              </h2>
             </Button>
             <Modal
+              className='justify-center'
               size='sm'
               active={showModal}
               toggler={() => setShowModal(false)}
@@ -125,11 +133,13 @@ function Header ({ results }) {
               <ModalHeader toggler={() => setShowModal(false)}>
                 Sign In
               </ModalHeader>
-              <ModalBody>
+              <ModalBody className='justify-center grid'>
                 <p className='text-base leading-relaxed text-gray-600 font-normal'>
                   Email
                 </p>
                 <input
+                  value={email}
+                  onChange={e => setEmail(e.target.value)}
                   type='text'
                   className='
                 border 
@@ -142,6 +152,8 @@ function Header ({ results }) {
                   Password
                 </p>
                 <input
+                  value={password}
+                  onChange={e => setPassword(e.target.value)}
                   type='password'
                   className='
                 border 
@@ -150,25 +162,21 @@ function Header ({ results }) {
                 rounded-lg outline-none 
                 bg-gray-50'
                 />
-              </ModalBody>
-              <ModalFooter>
-                <Button
-                  color='red'
-                  buttonType='link'
-                  onClick={e => setShowModal(false)}
-                  ripple='dark'
-                >
-                  Cancel
-                </Button>
+                <div className='flex mt-5 items-center space-x-3'>
+                  <Button
+                    color='red'
+                    buttonType='link'
+                    onClick={e => setShowModal(false)}
+                    ripple='dark'
+                  >
+                    Cancel
+                  </Button>
 
-                <Button
-                  color='green'
-                  onClick={e => setShowModal(false)}
-                  ripple='light'
-                >
-                  Sign In
-                </Button>
-              </ModalFooter>
+                  <Button color='green' onClick={signIn} ripple='light'>
+                    Sign In
+                  </Button>
+                </div>
+              </ModalBody>
               <ModalBody className='justify-center space-y-5'>
                 <p className='text-base leading-relaxed text-gray-600 font-normal'>
                   Otherwise, sign in with Google
@@ -180,6 +188,20 @@ function Header ({ results }) {
                   ripple='light'
                 >
                   Google sign in
+                </Button>
+              </ModalBody>
+              <ModalBody className='justify-center space-y-5'>
+                <p className='text-base leading-relaxed text-gray-600 font-normal'>
+                  Or, if you don't have an account yet, then sign up
+                </p>
+                <Button
+                  onClick={goToSignUp}
+                  buttonType='link'
+                  className='mt-5'
+                  color='orange'
+                  ripple='light'
+                >
+                  Sign up
                 </Button>
               </ModalBody>
             </Modal>
@@ -219,7 +241,7 @@ function Header ({ results }) {
       bg-gray-600'
       >
         {results.slice(0, 17).map(result => (
-          <HeaderScorecard key={result.id} result={result} />
+          <HeaderScorecard key={result.GameID} result={result} />
         ))}
       </div>
     </header>
