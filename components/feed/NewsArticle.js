@@ -22,7 +22,11 @@ const NewsArticle = forwardRef(({ result }, ref) => {
       >
         {result.Title}
       </h3>
-      <h5 className='text-gray-500 text-sm font-medium ml-5'>
+      <h5 className='
+      text-gray-500 
+      text-sm 
+      font-medium 
+      ml-5'>
         by {result.OriginalSource}
       </h5>
     </div>

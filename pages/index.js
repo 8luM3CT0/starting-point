@@ -7,6 +7,7 @@ import NewsFeed from '../components/feed/NewsFeed'
 //back-end
 import sports_news from '../utils/sports_news'
 import sports_scores from '../utils/sports_scores'
+import sports_standings from '../utils/sports_standings'
 import { auth, store, provider } from '../firebase'
 import { useState } from 'react'
 import { useAuthState } from 'react-firebase-hooks/auth'
@@ -15,9 +16,10 @@ export default function Home ({
   results,
   nfl_results,
   nhl_results,
-  nba_results
+  nba_results,
+  nba_team_standings
 }) {
-  console.log(results, nba_results)
+  console.log(results, nba_results, nba_team_standings)
 
   return (
     <div className='scrollbar-hide'>
@@ -45,11 +47,14 @@ export default function Home ({
               w-[720] 
               md:w-full 
               h-[270px]
-              sm:h-[430px] 
-              md:h-[820px] 
+              sm:h-[400px] 
+              lg:h-[620px] 
               opacity-75'
         />
-        <NewsFeed nba_results={nba_results} />
+        <NewsFeed
+          nba_results={nba_results}
+          nba_team_standings={nba_team_standings}
+        />
       </main>
     </div>
   )
@@ -77,12 +82,17 @@ export async function getServerSideProps (context) {
       sports_news.fetchNBANews.url}`
   ).then(res => res.json())
 
+  const nba_standing_req = await fetch(
+    `https://api.sportsdata.io/v3/${sports_standings.fetchNBAStandings.url}`
+  ).then(res => res.json())
+
   return {
     props: {
       results: request,
       nfl_results: nfl_request,
       nhl_results: nhl_request,
-      nba_results: nba_request
+      nba_results: nba_request,
+      nba_team_standings: nba_standing_req
     }
   }
 }
