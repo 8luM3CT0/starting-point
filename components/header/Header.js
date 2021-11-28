@@ -1,7 +1,6 @@
 //front-end
 import Button from '@material-tailwind/react/Button'
 import Icon from '@material-tailwind/react/Icon'
-import HeaderScorecard from './HeaderScorecard'
 import Modal from '@material-tailwind/react/Modal'
 import ModalHeader from '@material-tailwind/react/ModalHeader'
 import ModalBody from '@material-tailwind/react/ModalBody'
@@ -12,7 +11,7 @@ import { useAuthState } from 'react-firebase-hooks/auth'
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
 
-function Header ({ results }) {
+function Header () {
   const router = useRouter()
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
@@ -225,24 +224,6 @@ function Header ({ results }) {
             <h2 className='username ml-3'>{user?.displayName}</h2>
           </div>
         )}
-      </div>
-      <div
-        className='
-        flex-1
-        scrollbar-hide
-        overflow-x-scroll
-        whitespace-nowrap 
-        flex
-        items-center
-        space-x-10
-        py-5
-        px-6
-        text-gray-50
-      bg-gray-600'
-      >
-        {results.slice(0, 17).map(result => (
-          <HeaderScorecard key={result.GameID} result={result} />
-        ))}
       </div>
     </header>
   )

@@ -44,35 +44,51 @@
     md:text-lg
   }
 
+  .topFeedDiv{
+    @apply 
+    px-6 
+    py-6 
+    justify-evenly 
+    w-full 
+    grid 
+    xl:flex 
+    xl:items-center
+    bg-gray-100 
+    mt-8 
+  }
+
   .newsFeedDiv{
     @apply
     bg-gray-100
     mt-8
     grid
     space-y-10
-    px-6
-    w-full
-    2xl:flex
     justify-evenly
-    h-[290px]
+    max-w-[720px]
+    px-4
+    overflow-y-scroll
+    scrollbar-hide
   }
 
   .newsStanding{
     @apply
     rounded-xl
     overflow-y-scroll
-    lg:place-items-center
+    justify-center
+    space-y-6
+    lg:space-y-0
+    py-6
+    place-items-center
     lg:overflow-y-hidden
       lg:overflow-x-scroll
       scrollbar-hide
       max-w-[980px]
       max-h-[410px]
-      lg:max-h-[520px]
+      lg:max-h-[720px]
       grid
       lg:flex
       space-x-10
-      px-3
-      pr-5
+      px-4
       bg-gray-800
   }
 
