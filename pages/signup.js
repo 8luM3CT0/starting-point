@@ -4,7 +4,7 @@ import Head from 'next/head'
 import Button from '@material-tailwind/react/Button'
 import Icon from '@material-tailwind/react/Icon'
 //back-end
-import { auth, store } from '../firebase'
+import { auth, store } from '../firebaseFile'
 import { useState } from 'react'
 import { useRouter } from 'next/router'
 

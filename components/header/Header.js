@@ -7,7 +7,7 @@ import ModalBody from '@material-tailwind/react/ModalBody'
 import ModalFooter from '@material-tailwind/react/ModalFooter'
 import { UserIcon } from '@heroicons/react/solid'
 //back-end
-import { auth, store, provider } from '../../firebase'
+import { auth, store, provider } from '../../firebaseFile'
 import { useAuthState } from 'react-firebase-hooks/auth'
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'

@@ -13,16 +13,16 @@ import TabPane from '@material-tailwind/react/TabPane'
 import StandingsFeed from '../components/feed/StandingsFeed'
 import NBAHeaderScores from '../components/header/NBAHeaderScores'
 import MLBHeaderScores from '../components/header/MLBHeaderScores'
+import NFLHeaderScores from '../components/header/NFLHeaderScores'
 import Icon from '@material-tailwind/react/Icon'
 //back-end
 import sports_news from '../utils/sports_news'
 import sports_scores from '../utils/sports_scores'
 import sports_standings from '../utils/sports_standings'
 import sports_bets from '../utils/sports_bets'
-import { auth, store, provider } from '../firebase'
+import { auth, store, provider } from '../firebaseFile'
 import { useState } from 'react'
 import { useAuthState } from 'react-firebase-hooks/auth'
-import NFLHeaderScores from '../components/header/NFLHeaderScores'
 
 export default function Home ({
   nba_scores,
@@ -36,8 +36,6 @@ export default function Home ({
 }) {
   const [user] = useAuthState(auth)
 
-  console.log(nfl_results)
-
   const [openTab, setOpenTab] = useState(1)
 
   return (
@@ -50,7 +48,6 @@ export default function Home ({
 
       <Header />
       <div className='max-w-[1700px] mx-auto'>
-        {/*
         <Tab>
           <TabList color='blue'>
             <div className='mx-auto  flex items-center'>
@@ -220,7 +217,6 @@ export default function Home ({
             </TabPane>
           </TabContent>
         </Tab>
-              */}
       </div>
     </div>
   )
