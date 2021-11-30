@@ -50,6 +50,7 @@ export default function Home ({
 
       <Header />
       <div className='max-w-[1700px] mx-auto'>
+        {/*
         <Tab>
           <TabList color='blue'>
             <div className='mx-auto  flex items-center'>
@@ -219,6 +220,7 @@ export default function Home ({
             </TabPane>
           </TabContent>
         </Tab>
+              */}
       </div>
     </div>
   )
