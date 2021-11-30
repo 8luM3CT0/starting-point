@@ -42,7 +42,7 @@ const NewsArticle = forwardRef(({ result }, ref) => {
       >
         by {result.OriginalSource}
       </h5>
-      {/*
+
       <Modal size='lg' active={showModal} toggler={() => setShowModal(false)}>
         <ModalHeader toggler={() => setShowModal(false)}>
           <div className='flex space-x-10 justify-evenly items-center'>
@@ -77,7 +77,6 @@ const NewsArticle = forwardRef(({ result }, ref) => {
           </Button>
         </ModalFooter>
       </Modal>
-      */}
     </div>
   )
 })
