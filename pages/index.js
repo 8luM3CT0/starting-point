@@ -27,12 +27,10 @@ import { useAuthState } from 'react-firebase-hooks/auth'
 export default function Home ({
   nba_scores,
   nfl_results,
-  nhl_results,
   nba_results,
   nba_team_standings,
   nba_betting_req,
-  nfl_scores,
-  mlb_scores
+  nfl_scores
 }) {
   const [user] = useAuthState(auth)
 
@@ -125,7 +123,7 @@ export default function Home ({
                   opacity-75'
                 />
                 <div className='topFeedDiv'>
-                  <NFLNews nfl_results={nfl_results} />
+    
                 </div>
               </main>
             </TabPane>
@@ -229,16 +227,6 @@ export async function getServerSideProps (context) {
     `https://api.sportsdata.io/v3/${sports_scores.fetchNBAScores.url}`
   ).then(res => res.json())
 
-  const nfl_request = await fetch(
-    `https://api.sportsdata.io/v3/${sports_news[genre]?.url ||
-      sports_news.fetchNFLNews.url}`
-  ).then(res => res.json())
-
-  const nhl_request = await fetch(
-    `https://api.sportsdata.io/v3/${sports_news[genre]?.url ||
-      sports_news.fetchNHLNews.url}`
-  ).then(res => res.json())
-
   const nba_request = await fetch(
     `https://api.sportsdata.io/v3/${sports_news[genre]?.url ||
       sports_news.fetchNBANews.url}`
@@ -256,19 +244,14 @@ export async function getServerSideProps (context) {
     `https://api.sportsdata.io/v3/${sports_scores.fetchNFLScores.url}`
   ).then(res => res.json())
 
-  const mlb_scores = await fetch(
-    `https://api.sportsdata.io/v3/${sports_scores.fetchMLBScores.url}`
-  ).then(res => res.json())
-
+  
   return {
     props: {
       nba_scores: nba_scores,
-      nfl_results: nfl_request,
       nba_results: nba_request,
       nba_team_standings: nba_standing_req,
       nba_betting_req: nba_betting_req,
-      nfl_scores: nfl_scores,
-      mlb_scores: mlb_scores
+      nfl_scores: nfl_scores
     }
   }
 }
