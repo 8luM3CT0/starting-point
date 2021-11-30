@@ -4,6 +4,7 @@ import Image from 'next/image'
 import Header from '../components/header/Header'
 import Banner from '../components/header/banner/Banner'
 import NewsFeed from '../components/feed/NewsFeed'
+import NFLNews from '../components/feed/NFLNews'
 import Tab from '@material-tailwind/react/Tab'
 import TabList from '@material-tailwind/react/TabList'
 import TabItem from '@material-tailwind/react/TabItem'
@@ -11,6 +12,7 @@ import TabContent from '@material-tailwind/react/TabContent'
 import TabPane from '@material-tailwind/react/TabPane'
 import StandingsFeed from '../components/feed/StandingsFeed'
 import NBAHeaderScores from '../components/header/NBAHeaderScores'
+import MLBHeaderScores from '../components/header/MLBHeaderScores'
 import Icon from '@material-tailwind/react/Icon'
 //back-end
 import sports_news from '../utils/sports_news'
@@ -29,9 +31,12 @@ export default function Home ({
   nba_results,
   nba_team_standings,
   nba_betting_req,
-  nfl_scores
+  nfl_scores,
+  mlb_scores
 }) {
-  console.log(nfl_scores)
+  const [user] = useAuthState(auth)
+
+  console.log(nfl_results)
 
   const [openTab, setOpenTab] = useState(1)
 
@@ -46,7 +51,7 @@ export default function Home ({
       <Header />
       <div className='max-w-[1700px] mx-auto'>
         <Tab>
-          <TabList color='lightBlue'>
+          <TabList color='blue'>
             <div className='mx-auto  flex items-center'>
               <TabItem
                 onClick={e => {
@@ -79,7 +84,7 @@ export default function Home ({
                 active={openTab === 3 ? true : false}
                 href='tabItem'
               >
-                NHL
+                MLB
               </TabItem>
               <TabItem
                 onClick={e => {
@@ -90,18 +95,7 @@ export default function Home ({
                 active={openTab === 4 ? true : false}
                 href='tabItem'
               >
-                FIFA
-              </TabItem>
-              <TabItem
-                onClick={e => {
-                  e.preventDefault()
-                  setOpenTab(5)
-                }}
-                ripple='light'
-                active={openTab === 5 ? true : false}
-                href='tabItem'
-              >
-                MLB
+                NHL
               </TabItem>
             </div>
           </TabList>
@@ -123,15 +117,18 @@ export default function Home ({
                   loading='lazy'
                   src='https://static01.nyt.com/images/2021/11/14/multimedia/14nfl-wwl-jones/14nfl-wwl-jones-superJumbo.jpg'
                   alt=''
-                  className='
-                w-[720px] 
-                md:w-full 
-                h-[270px]
-                sm:h-[400px] 
-                lg:h-[620px] 
-                xl:h-[720px]
-                opacity-75'
+                  className='              
+                  w-[720px] 
+                  md:w-full 
+                  h-[200px]
+                  sm:h-[400px] 
+                  lg:h-[620px] 
+                  xl:h-[720px]
+                  opacity-75'
                 />
+                <div className='topFeedDiv'>
+                  <NFLNews nfl_results={nfl_results} />
+                </div>
               </main>
             </TabPane>
             <TabPane active={openTab === 2 ? true : false}>
@@ -153,17 +150,14 @@ export default function Home ({
                   className='
               w-[720px] 
               md:w-full 
-              h-[270px]
+              h-[200px]
               sm:h-[400px] 
               lg:h-[620px] 
               xl:h-[720px]
               opacity-75'
                 />
                 <div className='topFeedDiv'>
-                  <NewsFeed
-                    nba_results={nba_results}
-                    nba_team_standings={nba_team_standings}
-                  />
+                  <NewsFeed nba_results={nba_results} />
                   <StandingsFeed nba_team_standings={nba_team_standings} />
                 </div>
 
@@ -171,6 +165,21 @@ export default function Home ({
               </main>
             </TabPane>
             <TabPane active={openTab === 3 ? true : false}>
+              <MLBHeaderScores mlb_scores={mlb_scores} />
+              <img
+                loading='lazy'
+                src='https://static01.nyt.com/images/2020/08/24/sports/24mlb-kepner-1/merlin_176084667_69b1099b-0b7e-41ce-bfdf-e407899f10dc-articleLarge.jpg?quality=75&auto=webp&disable=upscale'
+                alt=''
+                className='              
+                w-[720px] 
+                md:w-full 
+                h-[200px]
+                sm:h-[400px] 
+                lg:h-[620px] 
+                xl:h-[720px]
+                opacity-75'
+              />
+
               <p>
                 I think that’s a responsibility that I have, to push
                 possibilities, to show people, this is the level that things
@@ -182,17 +191,22 @@ export default function Home ({
               </p>
             </TabPane>
             <TabPane active={openTab === 4 ? true : false}>
-              <p>
-                I think that’s a responsibility that I have, to push
-                possibilities, to show people, this is the level that things
-                could be at. So when you get something that has the name Kanye
-                West on it, it’s supposed to be pushing the furthest
-                possibilities. I will be the leader of a company that ends up
-                being worth billions of dollars, because I got the answers. I
-                understand culture. I am the nucleus.
-              </p>
-            </TabPane>
-            <TabPane active={openTab === 5 ? true : false}>
+              <img
+                loading='lazy'
+                src='   https://thumbor.forbes.com/thumbor/0x0/smart/https%3A%2F%2Fspecials-images.forbesimg.com%2Fimageserve%2F5c06c7194bbe6f0f2aa13c1b%2F960x0.jpg%3FcropX1%3D250%26cropX2%3D2250%26cropY1%3D0%26cropY2%3D2000'
+                alt=''
+                className="
+                w-[720px] 
+                md:w-full 
+                h-[200px]
+                sm:h-[400px] 
+                lg:h-[620px] 
+                xl:h-[720px]
+                opacity-75'
+              '
+               "
+              />
+
               <p>
                 I think that’s a responsibility that I have, to push
                 possibilities, to show people, this is the level that things
@@ -244,6 +258,10 @@ export async function getServerSideProps (context) {
     `https://api.sportsdata.io/v3/${sports_scores.fetchNFLScores.url}`
   ).then(res => res.json())
 
+  const mlb_scores = await fetch(
+    `https://api.sportsdata.io/v3/${sports_scores.fetchMLBScores.url}`
+  ).then(res => res.json())
+
   return {
     props: {
       nba_scores: nba_scores,
@@ -252,7 +270,8 @@ export async function getServerSideProps (context) {
       nba_results: nba_request,
       nba_team_standings: nba_standing_req,
       nba_betting_req: nba_betting_req,
-      nfl_scores: nfl_scores
+      nfl_scores: nfl_scores,
+      mlb_scores: mlb_scores
     }
   }
 }

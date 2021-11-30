@@ -13,6 +13,7 @@ const TeamStandings = forwardRef(({ result }, ref) => {
         border
         border-gray-600
         place-items-center
+        justify-evenly
         bg-gray-800
         '
     >
@@ -27,6 +28,7 @@ const TeamStandings = forwardRef(({ result }, ref) => {
           className='
         flex 
         items-center 
+        justify-evenly
         text-center 
         space-x-2'
         >

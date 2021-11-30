@@ -5,6 +5,7 @@ import Modal from '@material-tailwind/react/Modal'
 import ModalHeader from '@material-tailwind/react/ModalHeader'
 import ModalBody from '@material-tailwind/react/ModalBody'
 import ModalFooter from '@material-tailwind/react/ModalFooter'
+import { UserIcon } from '@heroicons/react/solid'
 //back-end
 import { auth, store, provider } from '../../firebase'
 import { useAuthState } from 'react-firebase-hooks/auth'
@@ -216,12 +217,20 @@ function Header () {
         items-center 
         space-x-8'
           >
-            <img
-              src={user?.photoURL}
-              alt=''
-              className='h-10 rounded-3xl border border-blue-400'
-            />
-            <h2 className='username ml-3'>{user?.displayName}</h2>
+            {user.photoURL ? (
+              <img
+                src={user?.photoURL}
+                alt=''
+                className='h-10 rounded-3xl border border-blue-400'
+              />
+            ) : (
+              <UserIcon className='h-10 bg-gray-700 rounded-3xl border border-blue-400' />
+            )}
+            {user?.displayName ? (
+              <h2 className='username ml-3'>{user?.displayName}</h2>
+            ) : (
+              <h2 className='username ml-3'>{user?.email}</h2>
+            )}
           </div>
         )}
       </div>

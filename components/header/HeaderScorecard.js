@@ -26,7 +26,7 @@ const HeaderScorecard = forwardRef(({ result }, ref) => {
       >
         <h4 className='teamName text-blue-100'>{result.HomeTeam}</h4>
         <h2 className='teamScore text-blue-300'>
-          {result.HomeTeamScore || result.HomeScore}
+          {result.HomeTeamScore || result.HomeScore || result.HomeTeamRuns}
         </h2>
       </div>
       <div
@@ -36,7 +36,7 @@ const HeaderScorecard = forwardRef(({ result }, ref) => {
       >
         <h4 className='teamName text-red-300'>{result.AwayTeam}</h4>
         <h2 className='teamScore text-red-500'>
-          {result.AwayTeamScore || result.AwayScore}
+          {result.AwayTeamScore || result.AwayScore || result.AwayTeamRuns}
         </h2>
       </div>
     </div>

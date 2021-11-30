@@ -23,8 +23,8 @@ function Signup () {
       .then(auth => {
         if (auth) {
           store.collection('people').add({
-            userEmail: email,
-            userPassword: password,
+            email: email,
+            password: password,
             displayName: displayName,
             photoURL: photoURL
           })
@@ -142,7 +142,7 @@ function Signup () {
             Profile picture
           </h2>
           <input
-            type='text'
+            type='url'
             value={photoURL}
             onChange={e => setPhotoURL(e.target.value)}
             className='
