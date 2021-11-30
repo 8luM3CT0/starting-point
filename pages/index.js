@@ -264,7 +264,6 @@ export async function getServerSideProps (context) {
     props: {
       nba_scores: nba_scores,
       nfl_results: nfl_request,
-      nhl_results: nhl_request,
       nba_results: nba_request,
       nba_team_standings: nba_standing_req,
       nba_betting_req: nba_betting_req,
