@@ -1,10 +1,18 @@
 //front-end
 import { forwardRef } from 'react'
+import Modal from '@material-tailwind/react/Modal'
+import ModalHeader from '@material-tailwind/react/ModalHeader'
+import ModalBody from '@material-tailwind/react/ModalBody'
+import ModalFooter from '@material-tailwind/react/ModalFooter'
+import Button from '@material-tailwind/react/Button'
 //back-end
+import { useState } from 'react'
 
 const HeaderScorecard = forwardRef(({ result }, ref) => {
+  const [showModal, setShowModal] = useState(false)
   return (
     <div
+      onClick={e => setShowModal(true)}
       className='
     flex
     items-center

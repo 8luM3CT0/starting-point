@@ -121,7 +121,7 @@ export default function Home ({
                   h-[200px]
                   sm:h-[400px] 
                   lg:h-[620px] 
-                  xl:h-[720px]
+                  xl:h-[800px]
                   opacity-75'
                 />
                 <div className='topFeedDiv'>
