@@ -16,13 +16,11 @@ import MLBHeaderScores from '../components/header/MLBHeaderScores'
 import NFLHeaderScores from '../components/header/NFLHeaderScores'
 import Icon from '@material-tailwind/react/Icon'
 //back-end
-{
-  /*import sports_news from '../utils/sports_news'
+//back-end-api
+import sports_news from '../utils/sports_news'
 import sports_scores from '../utils/sports_scores'
 import sports_standings from '../utils/sports_standings'
-import sports_bets from '../utils/sports_bets'
-*/
-}
+//auth-backend
 import { auth, store, provider } from '../firebaseFile'
 import { useState } from 'react'
 import { useAuthState } from 'react-firebase-hooks/auth'
@@ -131,9 +129,7 @@ export default function Home ({
               </main>
             </TabPane>
             <TabPane active={openTab === 2 ? true : false}>
-              {/*}
               <NBAHeaderScores nba_scores={nba_scores} />
-              */}
               <main
                 className='
           justify-center
@@ -226,14 +222,14 @@ export default function Home ({
 }
 
 {
-  /*export async function getServerSideProps (context) {
-  const genre = context.query.title
+  export async function getServerSideProps (context) {
+    const genre = context.query.title
 
-  const nba_scores = await fetch(
-    `https://api.sportsdata.io/v3/${sports_scores.fetchNBAScores.url}`
-  ).then(res => res.json())
+    const nba_scores = await fetch(
+      `https://api.sportsdata.io/v3/${sports_scores.fetchNBAScores.url}`
+    ).then(res => res.json())
 
-  const nba_request = await fetch(
+    /*const nba_request = await fetch(
     `https://api.sportsdata.io/v3/${sports_news[genre]?.url ||
       sports_news.fetchNBANews.url}`
   ).then(res => res.json())
@@ -249,17 +245,17 @@ export default function Home ({
   const nfl_scores = await fetch(
     `https://api.sportsdata.io/v3/${sports_scores.fetchNFLScores.url}`
   ).then(res => res.json())
+*/
 
-  
-  return {
-    props: {
-      nba_scores: nba_scores,
-      nba_results: nba_request,
+    return {
+      props: {
+        nba_scores: nba_scores
+        /*nba_results: nba_request,
       nba_team_standings: nba_standing_req,
       nba_betting_req: nba_betting_req,
       nfl_scores: nfl_scores
+      */
+      }
     }
   }
-}
-*/
 }
