@@ -99,9 +99,8 @@ export default function Home ({
 
           <TabContent>
             <TabPane active={openTab === 1 ? true : false}>
-              {/*
               <NFLHeaderScores nfl_scores={nfl_scores} />
-              */}
+
               <main
                 className='
               justify-center
@@ -237,20 +236,16 @@ export async function getServerSideProps (context) {
     `https://api.sportsdata.io/v3/${sports_standings.fetchNBAStandings.url}`
   ).then(res => res.json())
 
-  /*
   const nfl_scores = await fetch(
     `https://api.sportsdata.io/v3/${sports_scores.fetchNFLScores.url}`
   ).then(res => res.json())
-*/
 
   return {
     props: {
       nba_scores: nba_scores,
       nba_results: nba_request,
-      nba_team_standings: nba_standing_req
-      /*
+      nba_team_standings: nba_standing_req,
       nfl_scores: nfl_scores
-      */
     }
   }
 }
