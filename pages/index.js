@@ -153,11 +153,11 @@ export default function Home ({
               xl:h-[720px]
               opacity-75'
                 />
-                {/*<div className='topFeedDiv'>
+                <div className='topFeedDiv'>
                   <NewsFeed nba_results={nba_results} />
                   <StandingsFeed nba_team_standings={nba_team_standings} />
                 </div>
-              */}
+
                 <div className='h-screen p-8 bg-gray-200 rounded-lg'></div>
               </main>
             </TabPane>
@@ -228,7 +228,7 @@ export async function getServerSideProps (context) {
     `https://api.sportsdata.io/v3/${sports_scores.fetchNBAScores.url}`
   ).then(res => res.json())
 
-  /*const nba_request = await fetch(
+  const nba_request = await fetch(
     `https://api.sportsdata.io/v3/${sports_news[genre]?.url ||
       sports_news.fetchNBANews.url}`
   ).then(res => res.json())
@@ -237,10 +237,7 @@ export async function getServerSideProps (context) {
     `https://api.sportsdata.io/v3/${sports_standings.fetchNBAStandings.url}`
   ).then(res => res.json())
 
-  const nba_betting_req = await fetch(
-    `https://api.sportsdata.io/v3/${sports_bets.fetchNBABets.url}`
-  ).then(res => res.json())
-
+  /*
   const nfl_scores = await fetch(
     `https://api.sportsdata.io/v3/${sports_scores.fetchNFLScores.url}`
   ).then(res => res.json())
@@ -248,10 +245,10 @@ export async function getServerSideProps (context) {
 
   return {
     props: {
-      nba_scores: nba_scores
-      /*nba_results: nba_request,
-      nba_team_standings: nba_standing_req,
-      nba_betting_req: nba_betting_req,
+      nba_scores: nba_scores,
+      nba_results: nba_request,
+      nba_team_standings: nba_standing_req
+      /*
       nfl_scores: nfl_scores
       */
     }
