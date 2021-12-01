@@ -17,7 +17,7 @@ function NBAHeaderScores ({ nba_scores }) {
         text-gray-50
       bg-gray-600'
     >
-      {nba_scores.slice(0, 9).map(result => (
+      {nba_scores.slice(0, 20).map(result => (
         <HeaderScorecard key={result.GameID} result={result} />
       ))}
     </div>

@@ -17,7 +17,7 @@ function NFLHeaderScores ({ nfl_scores }) {
         text-gray-50
       bg-gray-600'
     >
-      {nfl_scores.slice(0, 9).map(result => (
+      {nfl_scores.slice(0, 20).map(result => (
         <HeaderScorecard key={result.GameID} result={result} />
       ))}
     </div>
