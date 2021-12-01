@@ -19,7 +19,8 @@ const TeamStandings = forwardRef(({ result }, ref) => {
     >
       <div
         className='
-      text-center grid 
+      text-center 
+      grid 
       items-center 
       justify-center 
       space-y-10'
@@ -32,45 +33,39 @@ const TeamStandings = forwardRef(({ result }, ref) => {
         text-center 
         space-x-2'
         >
-          <p
-            className='
-          font-semibold  
-          text-blue-300'
-          >
-            {result.Key}
-          </p>
-          <p className='text-gray-100'>-</p>
           <h3
             className='
           text-gray-300 
-          text-lg '
+          font-medium
+          text-xl '
           >
             {result.Name}
           </h3>
         </div>
         <div
           className='
-        flex 
-        items-center 
-        space-x-5'
+        grid
+        text-center'
         >
           <h4
             className='
+            flex
+            items-center
+            text-lg
+            font-[400]
           text-blue-200'
           >
-            {result.Wins}
+            Wins - {result.Wins}
           </h4>
-          <h2
-            className='
-          text-yellow-200'
-          >
-            v.
-          </h2>
           <h4
             className='
+            flex
+            items-center
+            text-lg
+            font-[400]
           text-red-400'
           >
-            {result.Losses}
+            Losses - {result.Losses}
           </h4>
         </div>
       </div>

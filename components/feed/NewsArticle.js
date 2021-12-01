@@ -73,7 +73,7 @@ const NewsArticle = forwardRef(({ result }, ref) => {
             onClick={e => setShowModal(false)}
             ripple='light'
           >
-            Save Changes
+            Read more
           </Button>
         </ModalFooter>
       </Modal>

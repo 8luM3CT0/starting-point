@@ -30,12 +30,13 @@ export default function Home ({
   nfl_results,
   nba_results,
   nba_team_standings,
-  nba_betting_req,
   nfl_scores
 }) {
   const [user] = useAuthState(auth)
 
   const [openTab, setOpenTab] = useState(1)
+
+  console.log(nfl_results)
 
   return (
     <div className='scrollbar-hide pb-8'>
@@ -100,7 +101,6 @@ export default function Home ({
           <TabContent>
             <TabPane active={openTab === 1 ? true : false}>
               <NFLHeaderScores nfl_scores={nfl_scores} />
-
               <main
                 className='
               justify-center
@@ -124,7 +124,9 @@ export default function Home ({
                   xl:h-[720px]
                   opacity-75'
                 />
-                <div className='topFeedDiv'></div>
+                <div className='topFeedDiv'>
+                  <NFLNews nfl_results={nfl_results} />
+                </div>
               </main>
             </TabPane>
             <TabPane active={openTab === 2 ? true : false}>
@@ -227,7 +229,7 @@ export async function getServerSideProps (context) {
     `https://api.sportsdata.io/v3/${sports_scores.fetchNBAScores.url}`
   ).then(res => res.json())
 
-  const nba_request = await fetch(
+  const nba_news = await fetch(
     `https://api.sportsdata.io/v3/${sports_news[genre]?.url ||
       sports_news.fetchNBANews.url}`
   ).then(res => res.json())
@@ -240,12 +242,16 @@ export async function getServerSideProps (context) {
     `https://api.sportsdata.io/v3/${sports_scores.fetchNFLScores.url}`
   ).then(res => res.json())
 
+  const nfl_results = await fetch(
+    `https://api.sportsdata.io/v3/${sports_news.fetchNFLNews.url}`
+  ).then(res => res.json())
   return {
     props: {
       nba_scores: nba_scores,
-      nba_results: nba_request,
+      nba_results: nba_news,
       nba_team_standings: nba_standing_req,
-      nfl_scores: nfl_scores
+      nfl_scores: nfl_scores,
+      nfl_results: nfl_results
     }
   }
 }
