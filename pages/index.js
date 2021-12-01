@@ -48,7 +48,6 @@ export default function Home ({
       </Head>
 
       <Header />
-      {/*
       <div className='max-w-[1700px] mx-auto'>
         <Tab>
           <TabList color='blue'>
@@ -102,7 +101,9 @@ export default function Home ({
 
           <TabContent>
             <TabPane active={openTab === 1 ? true : false}>
+              {/*
               <NFLHeaderScores nfl_scores={nfl_scores} />
+              */}
               <main
                 className='
               justify-center
@@ -126,13 +127,13 @@ export default function Home ({
                   xl:h-[720px]
                   opacity-75'
                 />
-                <div className='topFeedDiv'>
-    
-                </div>
+                <div className='topFeedDiv'></div>
               </main>
             </TabPane>
             <TabPane active={openTab === 2 ? true : false}>
+              {/*}
               <NBAHeaderScores nba_scores={nba_scores} />
+              */}
               <main
                 className='
           justify-center
@@ -156,16 +157,16 @@ export default function Home ({
               xl:h-[720px]
               opacity-75'
                 />
-                <div className='topFeedDiv'>
+                {/*<div className='topFeedDiv'>
                   <NewsFeed nba_results={nba_results} />
                   <StandingsFeed nba_team_standings={nba_team_standings} />
                 </div>
-
+              */}
                 <div className='h-screen p-8 bg-gray-200 rounded-lg'></div>
               </main>
             </TabPane>
             <TabPane active={openTab === 3 ? true : false}>
-              <MLBHeaderScores mlb_scores={mlb_scores} />
+              {/*<MLBHeaderScores mlb_scores={mlb_scores} />*/}
               <img
                 loading='lazy'
                 src='https://static01.nyt.com/images/2020/08/24/sports/24mlb-kepner-1/merlin_176084667_69b1099b-0b7e-41ce-bfdf-e407899f10dc-articleLarge.jpg?quality=75&auto=webp&disable=upscale'
@@ -219,9 +220,7 @@ export default function Home ({
             </TabPane>
           </TabContent>
         </Tab>
-              
       </div>
-              */}
     </div>
   )
 }
