@@ -16,10 +16,13 @@ import MLBHeaderScores from '../components/header/MLBHeaderScores'
 import NFLHeaderScores from '../components/header/NFLHeaderScores'
 import Icon from '@material-tailwind/react/Icon'
 //back-end
-import sports_news from '../utils/sports_news'
+{
+  /*import sports_news from '../utils/sports_news'
 import sports_scores from '../utils/sports_scores'
 import sports_standings from '../utils/sports_standings'
 import sports_bets from '../utils/sports_bets'
+*/
+}
 import { auth, store, provider } from '../firebaseFile'
 import { useState } from 'react'
 import { useAuthState } from 'react-firebase-hooks/auth'
@@ -47,6 +50,7 @@ export default function Home ({
       </Head>
 
       <Header />
+      {/*
       <div className='max-w-[1700px] mx-auto'>
         <Tab>
           <TabList color='blue'>
@@ -217,12 +221,15 @@ export default function Home ({
             </TabPane>
           </TabContent>
         </Tab>
+              
       </div>
+              */}
     </div>
   )
 }
 
-export async function getServerSideProps (context) {
+{
+  /*export async function getServerSideProps (context) {
   const genre = context.query.title
 
   const nba_scores = await fetch(
@@ -272,4 +279,6 @@ export async function getServerSideProps (context) {
       mlb_scores: mlb_scores
     }
   }
+}
+*/
 }
