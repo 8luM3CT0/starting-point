@@ -239,7 +239,7 @@ export async function getServerSideProps (context) {
   ).then(res => res.json())
 
   const nfl_scores = await fetch(
-    `https://api.sportsdata.io/v3/${sports_scores.fetchMLBScores.url}`
+    `https://api.sportsdata.io/v3/${sports_scores.fetchNFLScores.url}`
   ).then(res => res.json())
 
   const nba_news = await fetch(
