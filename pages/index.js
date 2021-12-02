@@ -39,8 +39,6 @@ export default function Home ({
 
   const [openTab, setOpenTab] = useState(1)
 
-  console.log(mlb_scores)
-
   return (
     <div className='scrollbar-hide overflow-hidden bg-[#2d3642] pb-8'>
       <Head>
