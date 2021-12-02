@@ -161,7 +161,6 @@ export default function Home ({
               </main>
             </TabPane>
             <TabPane active={openTab === 3 ? true : false}>
-              <NBAHeaderScores nba_scores={mlb_scores} />
               <img
                 loading='lazy'
                 src='https://static01.nyt.com/images/2020/08/24/sports/24mlb-kepner-1/merlin_176084667_69b1099b-0b7e-41ce-bfdf-e407899f10dc-articleLarge.jpg?quality=75&auto=webp&disable=upscale'
@@ -231,10 +230,6 @@ export async function getServerSideProps (context) {
     `https://api.sportsdata.io/v3/${sports_scores.fetchNFLScores.url}`
   ).then(res => res.json())
 
-  const mlb_scores = await fetch(
-    `https://api.sportsdata.io/v3/${sports_scores.fetchMLBScores.url}`
-  ).then(res => res.json())
-
   const nba_news = await fetch(
     `https://api.sportsdata.io/v3/${sports_news[genre]?.url ||
       sports_news.fetchNBANews.url}`
@@ -256,7 +251,6 @@ export async function getServerSideProps (context) {
     props: {
       nba_scores: nba_scores,
       nfl_scores: nfl_scores,
-      mlb_scores: mlb_scores,
       nba_results: nba_news,
       nfl_results: nfl_results,
       nba_team_standings: nba_standing_req,
