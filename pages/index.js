@@ -161,11 +161,20 @@ export default function Home ({
               </main>
             </TabPane>
             <TabPane active={openTab === 3 ? true : false}>
-              <img
-                loading='lazy'
-                src='https://static01.nyt.com/images/2020/08/24/sports/24mlb-kepner-1/merlin_176084667_69b1099b-0b7e-41ce-bfdf-e407899f10dc-articleLarge.jpg?quality=75&auto=webp&disable=upscale'
-                alt=''
-                className='              
+              <NBAHeaderScores nba_scores={nba_scores} />
+              <main
+                className='          
+          justify-center
+          mx-auto
+          max-w-[1680px]
+          mb-8
+          rounded-xl'
+              >
+                <img
+                  loading='lazy'
+                  src='https://static01.nyt.com/images/2020/08/24/sports/24mlb-kepner-1/merlin_176084667_69b1099b-0b7e-41ce-bfdf-e407899f10dc-articleLarge.jpg?quality=75&auto=webp&disable=upscale'
+                  alt=''
+                  className='              
                 w-[720px] 
                 md:w-full 
                 h-[200px]
@@ -173,17 +182,18 @@ export default function Home ({
                 lg:h-[620px] 
                 xl:h-[720px]
                 opacity-75'
-              />
+                />
 
-              <p>
-                I think that’s a responsibility that I have, to push
-                possibilities, to show people, this is the level that things
-                could be at. So when you get something that has the name Kanye
-                West on it, it’s supposed to be pushing the furthest
-                possibilities. I will be the leader of a company that ends up
-                being worth billions of dollars, because I got the answers. I
-                understand culture. I am the nucleus.
-              </p>
+                <p>
+                  I think that’s a responsibility that I have, to push
+                  possibilities, to show people, this is the level that things
+                  could be at. So when you get something that has the name Kanye
+                  West on it, it’s supposed to be pushing the furthest
+                  possibilities. I will be the leader of a company that ends up
+                  being worth billions of dollars, because I got the answers. I
+                  understand culture. I am the nucleus.
+                </p>
+              </main>
             </TabPane>
             <TabPane active={openTab === 4 ? true : false}>
               <img
