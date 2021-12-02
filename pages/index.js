@@ -183,24 +183,31 @@ export default function Home ({
                 xl:h-[720px]
                 opacity-75'
                 />
+                <div className='topFeedDiv'>
+                  <NewsFeed nba_results={nba_results} />
+                  <StandingsFeed nba_team_standings={nba_team_standings} />
+                </div>
 
-                <p>
-                  I think that’s a responsibility that I have, to push
-                  possibilities, to show people, this is the level that things
-                  could be at. So when you get something that has the name Kanye
-                  West on it, it’s supposed to be pushing the furthest
-                  possibilities. I will be the leader of a company that ends up
-                  being worth billions of dollars, because I got the answers. I
-                  understand culture. I am the nucleus.
-                </p>
+                <div className=' p-8 bg-gray-200 rounded-lg'></div>
               </main>
             </TabPane>
             <TabPane active={openTab === 4 ? true : false}>
-              <img
-                loading='lazy'
-                src='   https://thumbor.forbes.com/thumbor/0x0/smart/https%3A%2F%2Fspecials-images.forbesimg.com%2Fimageserve%2F5c06c7194bbe6f0f2aa13c1b%2F960x0.jpg%3FcropX1%3D250%26cropX2%3D2250%26cropY1%3D0%26cropY2%3D2000'
-                alt=''
-                className="
+              <NFLHeaderScores nfl_scores={nfl_scores} />
+
+              <main
+                className='
+              justify-center
+              mx-auto
+              max-w-[1680px]
+              mb-8
+              rounded-xl
+              '
+              >
+                <img
+                  loading='lazy'
+                  src='   https://thumbor.forbes.com/thumbor/0x0/smart/https%3A%2F%2Fspecials-images.forbesimg.com%2Fimageserve%2F5c06c7194bbe6f0f2aa13c1b%2F960x0.jpg%3FcropX1%3D250%26cropX2%3D2250%26cropY1%3D0%26cropY2%3D2000'
+                  alt=''
+                  className="
                 w-[720px] 
                 md:w-full 
                 h-[200px]
@@ -210,17 +217,12 @@ export default function Home ({
                 opacity-75'
               '
                "
-              />
-
-              <p>
-                I think that’s a responsibility that I have, to push
-                possibilities, to show people, this is the level that things
-                could be at. So when you get something that has the name Kanye
-                West on it, it’s supposed to be pushing the furthest
-                possibilities. I will be the leader of a company that ends up
-                being worth billions of dollars, because I got the answers. I
-                understand culture. I am the nucleus.
-              </p>
+                />
+                <div className='topFeedDiv'>
+                  <NFLNews nfl_results={nfl_results} />
+                  <NFLStandings nfl_team_standings={nfl_team_standings} />
+                </div>
+              </main>
             </TabPane>
           </TabContent>
         </Tab>
@@ -237,7 +239,7 @@ export async function getServerSideProps (context) {
   ).then(res => res.json())
 
   const nfl_scores = await fetch(
-    `https://api.sportsdata.io/v3/${sports_scores.fetchNFLScores.url}`
+    `https://api.sportsdata.io/v3/${sports_scores.fetchMLBScores.url}`
   ).then(res => res.json())
 
   const nba_news = await fetch(
@@ -245,7 +247,7 @@ export async function getServerSideProps (context) {
       sports_news.fetchNBANews.url}`
   ).then(res => res.json())
 
-  const nfl_results = await fetch(
+  const nfl_news = await fetch(
     `https://api.sportsdata.io/v3/${sports_news.fetchNFLNews.url}`
   ).then(res => res.json())
 
@@ -262,7 +264,7 @@ export async function getServerSideProps (context) {
       nba_scores: nba_scores,
       nfl_scores: nfl_scores,
       nba_results: nba_news,
-      nfl_results: nfl_results,
+      nfl_results: nfl_news,
       nba_team_standings: nba_standing_req,
       nfl_team_standings: nfl_standing_req
     }
