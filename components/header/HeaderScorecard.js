@@ -11,9 +11,10 @@ import { useState } from 'react'
 const HeaderScorecard = forwardRef(({ result }, ref) => {
   const [showModal, setShowModal] = useState(false)
   return (
-    <div
-      onClick={e => setShowModal(true)}
-      className='
+    <>
+      <div
+        onClick={e => setShowModal(true)}
+        className='
     flex
     items-center
     space-x-8
@@ -26,28 +27,99 @@ const HeaderScorecard = forwardRef(({ result }, ref) => {
     cursor-pointer
     rounded-lg
     '
-    >
-      <div
-        className='
+      >
+        <div
+          className='
       grid
       '
-      >
-        <h4 className='teamName text-blue-100'>{result.HomeTeam}</h4>
-        <h2 className='teamScore text-blue-300'>
-          {result.HomeTeamScore || result.HomeScore || result.HomeTeamRuns}
-        </h2>
-      </div>
-      <div
-        className='
+        >
+          <h4 className='teamName text-blue-100'>{result.HomeTeam}</h4>
+          <h2 className='teamScore text-blue-300'>
+            {result.HomeTeamScore || result.HomeScore || result.HomeTeamRuns}
+          </h2>
+        </div>
+        <div
+          className='
       grid
       '
-      >
-        <h4 className='teamName text-red-300'>{result.AwayTeam}</h4>
-        <h2 className='teamScore text-red-500'>
-          {result.AwayTeamScore || result.AwayScore || result.AwayTeamRuns}
-        </h2>
+        >
+          <h4 className='teamName text-red-300'>{result.AwayTeam}</h4>
+          <h2 className='teamScore text-red-500'>
+            {result.AwayTeamScore || result.AwayScore || result.AwayTeamRuns}
+          </h2>
+        </div>
       </div>
-    </div>
+      <Modal
+        className='bg-gray-800'
+        size='regular'
+        active={showModal}
+        toggler={() => setShowModal(false)}
+      >
+        <div>
+          <ModalHeader toggler={() => setShowModal(false)}>
+            Modal Title
+          </ModalHeader>
+          <ModalBody>
+            <div
+              className='
+          grid
+          text-center
+          place-items-center
+          '
+            >
+              <div
+                className='
+      flex items-center text-center justify-evenly
+      '
+              >
+                <h4 className='font-semibold text-[20px] text-blue-600'>
+                  {result.HomeTeam}
+                </h4>{' '}
+                <h2>---</h2>{' '}
+                <h2 className='font-semibold text-[32px] text-blue-800'>
+                  {result.HomeTeamScore ||
+                    result.HomeScore ||
+                    result.HomeTeamRuns}
+                </h2>
+              </div>
+              <div
+                className='
+      flex items-center text-center justify-evenly
+      '
+              >
+                <h4 className='font-semibold text-[20px] text-red-600'>
+                  {result.AwayTeam}
+                </h4>{' '}
+                <h2>---</h2>{' '}
+                <h2 className='font-semibold text-[32px] text-red-800'>
+                  {result.AwayTeamScore ||
+                    result.AwayScore ||
+                    result.AwayTeamRuns}
+                </h2>
+              </div>
+            </div>
+          </ModalBody>
+          <ModalFooter>
+            <Button
+              color='red'
+              buttonType='link'
+              onClick={e => setShowModal(false)}
+              ripple='dark'
+            >
+              Close
+            </Button>
+
+            <Button
+              color='green'
+              onClick={e => setShowModal(false)}
+              ripple='light'
+            >
+              Read more
+            </Button>
+          </ModalFooter>
+        </div>
+      </Modal>
+    </>
   )
 })
 

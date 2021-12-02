@@ -248,6 +248,11 @@
     "@babel/helper-validator-identifier" "^7.15.7"
     to-fast-properties "^2.0.0"
 
+"@badrap/bar-of-progress@^0.1.2":
+  version "0.1.2"
+  resolved "https://registry.yarnpkg.com/@badrap/bar-of-progress/-/bar-of-progress-0.1.2.tgz#5d9cf85759e1f77bddcb74398530976d87bb5077"
+  integrity sha512-bCwx/HbgUfJEndzlubJF5FVQrFEcGX4HZsoCfoa+gSq37pjbJBvIyqMBLIGnb5y0ICovIrxJUxvlbmxeic0rSQ==
+
 "@dabh/diagnostics@^2.0.2":
   version "2.0.2"
   resolved "https://registry.yarnpkg.com/@dabh/diagnostics/-/diagnostics-2.0.2.tgz#290d08f7b381b8f94607dc8f471a12c675f9db31"
