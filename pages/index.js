@@ -13,9 +13,7 @@ import TabPane from '@material-tailwind/react/TabPane'
 import StandingsFeed from '../components/feed/StandingsFeed'
 import NFLStandings from '../components/feed/NFLStandings'
 import NBAHeaderScores from '../components/header/NBAHeaderScores'
-import MLBHeaderScores from '../components/header/MLBHeaderScores'
 import NFLHeaderScores from '../components/header/NFLHeaderScores'
-import Icon from '@material-tailwind/react/Icon'
 //back-end
 //back-end-api
 import sports_news from '../utils/sports_news'
@@ -233,12 +231,6 @@ export async function getServerSideProps (context) {
     `https://api.sportsdata.io/v3/${sports_scores.fetchNFLScores.url}`
   ).then(res => res.json())
 
-  {
-    /*const mlb_scores = await fetch(
-    `https://api.sportsdata.io/v3/${sports_scores.fetchMLBScores.url}`
-  ).then(res => res.json())
-  */
-  }
   const nba_news = await fetch(
     `https://api.sportsdata.io/v3/${sports_news[genre]?.url ||
       sports_news.fetchNBANews.url}`
@@ -260,7 +252,6 @@ export async function getServerSideProps (context) {
     props: {
       nba_scores: nba_scores,
       nfl_scores: nfl_scores,
-      mlb_scores: mlb_scores,
       nba_results: nba_news,
       nfl_results: nfl_results,
       nba_team_standings: nba_standing_req,
