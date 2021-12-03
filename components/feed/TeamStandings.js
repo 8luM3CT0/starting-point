@@ -80,18 +80,55 @@ const TeamStandings = forwardRef(({ result }, ref) => {
           </div>
         </div>
       </div>
-      <Modal size='sm' active={showModal} toggler={() => setShowModal(false)}>
+      <Modal
+        size='regular'
+        active={showModal}
+        toggler={() => setShowModal(false)}
+      >
         <ModalHeader toggler={() => setShowModal(false)}>
-          Modal Title
+          Team Standings
         </ModalHeader>
-        <ModalBody color='lightblue'>
-          <p className='text-base leading-relaxed text-gray-600 font-normal'>
-            I always felt like I could do anything. That’s the main thing people
-            are controlled by! Thoughts- their perception of themselves! They're
-            slowed down by their perception of themselves. If you're taught you
-            can’t do anything, you won’t do anything. I was taught I could do
-            everything.
-          </p>
+        <ModalBody>
+          <div
+            className='
+          grid 
+          space-y-7
+          text-center 
+          items-center 
+          place-items-center'
+          >
+            {/**city and name */}
+            <div
+              className='
+            space-x-6
+            flex 
+            text-center 
+            place-items-center 
+            items-center 
+            text-[#45a29e]'
+            >
+              <h3 className='font-semibold text-[22px]'>{result.City}</h3>
+              {'  '}
+              {'  '}
+              <h2 className='font-bold text-[24px]'>{result.Name}</h2>
+            </div>
+            {/**city and name tag end */}
+            <div
+              className='
+            grid 
+            space-y-3
+            text-center 
+            items-center 
+            place-items-center'
+            >
+              <h4 className='text-base font-[20px] flex items-center space-x-5 text-blue-300'>
+                Wins: {'  '} {result.Wins}
+              </h4>
+              <h4 className='text-base font-[20px] flex items-center space-x-5 text-red-500'>
+                Losses: {'  '} {result.Losses}
+              </h4>
+            </div>
+          </div>
         </ModalBody>
         <ModalFooter>
           <Button
@@ -104,11 +141,11 @@ const TeamStandings = forwardRef(({ result }, ref) => {
           </Button>
 
           <Button
-            color='green'
+            color='lightBlue'
             onClick={e => setShowModal(false)}
             ripple='light'
           >
-            Save Changes
+            More details
           </Button>
         </ModalFooter>
       </Modal>

@@ -1,14 +1,22 @@
 export default {
     fetchNBAScores: {
         title: 'Scores (NBA)',
-        url: '/nba/scores/json/Games/%7B2021%7D?key=db693e2c06de4c0b836ce85ffb874ef9'
+        url: `/nba/scores/json/Games/%7B2021%7D?key=${process.env.nba_key}`
     },
     fetchNFLScores: {
         title: 'Scores (NFL)',
-        url: '/nfl/scores/json/Scores/%7B2021%7D?key=3c444c4c4ad8477b86e111fa4ecdc5c2'
+        url: `/nfl/scores/json/Scores/%7B2021%7D?key=${process.env.nfl_key}`
+    },
+    fetchCBBScores: {
+        title: 'Scores (CBB)',
+        url: `/cbb/scores/json/Games/%7B2021%7D?key=${process.env.cbb_key}`
     },
     fetchMLBScores: {
         title: 'Scores (MLB)',
-        url: '/mlb/scores/json/Games/%7B2021%7D?key=cc79a7278cfc4babb39717ab5fed7b44'
+        url: `/mlb/scores/json/Games/%7B2021%7D?key=${process.env.mlb_key}`
+    },
+    fetchNHLScores: {
+        title: 'Scores (NHL)',
+        url: `/nhl/scores/json/Games/%7B2021%7D?key=${process.env.nhl_key}`
     }
 }

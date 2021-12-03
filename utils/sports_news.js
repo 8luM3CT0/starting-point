@@ -1,14 +1,19 @@
 export default {
     fetchNBANews: {
         title: 'NBA News',
-        url: '/nba/scores/json/News?key=db693e2c06de4c0b836ce85ffb874ef9'
+        url: `/nba/scores/json/News?key=${process.env.nba_key}`
     },
     fetchNHLNews: {
         title: 'NHL News',
-        url: '/nhl/scores/json/News?key=dfb1fa2611ab42369cd0fe2688fb7b7b'
+        url: `/nhl/scores/json/News?key=${process.env.nhl_key}`
     },
     fetchNFLNews: {
         title: 'NFL News',
-        url: '/nfl/scores/json/News?key=3c444c4c4ad8477b86e111fa4ecdc5c2'
+        url: `/nfl/scores/json/News?key=${process.env.nfl_key}`
+    },
+    fetchMLBNews: {
+        title: 'MLB News',
+        url: `/mlb/scores/json/News?key=${process.env.mlb_key}`
     }
+
 }

@@ -27,15 +27,19 @@ import { useAuthState } from 'react-firebase-hooks/auth'
 export default function Home ({
   nba_scores,
   nfl_scores,
-  mlb_scores,
+  nhl_scores,
   nfl_results,
   nba_results,
+  mlb_results,
+  nhl_results,
   nba_team_standings,
   nfl_team_standings
 }) {
   const [user] = useAuthState(auth)
 
   const [openTab, setOpenTab] = useState(1)
+
+  console.log(nhl_scores)
 
   return (
     <div className='scrollbar-hide overflow-hidden bg-[#2d3642] pb-8'>
@@ -123,8 +127,8 @@ export default function Home ({
                   opacity-75'
                 />
                 <div className='topFeedDiv'>
-                  <NFLNews nfl_results={nfl_results} />
-                  <NFLStandings nfl_team_standings={nfl_team_standings} />
+                  <NewsFeed nba_results={nfl_results} />
+                  <StandingsFeed nba_team_standings={nfl_team_standings} />
                 </div>
               </main>
             </TabPane>
@@ -161,7 +165,6 @@ export default function Home ({
               </main>
             </TabPane>
             <TabPane active={openTab === 3 ? true : false}>
-              <NBAHeaderScores nba_scores={nba_scores} />
               <main
                 className='          
           justify-center
@@ -184,7 +187,7 @@ export default function Home ({
                 opacity-75'
                 />
                 <div className='topFeedDiv'>
-                  <NewsFeed nba_results={nba_results} />
+                  <NewsFeed nba_results={mlb_results} />
                   <StandingsFeed nba_team_standings={nba_team_standings} />
                 </div>
 
@@ -192,8 +195,6 @@ export default function Home ({
               </main>
             </TabPane>
             <TabPane active={openTab === 4 ? true : false}>
-              <NFLHeaderScores nfl_scores={nfl_scores} />
-
               <main
                 className='
               justify-center
@@ -219,8 +220,8 @@ export default function Home ({
                "
                 />
                 <div className='topFeedDiv'>
-                  <NFLNews nfl_results={nfl_results} />
-                  <NFLStandings nfl_team_standings={nfl_team_standings} />
+                  <NewsFeed nba_results={nhl_results} />
+                  <StandingsFeed nba_team_standings={nfl_team_standings} />
                 </div>
               </main>
             </TabPane>
@@ -242,13 +243,24 @@ export async function getServerSideProps (context) {
     `https://api.sportsdata.io/v3/${sports_scores.fetchNFLScores.url}`
   ).then(res => res.json())
 
+  const nhl_scores = await fetch(
+    `https://api.sportsdata.io/v3/${sports_scores.fetchNHLScores.url}`
+  ).then(res => res.json())
+
   const nba_news = await fetch(
-    `https://api.sportsdata.io/v3/${sports_news[genre]?.url ||
-      sports_news.fetchNBANews.url}`
+    `https://api.sportsdata.io/v3/${sports_news.fetchNBANews.url}`
   ).then(res => res.json())
 
   const nfl_news = await fetch(
     `https://api.sportsdata.io/v3/${sports_news.fetchNFLNews.url}`
+  ).then(res => res.json())
+
+  const mlb_news = await fetch(
+    `https://api.sportsdata.io/v3/${sports_news.fetchMLBNews.url}`
+  ).then(res => res.json())
+
+  const nhl_news = await fetch(
+    `https://api.sportsdata.io/v3/${sports_news.fetchNHLNews.url}`
   ).then(res => res.json())
 
   const nba_standing_req = await fetch(
@@ -263,8 +275,11 @@ export async function getServerSideProps (context) {
     props: {
       nba_scores: nba_scores,
       nfl_scores: nfl_scores,
+      nhl_scores: nhl_scores,
       nba_results: nba_news,
       nfl_results: nfl_news,
+      mlb_results: mlb_news,
+      nhl_results: nhl_news,
       nba_team_standings: nba_standing_req,
       nfl_team_standings: nfl_standing_req
     }
