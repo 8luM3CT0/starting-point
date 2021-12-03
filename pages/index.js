@@ -33,13 +33,15 @@ export default function Home ({
   mlb_results,
   nhl_results,
   nba_team_standings,
-  nfl_team_standings
+  nfl_team_standings,
+  nhl_team_standings,
+  mlb_team_standings
 }) {
   const [user] = useAuthState(auth)
 
   const [openTab, setOpenTab] = useState(1)
 
-  console.log(nhl_scores)
+  console.log(mlb_team_standings)
 
   return (
     <div className='scrollbar-hide overflow-hidden bg-[#2d3642] pb-8'>
@@ -188,13 +190,14 @@ export default function Home ({
                 />
                 <div className='topFeedDiv'>
                   <NewsFeed nba_results={mlb_results} />
-                  <StandingsFeed nba_team_standings={nba_team_standings} />
+                  <StandingsFeed nba_team_standings={mlb_team_standings} />
                 </div>
 
                 <div className=' p-8 bg-gray-200 rounded-lg'></div>
               </main>
             </TabPane>
             <TabPane active={openTab === 4 ? true : false}>
+              <NBAHeaderScores nba_scores={nhl_scores} />
               <main
                 className='
               justify-center
@@ -221,7 +224,7 @@ export default function Home ({
                 />
                 <div className='topFeedDiv'>
                   <NewsFeed nba_results={nhl_results} />
-                  <StandingsFeed nba_team_standings={nfl_team_standings} />
+                  <StandingsFeed nba_team_standings={nhl_team_standings} />
                 </div>
               </main>
             </TabPane>
@@ -271,6 +274,14 @@ export async function getServerSideProps (context) {
     `https://api.sportsdata.io/v3/${sports_standings.fetchNFLStandings.url}`
   ).then(res => res.json())
 
+  const nhl_standing_req = await fetch(
+    `https://api.sportsdata.io/v3/${sports_standings.fetchNHLStandings.url}`
+  ).then(res => res.json())
+
+  const mlb_standing_req = await fetch(
+    `https://api.sportsdata.io/v3/${sports_standings.fetchMLBStandings.url}`
+  ).then(res => res.json())
+
   return {
     props: {
       nba_scores: nba_scores,
@@ -281,7 +292,9 @@ export async function getServerSideProps (context) {
       mlb_results: mlb_news,
       nhl_results: nhl_news,
       nba_team_standings: nba_standing_req,
-      nfl_team_standings: nfl_standing_req
+      nfl_team_standings: nfl_standing_req,
+      nhl_team_standings: nhl_standing_req,
+      mlb_team_standings: mlb_standing_req
     }
   }
 }
