@@ -92,4 +92,23 @@
       bg-gray-800
   }
 
+  .headerOptions{
+    @apply 
+    hidden 
+    lg:inline-flex 
+    lg:text-xl 
+    hover:animate-pulse
+    cursor-pointer
+  }
+
+  .headerOptionsIcon{
+    @apply
+    lg:hidden 
+    inline-flex 
+    h-[14px]
+    sm:h-[20px]
+    cursor-pointer
+    hover:animate-pulse
+  }
+
 }

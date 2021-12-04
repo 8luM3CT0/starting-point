@@ -5,7 +5,13 @@ import Modal from '@material-tailwind/react/Modal'
 import ModalHeader from '@material-tailwind/react/ModalHeader'
 import ModalBody from '@material-tailwind/react/ModalBody'
 import ModalFooter from '@material-tailwind/react/ModalFooter'
-import { UserIcon } from '@heroicons/react/solid'
+import {
+  UserIcon,
+  HomeIcon,
+  BookOpenIcon,
+  InformationCircleIcon,
+  IdentificationIcon
+} from '@heroicons/react/solid'
 //back-end
 import { auth, store, provider } from '../../firebaseFile'
 import { useAuthState } from 'react-firebase-hooks/auth'
@@ -102,6 +108,31 @@ function Header () {
             <Icon name='sports' className='pr-4 h-[50px]' />
           </Button>
           <h1 className='appName'>StartUp</h1>
+        </div>
+        <div
+          className='
+        flex
+        items-center
+        space-x-10
+        text-[#4bb6af]
+        '
+        >
+          <HomeIcon className='headerOptionsIcon' />
+          <h2 onClick={() => router.push('/')} className='headerOptions'>
+            Home
+          </h2>
+          <InformationCircleIcon className='headerOptionsIcon' />
+          <h2 onClick={() => router.push('/')} className='headerOptions'>
+            About
+          </h2>
+          <BookOpenIcon className='headerOptionsIcon' />
+          <h2 onClick={() => router.push('/')} className='headerOptions'>
+            Blog
+          </h2>
+          <IdentificationIcon className='headerOptionsIcon' />
+          <h2 onClick={() => router.push('/')} className='headerOptions'>
+            Contact
+          </h2>
         </div>
         {!user ? (
           <div
