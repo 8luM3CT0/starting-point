@@ -24,7 +24,8 @@
     @apply
     font-semibold 
     font-google-sans 
-    text-lg
+    hidden
+    md:inline-flex
     md:text-2xl
   }
 
