@@ -113,7 +113,8 @@ function Header () {
           className='
         flex
         items-center
-        space-x-10
+        space-x-6
+        lg:space-x-10
         text-[#4bb6af]
         '
         >
