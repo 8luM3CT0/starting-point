@@ -25,12 +25,8 @@
     font-semibold 
     font-google-sans 
     hidden
-<<<<<<< HEAD
     lg:inline-flex
     lg:text-lg
-=======
-    md:inline-flex
->>>>>>> a1aa4543454a7cbb51f2495eebfeeadf835bed02
     md:text-2xl
   }
 
