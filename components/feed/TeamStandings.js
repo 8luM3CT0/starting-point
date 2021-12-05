@@ -49,7 +49,7 @@ const TeamStandings = forwardRef(({ result }, ref) => {
           font-medium
           text-xl '
             >
-              {result.Name}
+              {result.City || result.Team}
             </h3>
           </div>
           <div

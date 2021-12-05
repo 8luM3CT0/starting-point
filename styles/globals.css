@@ -24,10 +24,16 @@
     @apply
     font-semibold 
     font-google-sans 
+    capitalize
     hidden
     lg:inline-flex
-    lg:text-lg
-    md:text-2xl
+    lg:text-2xl
+  }
+
+  .appIcon{
+    @apply
+    mr-4 
+    h-[50px]
   }
 
   .teamScore{
@@ -103,13 +109,33 @@
     cursor-pointer
   }
 
+  .moreOptions{
+    @apply
+    flex
+    items-center
+    text-[#45a29e]
+    space-x-10
+    pr-5
+    hover:animate-pulse
+  }
+
   .headerOptionsIcon{
     @apply
-    lg:hidden 
-    inline-flex 
+    lg:hidden  
     h-[14px]
     sm:h-[20px]
     cursor-pointer
+  }
+
+  .moreOptionsTitle{
+    @apply
+    text-lg 
+    cursor-pointer
+  }
+
+  .menuBtn{
+    @apply
+    lg:hidden
     hover:animate-pulse
   }
 

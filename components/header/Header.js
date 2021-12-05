@@ -67,6 +67,7 @@ function Header () {
   }, [user])
 
   const [showModal, setShowModal] = useState(false)
+  const [showMoreOptions, setShowMoreOptions] = useState(false)
 
   return (
     <header
@@ -97,6 +98,19 @@ function Header () {
         space-x-8
         '
         >
+          <div className='menuBtn'>
+            <Button
+              onClick={e => setShowMoreOptions(true)}
+              color='#1f2937'
+              buttonType='solid'
+              iconOnly={true}
+              ripple='light'
+              size='3xl'
+              className='border-0 h-[50px]'
+            >
+              <Icon name='menu' className='pr-4 h-[50px]' />
+            </Button>
+          </div>
           <Button
             color='#1f2937'
             buttonType='solid'
@@ -105,9 +119,11 @@ function Header () {
             size='3xl'
             className='border-0 h-[50px]'
           >
-            <Icon name='sports' className='pr-4 h-[50px]' />
+            <div className='ml-5 flex space-x-5 items-center'>
+              <Icon name='sports' className='appIcon' />
+              <h1 className='appName'>StartUp</h1>
+            </div>
           </Button>
-          <h1 className='appName'>StartUp</h1>
         </div>
         <div
           className='
@@ -118,20 +134,16 @@ function Header () {
         text-[#4bb6af]
         '
         >
-          <HomeIcon className='headerOptionsIcon' />
           <h2 onClick={() => router.push('/')} className='headerOptions'>
             Home
           </h2>
-          <InformationCircleIcon className='headerOptionsIcon' />
-          <h2 onClick={() => router.push('/')} className='headerOptions'>
+          <h2 onClick={() => router.push('/about')} className='headerOptions'>
             About
           </h2>
-          <BookOpenIcon className='headerOptionsIcon' />
-          <h2 onClick={() => router.push('/')} className='headerOptions'>
+          <h2 onClick={() => router.push('/blog')} className='headerOptions'>
             Blog
           </h2>
-          <IdentificationIcon className='headerOptionsIcon' />
-          <h2 onClick={() => router.push('/')} className='headerOptions'>
+          <h2 onClick={() => router.push('/contact')} className='headerOptions'>
             Contact
           </h2>
         </div>
@@ -195,16 +207,7 @@ function Header () {
                 bg-gray-50'
                 />
                 <div className='flex mt-5 items-center space-x-3'>
-                  <Button
-                    color='red'
-                    buttonType='link'
-                    onClick={e => setShowModal(false)}
-                    ripple='dark'
-                  >
-                    Cancel
-                  </Button>
-
-                  <Button color='green' onClick={signIn} ripple='light'>
+                  <Button color='teal' onClick={signIn} ripple='light'>
                     Sign In
                   </Button>
                 </div>
@@ -249,7 +252,7 @@ function Header () {
         items-center 
         space-x-8'
           >
-            {user.photoURL ? (
+            {user?.photoURL ? (
               <img
                 src={user?.photoURL}
                 alt=''
@@ -266,6 +269,39 @@ function Header () {
           </div>
         )}
       </div>
+      <Modal
+        size='lg'
+        active={showMoreOptions}
+        toggler={() => setShowMoreOptions(false)}
+        className='p-[150px]'
+      >
+        <ModalHeader toggler={() => setShowMoreOptions(false)}>
+          More
+        </ModalHeader>
+        <ModalBody>
+          <div className='grid text-center space-y-7'>
+            <span onClick={() => router.push('/')} className='moreOptions'>
+              <HomeIcon className='headerOptionsIcon' />
+              <h4 className='moreOptionsTitle'>Home</h4>
+            </span>
+            <span onClick={() => router.push('/about')} className='moreOptions'>
+              <InformationCircleIcon className='headerOptionsIcon' />
+              <h4 className='moreOptionsTitle'>About</h4>
+            </span>
+            <span onClick={() => router.push('/blog')} className='moreOptions'>
+              <BookOpenIcon className='headerOptionsIcon' />
+              <h4 className='moreOptionsTitle'>Blog</h4>
+            </span>
+            <span
+              onClick={() => router.push('/contact')}
+              className='moreOptions'
+            >
+              <IdentificationIcon className='headerOptionsIcon' />
+              <h4 className='moreOptionsTitle'>Contact</h4>
+            </span>
+          </div>
+        </ModalBody>
+      </Modal>
     </header>
   )
 }
