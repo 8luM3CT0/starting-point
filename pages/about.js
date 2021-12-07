@@ -1,6 +1,11 @@
 //front-end
 import Head from 'next/head'
 import Header from '../components/header/Header'
+import Modal from '@material-tailwind/react/Modal'
+import ModalHeader from '@material-tailwind/react/ModalHeader'
+import ModalBody from '@material-tailwind/react/ModalBody'
+import ModalFooter from '@material-tailwind/react/ModalFooter'
+import Button from '@material-tailwind/react/Button'
 //back-end
 
 function About () {
@@ -16,7 +21,7 @@ function About () {
       h-screen
       overflow-y-scroll
       scrollbar-hide
-      bg-gray-200
+      bg-gray-300
       mx-auto
       '
       ></div>

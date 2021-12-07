@@ -19,6 +19,7 @@ import NFLHeaderScores from '../components/header/NFLHeaderScores'
 import sports_news from '../utils/sports_news'
 import sports_scores from '../utils/sports_scores'
 import sports_standings from '../utils/sports_standings'
+import sports_bets from '../utils/sports_bets'
 //auth-backend
 import { auth, store, provider } from '../firebaseFile'
 import { useState } from 'react'
@@ -35,13 +36,15 @@ export default function Home ({
   nba_team_standings,
   nfl_team_standings,
   nhl_team_standings,
-  mlb_team_standings
+  mlb_team_standings,
+  nba_betting_data,
+  nfl_betting_data
 }) {
   const [user] = useAuthState(auth)
 
   const [openTab, setOpenTab] = useState(1)
 
-  console.log(nfl_team_standings)
+  console.log(nfl_betting_data)
 
   return (
     <div className='scrollbar-hide overflow-hidden bg-[#2d3642] pb-8'>
@@ -282,6 +285,14 @@ export async function getServerSideProps (context) {
     `https://api.sportsdata.io/v3/${sports_standings.fetchMLBStandings.url}`
   ).then(res => res.json())
 
+  const nba_bets = await fetch(
+    `https://api.sportsdata.io/v3/${sports_bets.fetchNBABets.url}`
+  ).then(res => res.json())
+
+  const nfl_bets = await fetch(
+    `https://api.sportsdata.io/v3/${sports_bets.fetchNFLBets.url}`
+  ).then(res => res.json())
+
   return {
     props: {
       nba_scores: nba_scores,
@@ -294,7 +305,9 @@ export async function getServerSideProps (context) {
       nba_team_standings: nba_standing_req,
       nfl_team_standings: nfl_standing_req,
       nhl_team_standings: nhl_standing_req,
-      mlb_team_standings: mlb_standing_req
+      mlb_team_standings: mlb_standing_req,
+      nba_betting_data: nba_bets,
+      nfl_betting_data: nfl_bets
     }
   }
 }
