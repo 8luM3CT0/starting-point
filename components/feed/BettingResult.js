@@ -13,7 +13,8 @@ const BettingResult = forwardRef(({ result }, ref) => {
         justify-evenly 
         px-6
         py-4 
-        hover:bg-[#45a29e]  
+        rounded-lg
+        hover:bg-[#c2f0ec]  
         hover:scale-105
         hover:transition
         duration-150 
