@@ -1,12 +1,20 @@
 //front-end
 import { forwardRef } from 'react'
+import Modal from '@material-tailwind/react/Modal'
+import ModalHeader from '@material-tailwind/react/ModalHeader'
+import ModalBody from '@material-tailwind/react/ModalBody'
+import ModalFooter from '@material-tailwind/react/ModalFooter'
+import Button from '@material-tailwind/react/Button'
 //back-end
 import { useState } from 'react'
 
 const BettingResult = forwardRef(({ result }, ref) => {
+  const [showBettingModal, setShowBettingModal] = useState(false)
+
   return (
     <>
       <div
+        onClick={e => setShowBettingModal(true)}
         className='
         flex 
         items-center 
@@ -60,6 +68,42 @@ const BettingResult = forwardRef(({ result }, ref) => {
           </h5>
         </span>
       </div>
+      <Modal
+        size='regular'
+        active={showBettingModal}
+        toggler={() => setShowBettingModal(false)}
+      >
+        <ModalHeader color='teal' toggler={() => setShowBettingModal(false)}>
+          {result.Name}
+        </ModalHeader>
+        <ModalBody>
+          <p className='text-base leading-relaxed text-gray-600 font-normal'>
+            I always felt like I could do anything. That’s the main thing people
+            are controlled by! Thoughts- their perception of themselves! They're
+            slowed down by their perception of themselves. If you're taught you
+            can’t do anything, you won’t do anything. I was taught I could do
+            everything.
+          </p>
+        </ModalBody>
+        <ModalFooter>
+          <Button
+            color='blue'
+            buttonType='link'
+            onClick={e => setShowBettingModal(false)}
+            ripple='dark'
+          >
+            Close
+          </Button>
+
+          <Button
+            color='teal'
+            onClick={e => setShowBettingModal(false)}
+            ripple='light'
+          >
+            More details
+          </Button>
+        </ModalFooter>
+      </Modal>
     </>
   )
 })

@@ -21,7 +21,7 @@ function About () {
       h-screen
       overflow-y-scroll
       scrollbar-hide
-      bg-gray-300
+      bg-[#45a29e]
       mx-auto
       '
       ></div>
