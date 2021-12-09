@@ -14,6 +14,11 @@ export default {
         url: `mlb/odds/json/BettingEvents/2021?key=${process.env.mlb_key}`
     },
 
+    fetchNHLBets: {
+        title: 'Betting Details (NHL)',
+        url: `nhl/odds/json/BettingEvents/2021?key=${process.env.nhl_key}`
+    },
+
     fetchNBABetMetadata: {
         title: 'Betting Metadata',
         url: `nba/odds/json/BettingMetadata?key=${process.env.nba_key}`
@@ -27,5 +32,10 @@ export default {
     fetchMLBBetMetadata: {
         title: 'Betting Metadata (MLB)',
         url: `mlb/odds/json/BettingMetadata?key=${process.env.mlb_key}`
+    },
+
+    fetchNHLBetMetadata: {
+        title: 'Betting Metadata (NHL)',
+        url: `nhl/odds/json/BettingMetadata?key=${process.env.nhl_key}`
     }
 }

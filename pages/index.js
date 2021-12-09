@@ -37,11 +37,13 @@ export default function Home ({
   mlb_team_standings,
   nba_betting_data,
   nfl_betting_data,
-  mlb_betting_data
+  nhl_betting_data
 }) {
   const [user] = useAuthState(auth)
 
   const [openTab, setOpenTab] = useState(1)
+
+  console.log(nhl_betting_data)
 
   return (
     <div className='scrollbar-hide h-screen overflow-hidden bg-[#2d3642] pb-8'>
@@ -285,7 +287,9 @@ export default function Home ({
                 >
                   Betting details
                 </h3>
-                <div className=' p-8 max-w-[1480px] mx-auto  rounded-lg'></div>
+                <div className=' p-8 max-w-[1480px] mx-auto  rounded-lg'>
+                  <BettingDetails betting_results={nhl_betting_data} />
+                </div>
               </main>
             </TabPane>
           </TabContent>
@@ -350,6 +354,10 @@ export async function getServerSideProps (context) {
     `https://api.sportsdata.io/v3/${sports_bets.fetchNFLBets.url}`
   ).then(res => res.json())
 
+  const nhl_bets = await fetch(
+    `https://api.sportsdata.io/v3/${sports_bets.fetchNHLBets.url}`
+  ).then(res => res.json())
+
   return {
     props: {
       nba_scores: nba_scores,
@@ -364,7 +372,8 @@ export async function getServerSideProps (context) {
       nhl_team_standings: nhl_standing_req,
       mlb_team_standings: mlb_standing_req,
       nba_betting_data: nba_bets,
-      nfl_betting_data: nfl_bets
+      nfl_betting_data: nfl_bets,
+      nhl_betting_data: nhl_bets
     }
   }
 }
