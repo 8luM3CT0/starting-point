@@ -144,12 +144,6 @@ function Header () {
             <h2 onClick={() => router.push('/blog')} className='headerOptions'>
               Blog
             </h2>
-            <h2
-              onClick={() => router.push('/contact')}
-              className='headerOptions'
-            >
-              Contact
-            </h2>
           </div>
           {!user ? (
             <div
@@ -295,13 +289,6 @@ function Header () {
             <span onClick={() => router.push('/blog')} className='moreOptions'>
               <BookOpenIcon className='headerOptionsIcon' />
               <h4 className='moreOptionsTitle'>Blog</h4>
-            </span>
-            <span
-              onClick={() => router.push('/contact')}
-              className='moreOptions'
-            >
-              <IdentificationIcon className='headerOptionsIcon' />
-              <h4 className='moreOptionsTitle'>Contact</h4>
             </span>
           </div>
         </ModalBody>
