@@ -288,7 +288,7 @@ export default function Home ({
                   Betting details
                 </h3>
                 <div className=' p-8 max-w-[1480px] mx-auto  rounded-lg'>
-                  <BettingDetails betting_results={nhl_betting_data} />
+                  {/*<BettingDetails betting_results={nhl_betting_data} />*/}
                 </div>
               </main>
             </TabPane>
