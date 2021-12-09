@@ -70,16 +70,17 @@ function Header () {
   const [showMoreOptions, setShowMoreOptions] = useState(false)
 
   return (
-    <header
-      className='
+    <>
+      <header
+        className='
         top-0
         z-50
         sticky
         justify-center
         '
-    >
-      <div
-        className='
+      >
+        <div
+          className='
         flex-1         
         py-6
         bg-[#0d181d]
@@ -88,19 +89,30 @@ function Header () {
         justify-between
         flex
         items-center'
-      >
-        <div
-          className='
+        >
+          <div
+            className='
           cursor-pointer
           hover:animate-pulse
         flex
         items-center
         space-x-8
         '
-        >
-          <div className='menuBtn'>
+          >
+            <div className='menuBtn'>
+              <Button
+                onClick={e => setShowMoreOptions(true)}
+                color='#1f2937'
+                buttonType='solid'
+                iconOnly={true}
+                ripple='light'
+                size='3xl'
+                className='border-0 h-[50px]'
+              >
+                <Icon name='menu' className='pr-4 h-[50px]' />
+              </Button>
+            </div>
             <Button
-              onClick={e => setShowMoreOptions(true)}
               color='#1f2937'
               buttonType='solid'
               iconOnly={true}
@@ -108,48 +120,40 @@ function Header () {
               size='3xl'
               className='border-0 h-[50px]'
             >
-              <Icon name='menu' className='pr-4 h-[50px]' />
+              <div className='ml-5 flex space-x-5 items-center'>
+                <Icon name='sports' className='appIcon' />
+                <h1 className='appName'>StartUp</h1>
+              </div>
             </Button>
           </div>
-          <Button
-            color='#1f2937'
-            buttonType='solid'
-            iconOnly={true}
-            ripple='light'
-            size='3xl'
-            className='border-0 h-[50px]'
-          >
-            <div className='ml-5 flex space-x-5 items-center'>
-              <Icon name='sports' className='appIcon' />
-              <h1 className='appName'>StartUp</h1>
-            </div>
-          </Button>
-        </div>
-        <div
-          className='
+          <div
+            className='
         flex
         items-center
         space-x-6
         lg:space-x-10
         text-[#4bb6af]
         '
-        >
-          <h2 onClick={() => router.push('/')} className='headerOptions'>
-            Home
-          </h2>
-          <h2 onClick={() => router.push('/about')} className='headerOptions'>
-            About
-          </h2>
-          <h2 onClick={() => router.push('/blog')} className='headerOptions'>
-            Blog
-          </h2>
-          <h2 onClick={() => router.push('/contact')} className='headerOptions'>
-            Contact
-          </h2>
-        </div>
-        {!user ? (
-          <div
-            className='
+          >
+            <h2 onClick={() => router.push('/')} className='headerOptions'>
+              Home
+            </h2>
+            <h2 onClick={() => router.push('/about')} className='headerOptions'>
+              About
+            </h2>
+            <h2 onClick={() => router.push('/blog')} className='headerOptions'>
+              Blog
+            </h2>
+            <h2
+              onClick={() => router.push('/contact')}
+              className='headerOptions'
+            >
+              Contact
+            </h2>
+          </div>
+          {!user ? (
+            <div
+              className='
             hover:underline
             rounded-3xl
         justify-end
@@ -157,123 +161,123 @@ function Header () {
         flex 
         items-center 
         space-x-8'
-          >
-            <Button
-              onClick={e => setShowModal(true)}
-              className='border-0 rounded-3xl'
-              buttonType='solid'
-              color='lightBlue'
             >
-              <h2 className='text-base md:text-xl font-medium font-hind-font'>
-                Sign in
-              </h2>
-            </Button>
-            <Modal
-              className='justify-center'
-              size='sm'
-              active={showModal}
-              toggler={() => setShowModal(false)}
-            >
-              <ModalHeader toggler={() => setShowModal(false)}>
-                Sign In
-              </ModalHeader>
-              <ModalBody className='justify-center grid'>
-                <p className='text-base leading-relaxed text-gray-600 font-normal'>
-                  Email
-                </p>
-                <input
-                  value={email}
-                  onChange={e => setEmail(e.target.value)}
-                  type='text'
-                  className='
+              <Button
+                onClick={e => setShowModal(true)}
+                className='border-0 rounded-3xl'
+                buttonType='solid'
+                color='lightBlue'
+              >
+                <h2 className='text-base md:text-xl font-medium font-hind-font'>
+                  Sign in
+                </h2>
+              </Button>
+              <Modal
+                className='justify-center'
+                size='sm'
+                active={showModal}
+                toggler={() => setShowModal(false)}
+              >
+                <ModalHeader toggler={() => setShowModal(false)}>
+                  Sign In
+                </ModalHeader>
+                <ModalBody className='justify-center grid'>
+                  <p className='text-base leading-relaxed text-gray-600 font-normal'>
+                    Email
+                  </p>
+                  <input
+                    value={email}
+                    onChange={e => setEmail(e.target.value)}
+                    type='text'
+                    className='
                 border 
                 text-gray-800
                 border-blue-100 
                 rounded-lg outline-none 
                 bg-gray-50'
-                />
-                <p className='text-base leading-relaxed text-gray-600 font-normal'>
-                  Password
-                </p>
-                <input
-                  value={password}
-                  onChange={e => setPassword(e.target.value)}
-                  type='password'
-                  className='
+                  />
+                  <p className='text-base leading-relaxed text-gray-600 font-normal'>
+                    Password
+                  </p>
+                  <input
+                    value={password}
+                    onChange={e => setPassword(e.target.value)}
+                    type='password'
+                    className='
                 border 
                 text-gray-800
                 border-blue-100 
                 rounded-lg outline-none 
                 bg-gray-50'
-                />
-                <div className='flex mt-5 items-center space-x-3'>
-                  <Button color='teal' onClick={signIn} ripple='light'>
-                    Sign In
+                  />
+                  <div className='flex mt-5 items-center space-x-3'>
+                    <Button color='teal' onClick={signIn} ripple='light'>
+                      Sign In
+                    </Button>
+                  </div>
+                </ModalBody>
+                <ModalBody className='justify-center space-y-5'>
+                  <p className='text-base leading-relaxed text-gray-600 font-normal'>
+                    Otherwise, sign in with Google
+                  </p>
+                  <Button
+                    className='mt-5'
+                    color='blue'
+                    onClick={logInWithGoogle}
+                    ripple='light'
+                  >
+                    Google sign in
                   </Button>
-                </div>
-              </ModalBody>
-              <ModalBody className='justify-center space-y-5'>
-                <p className='text-base leading-relaxed text-gray-600 font-normal'>
-                  Otherwise, sign in with Google
-                </p>
-                <Button
-                  className='mt-5'
-                  color='blue'
-                  onClick={logInWithGoogle}
-                  ripple='light'
-                >
-                  Google sign in
-                </Button>
-              </ModalBody>
-              <ModalBody className='justify-center space-y-5'>
-                <p className='text-base leading-relaxed text-gray-600 font-normal'>
-                  Or, if you don't have an account yet, then sign up
-                </p>
-                <Button
-                  onClick={goToSignUp}
-                  buttonType='link'
-                  className='mt-5'
-                  color='orange'
-                  ripple='light'
-                >
-                  Sign up
-                </Button>
-              </ModalBody>
-            </Modal>
-          </div>
-        ) : (
-          <div
-            onClick={logOut}
-            className='
+                </ModalBody>
+                <ModalBody className='justify-center space-y-5'>
+                  <p className='text-base leading-relaxed text-gray-600 font-normal'>
+                    Or, if you don't have an account yet, then sign up
+                  </p>
+                  <Button
+                    onClick={goToSignUp}
+                    buttonType='link'
+                    className='mt-5'
+                    color='orange'
+                    ripple='light'
+                  >
+                    Sign up
+                  </Button>
+                </ModalBody>
+              </Modal>
+            </div>
+          ) : (
+            <div
+              onClick={logOut}
+              className='
         hover:animate-pulse
         justify-end
         cursor-pointer 
         flex 
         items-center 
         space-x-8'
-          >
-            {user?.photoURL ? (
-              <img
-                src={user?.photoURL}
-                alt=''
-                className='h-10 rounded-3xl border border-blue-400'
-              />
-            ) : (
-              <UserIcon className='h-10 bg-gray-700 rounded-3xl border border-blue-400' />
-            )}
-            {user?.displayName ? (
-              <h2 className='username ml-3'>{user?.displayName}</h2>
-            ) : (
-              <h2 className='username ml-3'>{user?.email}</h2>
-            )}
-          </div>
-        )}
-      </div>
+            >
+              {user?.photoURL ? (
+                <img
+                  src={user?.photoURL}
+                  alt=''
+                  className='h-10 rounded-3xl border border-blue-400'
+                />
+              ) : (
+                <UserIcon className='h-10 bg-gray-700 rounded-3xl border border-blue-400' />
+              )}
+              {user?.displayName ? (
+                <h2 className='username ml-3'>{user?.displayName}</h2>
+              ) : (
+                <h2 className='username ml-3'>{user?.email}</h2>
+              )}
+            </div>
+          )}
+        </div>
+      </header>
       <Modal
-        size='lg'
+        size='regular'
         active={showMoreOptions}
         toggler={() => setShowMoreOptions(false)}
-        className='p-[150px]'
       >
         <ModalHeader toggler={() => setShowMoreOptions(false)}>
           More
@@ -302,7 +306,7 @@ function Header () {
           </div>
         </ModalBody>
       </Modal>
-    </header>
+    </>
   )
 }
 

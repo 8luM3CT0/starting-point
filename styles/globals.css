@@ -62,7 +62,9 @@
     xl:flex 
     xl:items-center
     bg-gray-100 
-    mt-8 
+    mt-8
+    space-y-8
+    space-x-8 
   }
 
   .newsFeedDiv{
@@ -95,8 +97,8 @@
       lg:max-h-[720px]
       grid
       lg:flex
-      space-x-10
-      px-4
+      lg:space-x-10
+      px-[60px]
       bg-gray-800
   }
 

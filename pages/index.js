@@ -36,13 +36,14 @@ export default function Home ({
   nhl_team_standings,
   mlb_team_standings,
   nba_betting_data,
-  nfl_betting_data
+  nfl_betting_data,
+  mlb_betting_data
 }) {
   const [user] = useAuthState(auth)
 
   const [openTab, setOpenTab] = useState(1)
 
-  console.log(nfl_betting_data)
+  console.log(mlb_betting_data)
 
   return (
     <div className='scrollbar-hide h-screen overflow-hidden bg-[#2d3642] pb-8'>
@@ -141,12 +142,15 @@ export default function Home ({
                 text-2xl
                 font-bold
                 underline
+                mt-3
                 font-google-sans
                 '
                 >
                   Betting details
                 </h3>
-                <div className=' p-8 max-w-[1480px] mx-auto  rounded-lg'></div>
+                <div className=' p-8 max-w-[1480px] mx-auto  rounded-lg'>
+                  <BettingDetails betting_results={nfl_betting_data} />
+                </div>
               </main>
             </TabPane>
             <TabPane active={openTab === 2 ? true : false}>
@@ -181,6 +185,7 @@ export default function Home ({
                   className='
                 text-gray-800
                 top-0
+                mt-3
                 rounded-3xl
                 text-2xl
                 font-bold
@@ -227,6 +232,7 @@ export default function Home ({
                 top-0
                 rounded-3xl
                 text-2xl
+                mt-3
                 font-bold
                 underline
                 font-google-sans
@@ -274,6 +280,7 @@ export default function Home ({
                 rounded-3xl
                 text-2xl
                 font-bold
+                mt-3
                 underline
                 font-google-sans
                 '
@@ -345,6 +352,10 @@ export async function getServerSideProps (context) {
     `https://api.sportsdata.io/v3/${sports_bets.fetchNFLBets.url}`
   ).then(res => res.json())
 
+  const mlb_bets = await fetch(
+    `https://api.sportsdata.io/v3/${sports_bets.fetchMLBBets.url}`
+  ).then(res => res.json())
+
   return {
     props: {
       nba_scores: nba_scores,
@@ -359,7 +370,8 @@ export async function getServerSideProps (context) {
       nhl_team_standings: nhl_standing_req,
       mlb_team_standings: mlb_standing_req,
       nba_betting_data: nba_bets,
-      nfl_betting_data: nfl_bets
+      nfl_betting_data: nfl_bets,
+      mlb_betting_data: mlb_bets
     }
   }
 }

@@ -7,9 +7,17 @@ import ModalFooter from '@material-tailwind/react/ModalFooter'
 import Button from '@material-tailwind/react/Button'
 //back-end
 import { useState } from 'react'
+import { useRouter } from 'next/router'
 
 const BettingResult = forwardRef(({ result }, ref) => {
+  const router = useRouter()
   const [showBettingModal, setShowBettingModal] = useState(false)
+  const [showMoreDetails, setShowMoreDetails] = useState(false)
+
+  const showMore = () => {
+    setShowMoreDetails(true)
+    setShowBettingModal(false)
+  }
 
   return (
     <>
@@ -20,7 +28,8 @@ const BettingResult = forwardRef(({ result }, ref) => {
         items-center 
         justify-evenly 
         px-6
-        py-4 
+        py-4
+        space-x-7 
         rounded-lg
         hover:bg-[#c2f0ec]  
         hover:scale-105
@@ -31,8 +40,9 @@ const BettingResult = forwardRef(({ result }, ref) => {
       >
         <h3
           className='
-          text-base 
-          lg:text-xl 
+          text-sm
+          sm:text-base 
+          lg:text-2xl 
             text-yellow-400 
             font-semibold'
         >
@@ -51,7 +61,8 @@ const BettingResult = forwardRef(({ result }, ref) => {
           <h4 className='text-[14px] lg:text-xl text-gray-800'>Teams: </h4>
           <h5
             className='
-                text-base 
+            text-sm
+                sm:text-base 
                 text-blue-300 
                 font-normal'
           >
@@ -60,7 +71,8 @@ const BettingResult = forwardRef(({ result }, ref) => {
           <h4 className='text-[14px] lg:text-xl text-gray-800'>vs</h4>
           <h5
             className='
-                text-base 
+                text-sm
+                sm:text-base 
                 text-red-500 
                 font-normal'
           >
@@ -74,16 +86,39 @@ const BettingResult = forwardRef(({ result }, ref) => {
         toggler={() => setShowBettingModal(false)}
       >
         <ModalHeader color='teal' toggler={() => setShowBettingModal(false)}>
-          {result.Name}
+          Bet Event
         </ModalHeader>
         <ModalBody>
-          <p className='text-base leading-relaxed text-gray-600 font-normal'>
-            I always felt like I could do anything. That’s the main thing people
-            are controlled by! Thoughts- their perception of themselves! They're
-            slowed down by their perception of themselves. If you're taught you
-            can’t do anything, you won’t do anything. I was taught I could do
-            everything.
-          </p>
+          <div
+            className='
+          grid
+          font-google-sans
+          space-y-7
+          justify-evenly
+          text-center
+          items-center '
+          >
+            <span className='flex items-center text-center space-x-6'>
+              <h3 className='text-xl text-yellow-400 font-semibold'>Teams: </h3>{' '}
+              <h4 className='text-lg text-blue-300 font-bold'>
+                {result.HomeTeam}
+              </h4>{' '}
+              <h3 className='text-xl text-yellow-400 font-semibold'>vs</h3>{' '}
+              <h4 className='text-lg text-red-500 font-bold'>
+                {result.AwayTeam}
+              </h4>
+            </span>
+            <span className='flex items-center text-center space-x-6'>
+              <h3 className='text-xl text-yellow-800 font-medium'>Scores: </h3>{' '}
+              <h4 className='text-lg text-blue-300 font-bold'>
+                {result.HomeTeamScore}
+              </h4>{' '}
+              <h3 className='text-xl text-yellow-400 font-semibold'>--</h3>{' '}
+              <h4 className='text-lg text-red-500 font-bold'>
+                {result.AwayTeamScore}
+              </h4>
+            </span>
+          </div>
         </ModalBody>
         <ModalFooter>
           <Button
@@ -95,14 +130,42 @@ const BettingResult = forwardRef(({ result }, ref) => {
             Close
           </Button>
 
-          <Button
-            color='teal'
-            onClick={e => setShowBettingModal(false)}
-            ripple='light'
-          >
+          <Button color='teal' onClick={e => showMore()} ripple='light'>
             More details
           </Button>
         </ModalFooter>
+      </Modal>
+      <Modal
+        size='lg'
+        active={showMoreDetails}
+        toggler={() => setShowMoreDetails(false)}
+      >
+        <div className='grid items-center p-10'>
+          <ModalHeader toggler={() => setShowMoreDetails(false)}>
+            <h1 className='text-yellow-400 font-bold font-google-sans'>
+              {result.Name}
+            </h1>
+          </ModalHeader>
+          <ModalBody>
+            <p className='text-base leading-relaxed text-gray-600 font-normal'>
+              I always felt like I could do anything. That’s the main thing
+              people are controlled by! Thoughts- their perception of
+              themselves! They're slowed down by their perception of themselves.
+              If you're taught you can’t do anything, you won’t do anything. I
+              was taught I could do everything.
+            </p>
+          </ModalBody>
+          <ModalFooter>
+            <Button
+              color='red'
+              buttonType='link'
+              onClick={e => setShowMoreDetails(false)}
+              ripple='dark'
+            >
+              Close
+            </Button>
+          </ModalFooter>
+        </div>
       </Modal>
     </>
   )
