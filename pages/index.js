@@ -43,8 +43,6 @@ export default function Home ({
 
   const [openTab, setOpenTab] = useState(1)
 
-  console.log(mlb_betting_data)
-
   return (
     <div className='scrollbar-hide h-screen overflow-hidden bg-[#2d3642] pb-8'>
       <Head>
@@ -352,10 +350,6 @@ export async function getServerSideProps (context) {
     `https://api.sportsdata.io/v3/${sports_bets.fetchNFLBets.url}`
   ).then(res => res.json())
 
-  const mlb_bets = await fetch(
-    `https://api.sportsdata.io/v3/${sports_bets.fetchMLBBets.url}`
-  ).then(res => res.json())
-
   return {
     props: {
       nba_scores: nba_scores,
@@ -370,8 +364,7 @@ export async function getServerSideProps (context) {
       nhl_team_standings: nhl_standing_req,
       mlb_team_standings: mlb_standing_req,
       nba_betting_data: nba_bets,
-      nfl_betting_data: nfl_bets,
-      mlb_betting_data: mlb_bets
+      nfl_betting_data: nfl_bets
     }
   }
 }
