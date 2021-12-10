@@ -354,10 +354,6 @@ export async function getServerSideProps (context) {
     `https://api.sportsdata.io/v3/${sports_bets.fetchNFLBets.url}`
   ).then(res => res.json())
 
-  const nhl_bets = await fetch(
-    `https://api.sportsdata.io/v3/${sports_bets.fetchNHLBets.url}`
-  ).then(res => res.json())
-
   return {
     props: {
       nba_scores: nba_scores,
@@ -372,8 +368,7 @@ export async function getServerSideProps (context) {
       nhl_team_standings: nhl_standing_req,
       mlb_team_standings: mlb_standing_req,
       nba_betting_data: nba_bets,
-      nfl_betting_data: nfl_bets,
-      nhl_betting_data: nhl_bets
+      nfl_betting_data: nfl_bets
     }
   }
 }
