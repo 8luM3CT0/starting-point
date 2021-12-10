@@ -43,7 +43,7 @@ export default function Home ({
 
   const [openTab, setOpenTab] = useState(1)
 
-  console.log(nhl_betting_data)
+  console.log(nhl_scores)
 
   return (
     <div className='scrollbar-hide h-screen overflow-hidden bg-[#2d3642] pb-8'>
@@ -288,7 +288,7 @@ export default function Home ({
                   Betting details
                 </h3>
                 <div className=' p-8 max-w-[1480px] mx-auto  rounded-lg'>
-                  {/*<BettingDetails betting_results={nhl_betting_data} />*/}
+                  <BettingDetails betting_results={nhl_scores} />
                 </div>
               </main>
             </TabPane>

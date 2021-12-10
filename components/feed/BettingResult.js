@@ -38,16 +38,32 @@ const BettingResult = forwardRef(({ result }, ref) => {
         cursor-pointer
         my-5 '
       >
-        <h3
-          className='
+        {result.Name ? (
+          <h3
+            className='
           text-sm
           sm:text-base 
           lg:text-2xl 
             text-yellow-400 
             font-semibold'
-        >
-          {result.Name}
-        </h3>
+          >
+            {result.Name}
+          </h3>
+        ) : (
+          <h3
+            className='
+          flex
+          text-center
+          space-x-7
+          text-sm
+          sm:text-base 
+          lg:text-2xl 
+            text-yellow-400 
+            font-semibold'
+          >
+            {result.AwayTeam} @ {result.HomeTeam}
+          </h3>
+        )}
         <span
           className='
           space-x-6  
