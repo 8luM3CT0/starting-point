@@ -14,9 +14,8 @@ function NFLHeaderScores ({ nfl_scores }) {
   const [showMore, setShowMore] = useState(false)
 
   return (
-    <>
-      <div
-        className='
+    <div
+      className='
         flex-1
         scrollbar-hide
         overflow-x-scroll
@@ -28,65 +27,11 @@ function NFLHeaderScores ({ nfl_scores }) {
         px-6
         text-gray-50
       bg-gray-600'
-      >
-        {nfl_scores.slice(0, 20).map(result => (
-          <HeaderScorecard key={result.GameID} result={result} />
-        ))}
-        <div className='p-2 justify-end'>
-          <Button
-            size='small'
-            onClick={e => setShowMore(true)}
-            buttonType='link'
-            iconOnly={true}
-            color='lightBlue'
-            ripple='light'
-          >
-            <ArrowForwardIcon />
-          </Button>
-        </div>
-      </div>
-      <Modal size='sm' active={showMore} toggler={() => setShowMore(false)}>
-        <ModalHeader toggler={() => setShowMore(false)}>
-          More scores
-        </ModalHeader>
-        <ModalBody>
-          <div
-            className='
-          overflow-x-scroll
-          scrollbar-hide
-          flex
-          items-center
-          space-x-8
-          py-5
-          px-6
-          whitespace-nowrap
-          '
-          >
-            {nfl_scores.slice(21, 40).map(result => (
-              <HeaderScorecard key={result.GameID} result={result} />
-            ))}
-          </div>
-        </ModalBody>
-        <ModalFooter>
-          <Button
-            color='red'
-            buttonType='link'
-            onClick={e => setShowMore(false)}
-            ripple='dark'
-          >
-            Close
-          </Button>
-
-          <Button
-            color='green'
-            onClick={e => setShowMore(false)}
-            ripple='light'
-          >
-            All scores
-          </Button>
-        </ModalFooter>
-      </Modal>
-    </>
+    >
+      {nfl_scores.slice(0, 20).map(result => (
+        <HeaderScorecard key={result.GameID} result={result} />
+      ))}
+    </div>
   )
 }
 
