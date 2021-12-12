@@ -62,7 +62,7 @@ function NFLHeaderScores ({ nfl_scores }) {
           whitespace-nowrap
           '
           >
-            {nba_scores.slice(21, 40).map(result => (
+            {nfl_scores.slice(21, 40).map(result => (
               <HeaderScorecard key={result.GameID} result={result} />
             ))}
           </div>
