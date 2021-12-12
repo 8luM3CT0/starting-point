@@ -105,7 +105,7 @@ export default function Home ({
 
           <TabContent>
             <TabPane active={openTab === 1 ? true : false}>
-              <NBAHeaderScores nba_scores={nfl_scores} />
+              {/*<NBAHeaderScores nba_scores={nfl_scores} />*/}
               <main
                 className='
               justify-center
@@ -152,7 +152,7 @@ export default function Home ({
               </main>
             </TabPane>
             <TabPane active={openTab === 2 ? true : false}>
-              <NBAHeaderScores nba_scores={nba_scores} />
+              {/*<NBAHeaderScores nba_scores={nba_scores} />*/}
               <main
                 className='
           justify-center
@@ -242,7 +242,7 @@ export default function Home ({
               </main>
             </TabPane>
             <TabPane active={openTab === 4 ? true : false}>
-              <NBAHeaderScores nba_scores={nhl_scores} />
+              {/*<NBAHeaderScores nba_scores={nhl_scores} />*/}
               <main
                 className='
               justify-center
@@ -311,11 +311,10 @@ export async function getServerSideProps (context) {
     `https://api.sportsdata.io/v3/${sports_scores.fetchNHLScores.url}`
   ).then(res => res.json())
 
-  /*const nhl_second = await fetch(
+  /* const nhl_second = await fetch(
     `https://api.sportradar.us/nhl/trial/v7/en/games${sports_scores.fetchSecondNHL.url}`
   ).then(res => res.json())
-  */
-
+*/
   const nba_news = await fetch(
     `https://api.sportsdata.io/v3/${sports_news.fetchNBANews.url}`
   ).then(res => res.json())
