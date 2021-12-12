@@ -43,13 +43,6 @@ export default function Home ({
 
   const [openTab, setOpenTab] = useState(1)
 
-  console.log(
-    nfl_team_standings,
-    nba_team_standings,
-    nhl_team_standings,
-    mlb_team_standings
-  )
-
   return (
     <div className='scrollbar-hide h-screen overflow-hidden bg-[#2d3642] pb-8'>
       <Head>
