@@ -83,7 +83,7 @@ function Header () {
           className='
         flex-1         
         py-6
-        bg-[#0d181d]
+        bg-gray-800
         text-white
         px-10
         justify-between
@@ -107,9 +107,12 @@ function Header () {
                 iconOnly={true}
                 ripple='light'
                 size='3xl'
-                className='border-0 h-[50px]'
+                className='border-0 h-[50px] '
               >
-                <Icon name='menu' className='pr-4 h-[50px]' />
+                <div className='flex items-center space-x-6'>
+                  <Icon color='teal' name='menu' className='pr-4 h-[50px]' />
+                  <h3 className='menuTitle'>Menu</h3>
+                </div>
               </Button>
             </div>
             <Button
@@ -121,7 +124,7 @@ function Header () {
               className='border-0 h-[50px]'
             >
               <div className='ml-5 flex space-x-5 items-center'>
-                <Icon name='sports' className='appIcon' />
+                <Icon color='teal' name='sports' className='appIcon' />
                 <h1 className='appName'>StartUp</h1>
               </div>
             </Button>

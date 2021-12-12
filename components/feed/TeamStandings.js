@@ -10,6 +10,12 @@ import { useState } from 'react'
 
 const TeamStandings = forwardRef(({ result }, ref) => {
   const [showModal, setShowModal] = useState(false)
+  const [showMoreStandings, setShowMoreStandings] = useState(false)
+
+  const showFullTeamStanding = () => {
+    setShowMoreStandings(true)
+    setShowModal(false)
+  }
 
   return (
     <>
@@ -142,10 +148,85 @@ const TeamStandings = forwardRef(({ result }, ref) => {
 
           <Button
             color='lightBlue'
-            onClick={e => setShowModal(false)}
+            onClick={e => showFullTeamStanding(true)}
             ripple='light'
           >
             More details
+          </Button>
+        </ModalFooter>
+      </Modal>
+      <Modal
+        size='lg'
+        active={showMoreStandings}
+        toggler={() => setShowModal(false)}
+      >
+        <ModalHeader toggler={() => setShowMoreStandings(false)}>
+          <h3
+            className='
+          text-teal-900 
+          text-lg 
+          space-x-6 
+          flex 
+          items-center 
+          font-semibold 
+          font-google-sans'
+          >
+            Standing stats
+          </h3>
+        </ModalHeader>
+        <ModalBody>
+          <div
+            className='
+            p-8
+          grid 
+          space-y-7
+          text-center 
+          items-center 
+          place-items-center'
+          >
+            {/**city and name */}
+            <div
+              className='
+            space-x-6
+            flex 
+            text-center 
+            place-items-center 
+            items-center 
+            text-teal-500'
+            >
+              <h3 className='font-semibold text-[22px]'>{result.City}</h3>
+              {'  '}
+              {'  '}
+              <h2 className='font-bold text-[24px]'>{result.Name}</h2>
+            </div>
+            {/**city and name tag end */}
+            <div
+              className='
+            grid 
+            space-y-3
+            text-center 
+            items-center 
+            place-items-center'
+            >
+              <span className='flex items-center space-x-7'>
+                <h4 className='text-base font-[20px] flex items-center space-x-5 text-blue-300'>
+                  Wins: {'  '} {result.Wins}
+                </h4>
+                <h4 className='text-base font-[20px] flex items-center space-x-5 text-red-500'>
+                  Losses: {'  '} {result.Losses}
+                </h4>
+              </span>
+            </div>
+          </div>
+        </ModalBody>
+        <ModalFooter>
+          <Button
+            color='red'
+            buttonType='link'
+            onClick={e => setShowMoreStandings(false)}
+            ripple='dark'
+          >
+            Close
           </Button>
         </ModalFooter>
       </Modal>

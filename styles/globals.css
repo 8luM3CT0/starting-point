@@ -25,6 +25,7 @@
     font-semibold 
     font-google-sans 
     capitalize
+    text-teal-500
     hidden
     lg:inline-flex
     lg:text-2xl
@@ -139,6 +140,16 @@
     @apply
     lg:hidden
     hover:animate-pulse
+  }
+
+  .menuTitle{
+    @apply
+    hidden
+    text-lg 
+    font-light 
+    capitalize 
+    text-teal-500
+    hover:inline-flex
   }
 
 }

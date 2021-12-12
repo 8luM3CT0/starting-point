@@ -1,5 +1,7 @@
 //front-end
 import NewsArticle from './NewsArticle'
+import Button from '@material-tailwind/react/Button'
+import Icon from '@material-tailwind/react/Icon'
 //back-end
 
 function NewsFeed ({ nba_results }) {
@@ -25,6 +27,7 @@ newsFeedDiv
         className='
       rounded-xl
       space-y-8
+      space-x-4
       px-4 
       h-[190px]
       bg-gray-800 

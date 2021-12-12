@@ -68,13 +68,14 @@ const NewsArticle = forwardRef(({ result }, ref) => {
             Close
           </Button>
 
-          <Button
+          {/*<Button
             color='green'
             onClick={e => setShowModal(false)}
             ripple='light'
           >
             Read more
           </Button>
+          */}
         </ModalFooter>
       </Modal>
     </div>

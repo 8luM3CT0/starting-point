@@ -18,5 +18,10 @@ export default {
     fetchNHLScores: {
         title: 'Scores (NHL)',
         url: `/nhl/scores/json/Games/%7B2021%7D?key=${process.env.nhl_key}`
+    },
+
+    fetchSecondNHL: {
+        title: 'Second Scores (NHL)',
+        url: `/f4b120a2-649c-4854-b519-b84414eb5e43/summary.json?api_key=${process.env.second_nhl_key}`
     }
 }

@@ -16,10 +16,23 @@ function Blog () {
       h-screen
       overflow-y-scroll
       scrollbar-hide
-      bg-[#45a29e]
+      bg-[#b9dddb]
       mx-auto
       '
-      ></div>
+      >
+        <h1
+          className='
+        text-2xl 
+        font-semibold 
+        text-gray-800 
+        font-google-sans 
+        top-0 sticky 
+        p-4
+        '
+        >
+          Blogs
+        </h1>
+      </div>
     </div>
   )
 }

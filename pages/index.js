@@ -43,7 +43,12 @@ export default function Home ({
 
   const [openTab, setOpenTab] = useState(1)
 
-  console.log(nhl_scores)
+  console.log(
+    nfl_team_standings,
+    nba_team_standings,
+    nhl_team_standings,
+    mlb_team_standings
+  )
 
   return (
     <div className='scrollbar-hide h-screen overflow-hidden bg-[#2d3642] pb-8'>
@@ -56,7 +61,7 @@ export default function Home ({
       <Header />
       <div className='max-w-[1700px] h-screen overflow-y-scroll scrollbar-hide bg-[#2d3642] mx-auto'>
         <Tab>
-          <TabList color='blue'>
+          <TabList color='teal'>
             <div className='mx-auto  flex items-center'>
               <TabItem
                 onClick={e => {
@@ -107,7 +112,7 @@ export default function Home ({
 
           <TabContent>
             <TabPane active={openTab === 1 ? true : false}>
-              <NFLHeaderScores nfl_scores={nfl_scores} />
+              <NBAHeaderScores nba_scores={nfl_scores} />
               <main
                 className='
               justify-center
@@ -148,7 +153,7 @@ export default function Home ({
                 >
                   Betting details
                 </h3>
-                <div className=' p-8 max-w-[1480px] mx-auto  rounded-lg'>
+                <div className='p-8 h-[720px] overflow-y-scroll scrollbar-hide max-w-[1480px] mx-auto  rounded-lg'>
                   <BettingDetails betting_results={nfl_betting_data} />
                 </div>
               </main>
@@ -195,7 +200,7 @@ export default function Home ({
                 >
                   Betting details
                 </h3>
-                <div className=' p-8 max-w-[1480px] mx-auto  rounded-lg'>
+                <div className='p-8 h-[720px] overflow-y-scroll scrollbar-hide max-w-[1480px] mx-auto  rounded-lg'>
                   <BettingDetails betting_results={nba_betting_data} />
                 </div>
               </main>
@@ -240,7 +245,7 @@ export default function Home ({
                 >
                   Betting details
                 </h3>
-                <div className='p-8 max-w-[1480px] mx-auto  rounded-lg'></div>
+                <div className='p-8 h-[720px] overflow-y-scroll scrollbar-hide max-w-[1480px] mx-auto  rounded-lg'></div>
               </main>
             </TabPane>
             <TabPane active={openTab === 4 ? true : false}>
@@ -258,16 +263,15 @@ export default function Home ({
                   loading='lazy'
                   src='   https://thumbor.forbes.com/thumbor/0x0/smart/https%3A%2F%2Fspecials-images.forbesimg.com%2Fimageserve%2F5c06c7194bbe6f0f2aa13c1b%2F960x0.jpg%3FcropX1%3D250%26cropX2%3D2250%26cropY1%3D0%26cropY2%3D2000'
                   alt=''
-                  className="
+                  className='
                 w-[720px] 
                 md:w-full 
                 h-[200px]
                 sm:h-[400px] 
                 lg:h-[620px] 
                 xl:h-[720px]
-                opacity-75'
-              '
-               "
+                opacity-75
+               '
                 />
                 <div className='topFeedDiv'>
                   <NewsFeed nba_results={nhl_results} />
@@ -287,7 +291,7 @@ export default function Home ({
                 >
                   Betting details
                 </h3>
-                <div className=' p-8 max-w-[1480px] mx-auto  rounded-lg'>
+                <div className='p-8 h-[720px] overflow-y-scroll scrollbar-hide max-w-[1480px] mx-auto  rounded-lg'>
                   <BettingDetails betting_results={nhl_scores} />
                 </div>
               </main>
@@ -312,6 +316,10 @@ export async function getServerSideProps (context) {
 
   const nhl_scores = await fetch(
     `https://api.sportsdata.io/v3/${sports_scores.fetchNHLScores.url}`
+  ).then(res => res.json())
+
+  const nhl_second = await fetch(
+    `https://api.sportradar.us/nhl/trial/v7/en/games${sports_scores.fetchSecondNHL.url}`
   ).then(res => res.json())
 
   const nba_news = await fetch(
@@ -368,7 +376,8 @@ export async function getServerSideProps (context) {
       nhl_team_standings: nhl_standing_req,
       mlb_team_standings: mlb_standing_req,
       nba_betting_data: nba_bets,
-      nfl_betting_data: nfl_bets
+      nfl_betting_data: nfl_bets,
+      nhl_betting_data: nhl_second
     }
   }
 }
