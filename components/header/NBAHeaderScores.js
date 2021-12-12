@@ -45,6 +45,7 @@ function NBAHeaderScores ({ nba_scores }) {
           </Button>
         </div>
       </div>
+      {/*
       <Modal size='sm' active={showMore} toggler={() => setShowMore(false)}>
         <ModalHeader toggler={() => setShowMore(false)}>
           More scores
@@ -62,7 +63,7 @@ function NBAHeaderScores ({ nba_scores }) {
           whitespace-nowrap
           '
           >
-            {nba_scores.slice(21, 40).map(result => (
+           {nba_scores.slice(21, 40).map(result => (
               <HeaderScorecard key={result.GameID} result={result} />
             ))}
           </div>
@@ -86,6 +87,7 @@ function NBAHeaderScores ({ nba_scores }) {
           </Button>
         </ModalFooter>
       </Modal>
+           */}
     </>
   )
 }
