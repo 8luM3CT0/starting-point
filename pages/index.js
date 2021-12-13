@@ -105,7 +105,7 @@ export default function Home ({
 
           <TabContent>
             <TabPane active={openTab === 1 ? true : false}>
-              {/*<NBAHeaderScores nba_scores={nfl_scores} /> */}
+              <NBAHeaderScores nba_scores={nfl_scores} />
               <main
                 className='
               justify-center
