@@ -144,12 +144,20 @@
 
   .menuTitle{
     @apply
-    hidden
     text-lg 
     font-light 
     capitalize 
     text-teal-500
-    hover:inline-flex
+  }
+
+  .blogPageTitle{
+    @apply
+    hidden
+    lg:inline-flex
+    text-teal-300 
+    text-2xl 
+    font-google-sans 
+    font-medium
   }
 
 }

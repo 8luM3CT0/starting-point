@@ -109,9 +109,8 @@ function Header () {
                 size='3xl'
                 className='border-0 h-[50px] '
               >
-                <div className='flex items-center space-x-6'>
+                <div className='flex items-center text-center space-x-3'>
                   <Icon color='teal' name='menu' className='pr-4 h-[50px]' />
-                  <h3 className='menuTitle'>Menu</h3>
                 </div>
               </Button>
             </div>
