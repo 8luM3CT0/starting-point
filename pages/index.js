@@ -105,7 +105,7 @@ export default function Home ({
 
           <TabContent>
             <TabPane active={openTab === 1 ? true : false}>
-              <NBAHeaderScores nba_scores={nfl_scores} />
+              {/*<NBAHeaderScores nba_scores={nfl_scores} /> */}
               <main
                 className='
               justify-center
@@ -152,7 +152,7 @@ export default function Home ({
               </main>
             </TabPane>
             <TabPane active={openTab === 2 ? true : false}>
-              <NBAHeaderScores nba_scores={nba_scores} />
+              {/* <NBAHeaderScores nba_scores={nba_scores} />*/}
               <main
                 className='
           justify-center
@@ -242,7 +242,7 @@ export default function Home ({
               </main>
             </TabPane>
             <TabPane active={openTab === 4 ? true : false}>
-              <NBAHeaderScores nba_scores={nhl_scores} />
+              {/*  <NBAHeaderScores nba_scores={nhl_scores} />*/}
               <main
                 className='
               justify-center
