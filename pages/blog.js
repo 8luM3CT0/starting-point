@@ -32,8 +32,7 @@ function Blog () {
       h-screen
       overflow-y-scroll
       scrollbar-hide
-      border-l
-      border-r
+      border-x
       border-teal-200
       bg-gray-600
       mx-auto
@@ -73,22 +72,38 @@ function Blog () {
               </TabItem>
             </TabList>
           </Tab>
+          <h1 className='text-[20px] font-normal text-teal-500'>
+            This place looks so empty. Change that by adding a post
+          </h1>
         </div>
       </div>
+      {/* End of main div*/}
       <Modal
         toggler={() => setShareText(false)}
         size='regular'
         active={shareText}
       >
-        <ModalHeader toggler={() => setShareText(false)}>Test</ModalHeader>
+        <ModalHeader toggler={() => setShareText(false)}>
+          <h3
+            className='
+          text-[32px] 
+          font-medium 
+          font-hind-font 
+          text-blue-400'
+          >
+            Post something
+          </h3>
+        </ModalHeader>
         <ModalBody>
-          <p className='text-base leading-relaxed text-gray-600 font-normal'>
-            I always felt like I could do anything. That’s the main thing people
-            are controlled by! Thoughts- their perception of themselves! They're
-            slowed down by their perception of themselves. If you're taught you
-            can’t do anything, you won’t do anything. I was taught I could do
-            everything.
-          </p>
+          <div className='p-10 mb-5 space-y-5 border border-teal-500'>
+            <p className='text-base leading-relaxed text-gray-600 font-normal'>
+              I always felt like I could do anything. That’s the main thing
+              people are controlled by! Thoughts- their perception of
+              themselves! They're slowed down by their perception of themselves.
+              If you're taught you can’t do anything, you won’t do anything. I
+              was taught I could do everything.
+            </p>
+          </div>
           <ModalFooter>
             <Button
               color='red'
@@ -113,13 +128,21 @@ function Blog () {
         size='regular'
         active={sharePhoto}
       >
-        <ModalHeader toggler={() => setSharePhoto(false)}>Test</ModalHeader>
+        <ModalHeader toggler={() => setSharePhoto(false)}>
+          <h3 className='text-[32px] font-medium font-hind-font text-blue-400'>
+            Share a photo
+          </h3>
+        </ModalHeader>
         <ModalBody>
-          <p className='text-base leading-relaxed text-gray-600 font-normal'>
-            Here's going to be the photo sharing bit. so the idea is that to put
-            the sharing options in a flexbox, items center. Options are either a
-            sharign from the device or copy-paste a url.
-          </p>
+          <div className='p-10 space-y-5'>
+            <p className='text-base leading-relaxed text-gray-600 font-normal'>
+              I always felt like I could do anything. That’s the main thing
+              people are controlled by! Thoughts- their perception of
+              themselves! They're slowed down by their perception of themselves.
+              If you're taught you can’t do anything, you won’t do anything. I
+              was taught I could do everything.
+            </p>
+          </div>
           <ModalFooter>
             <Button
               color='red'
@@ -144,13 +167,21 @@ function Blog () {
         size='regular'
         active={shareVideo}
       >
-        <ModalHeader toggler={() => setShareVideo(false)}>Test</ModalHeader>
+        <ModalHeader toggler={() => setShareVideo(false)}>
+          <h3 className='text-[32px] font-medium font-hind-font text-blue-400'>
+            Add a video
+          </h3>
+        </ModalHeader>
         <ModalBody>
-          <p className='text-base leading-relaxed text-gray-600 font-normal'>
-            Same goes for here, except in a video format. There's probably some
-            other stuff here but yeah the whole gist is that the photo sharing
-            and video sharing is similar
-          </p>
+          <div className='p-10 space-y-5'>
+            <p className='text-base leading-relaxed text-gray-600 font-normal'>
+              I always felt like I could do anything. That’s the main thing
+              people are controlled by! Thoughts- their perception of
+              themselves! They're slowed down by their perception of themselves.
+              If you're taught you can’t do anything, you won’t do anything. I
+              was taught I could do everything.
+            </p>
+          </div>
           <ModalFooter>
             <Button
               color='red'
