@@ -6,6 +6,7 @@ import Modal from '@material-tailwind/react/Modal'
 import ModalHeader from '@material-tailwind/react/ModalHeader'
 import ModalBody from '@material-tailwind/react/ModalBody'
 import ModalFooter from '@material-tailwind/react/ModalFooter'
+import Input from '@material-tailwind/react/Input'
 //header posting
 import Tab from '@material-tailwind/react/Tab'
 import TabList from '@material-tailwind/react/TabList'
@@ -13,11 +14,31 @@ import TabItem from '@material-tailwind/react/TabItem'
 import BlogHeader from '../components/header/BlogHeader'
 //back-end
 import { useState } from 'react'
+import { store, auth } from '../firebaseFile'
+import { useAuthState } from 'react-firebase-hooks/auth'
+import firebase from 'firebase'
 
 function Blog () {
   const [shareText, setShareText] = useState(false)
   const [sharePhoto, setSharePhoto] = useState(false)
   const [shareVideo, setShareVideo] = useState(false)
+  const [blogPost, setBlogPost] = useState('')
+  const [user] = useAuthState(auth)
+
+  const createBlogPost = () => {
+    if (!blogPost) return
+
+    store
+      .collection('userBlogs')
+      .doc(user.email)
+      .collection('blogs')
+      .add({
+        fileName: blogPost,
+        timestamp: firebase.firestore.FieldValue.serverTimestamp()
+      })
+    setShareText(false)
+    setBlogPost('')
+  }
 
   return (
     <>
@@ -89,21 +110,32 @@ function Blog () {
           text-[32px] 
           font-medium 
           font-hind-font 
-          text-blue-400'
+          text-teal-400'
           >
-            Post something
+            Add a post
           </h3>
         </ModalHeader>
         <ModalBody>
-          <div className='p-10 mb-5 space-y-5 border border-teal-500'>
-            <p className='text-base leading-relaxed text-gray-600 font-normal'>
-              I always felt like I could do anything. That’s the main thing
-              people are controlled by! Thoughts- their perception of
-              themselves! They're slowed down by their perception of themselves.
-              If you're taught you can’t do anything, you won’t do anything. I
-              was taught I could do everything.
-            </p>
-          </div>
+          <form
+            className='
+          flex-grow 
+          p-7
+          mb-5
+          space-y-5 
+          border-y 
+          border-teal-500'
+          >
+            {/**Tailwind input */}
+            <Input
+              type='text'
+              color='lightBlue'
+              value={blogPost}
+              onChange={e => setBlogPost(e.target.value)}
+              size='lg'
+              outline={false}
+              placeholder='Post name...'
+            />
+          </form>
           <ModalFooter>
             <Button
               color='red'
@@ -114,11 +146,12 @@ function Blog () {
               Cancel
             </Button>
             <Button
+              disabled={!user}
               color='teal'
-              onClick={e => setShareText(false)}
+              onClick={createBlogPost}
               ripple='light'
             >
-              Post!
+              Create
             </Button>
           </ModalFooter>
         </ModalBody>
