@@ -264,9 +264,11 @@ function BlogHeader () {
                 <UserIcon className='h-10 bg-gray-700 rounded-3xl border border-blue-400' />
               )}
               {user?.displayName ? (
-                <h2 className='username ml-3'>{user?.displayName}</h2>
+                <h2 className='username ml-3 text-teal-300'>
+                  {user?.displayName}
+                </h2>
               ) : (
-                <h2 className='username ml-3'>{user?.email}</h2>
+                <h2 className='username ml-3 text-teal-300'>{user?.email}</h2>
               )}
             </div>
           )}

@@ -7,15 +7,16 @@ import ModalHeader from '@material-tailwind/react/ModalHeader'
 import ModalBody from '@material-tailwind/react/ModalBody'
 import ModalFooter from '@material-tailwind/react/ModalFooter'
 import Input from '@material-tailwind/react/Input'
-//header posting
 import Tab from '@material-tailwind/react/Tab'
 import TabList from '@material-tailwind/react/TabList'
 import TabItem from '@material-tailwind/react/TabItem'
 import BlogHeader from '../components/header/BlogHeader'
+import BlogDocument from '../components/feed/blog/BlogDocument'
 //back-end
 import { useState } from 'react'
 import { store, auth } from '../firebaseFile'
 import { useAuthState } from 'react-firebase-hooks/auth'
+import { useCollection } from 'react-firebase-hooks/firestore'
 import firebase from 'firebase'
 
 function Blog () {
@@ -40,6 +41,15 @@ function Blog () {
     setBlogPost('')
   }
 
+  //return docs from userDocs
+  const [docsSnapshot] = useCollection(
+    store
+      .collection('userBlogs')
+      .doc(user.email)
+      .collection('blogs')
+      .orderBy('timestamp', 'desc')
+  )
+
   return (
     <>
       <div className='scrollbar-hide h-screen overflow-hidden bg-[#2d3642] pb-8'>
@@ -47,7 +57,7 @@ function Blog () {
           <title>Here's our blog, take your time.</title>
         </Head>
         <BlogHeader />
-        <div
+        <main
           className='
       max-w-7xl
       h-screen
@@ -59,6 +69,22 @@ function Blog () {
       mx-auto
       '
         >
+          <img
+            loading='lazy'
+            src='https://www.thoughtco.com/thmb/9-TaSUt-qCdOp1Xh3P43mutTmeA=/2121x1414/filters:fill(auto,1)/GettyImages-887987150-5c770377c9e77c00011c82e6.jpg'
+            alt=''
+            className='
+                -mt-[290px]
+                md:-mt-[340px] 
+                lg:-mt-[560px]              
+                  w-[720px] 
+                  md:w-full 
+                  h-[200px]
+                  sm:h-[400px] 
+                  lg:h-[620px] 
+                  xl:h-[800px]
+                  opacity-75'
+          />
           <Tab>
             <TabList color='teal'>
               <TabItem
@@ -93,10 +119,15 @@ function Blog () {
               </TabItem>
             </TabList>
           </Tab>
-          <h1 className='text-[20px] font-normal text-teal-500'>
-            This place looks so empty. Change that by adding a post
-          </h1>
-        </div>
+          {docsSnapshot?.docs.map(doc => (
+            <BlogDocument
+              key={doc.id}
+              id={doc.id}
+              fileName={doc.data().fileName}
+              timestamp={doc.data().timestamp}
+            />
+          ))}
+        </main>
       </div>
       {/* End of main div*/}
       <Modal
@@ -167,14 +198,31 @@ function Blog () {
           </h3>
         </ModalHeader>
         <ModalBody>
-          <div className='p-10 space-y-5'>
-            <p className='text-base leading-relaxed text-gray-600 font-normal'>
-              I always felt like I could do anything. That’s the main thing
-              people are controlled by! Thoughts- their perception of
-              themselves! They're slowed down by their perception of themselves.
-              If you're taught you can’t do anything, you won’t do anything. I
-              was taught I could do everything.
-            </p>
+          <div className='p-10 space-x-5 flex items-center'>
+            <Button>
+              <div className='grid border-gray-200 text-center space-y-6'>
+                <Icon name='add_photo_alternate' size='xl' />
+                <h2 className='text-gray-200 font-google-sans font-light'>
+                  import a photo
+                </h2>
+              </div>
+            </Button>
+            <Button>
+              <div className='grid  border-gray-200 text-center space-y-6'>
+                <Icon name='add_a_photo' size='xl' />
+                <h2 className='text-gray-200 font-google-sans font-light'>
+                  take a picture
+                </h2>
+              </div>
+            </Button>
+            <Button>
+              <div className='grid border-gray-200 text-center space-y-6'>
+                <Icon name='insert_photo' size='xl' />
+                <h2 className='text-gray-200 font-google-sans font-light'>
+                  add a link
+                </h2>
+              </div>
+            </Button>
           </div>
           <ModalFooter>
             <Button
