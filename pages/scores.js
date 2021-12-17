@@ -8,38 +8,40 @@ import TabList from '@material-tailwind/react/TabList'
 import TabItem from '@material-tailwind/react/TabItem'
 import TabContent from '@material-tailwind/react/TabContent'
 import TabPane from '@material-tailwind/react/TabPane'
+import StandingsFeed from '../components/feed/StandingsFeed'
 import NBAHeaderScores from '../components/header/NBAHeaderScores'
-import BlogDocument from '../components/feed/blog/BlogDocument'
+import NFLHeaderScores from '../components/header/NFLHeaderScores'
+import BettingDetails from '../components/feed/BettingDetails'
 //back-end
 //back-end-api
 import sports_news from '../utils/sports_news'
 import sports_scores from '../utils/sports_scores'
+import sports_standings from '../utils/sports_standings'
+import sports_bets from '../utils/sports_bets'
 //auth-backend
-import { useCollection } from 'react-firebase-hooks/firestore'
 import { auth, store, provider } from '../firebaseFile'
 import { useState } from 'react'
 import { useAuthState } from 'react-firebase-hooks/auth'
 
-export default function Home ({
+function scores ({
   nba_scores,
   nfl_scores,
   nhl_scores,
   nfl_results,
   nba_results,
   mlb_results,
-  nhl_results
+  nhl_results,
+  nba_team_standings,
+  nfl_team_standings,
+  nhl_team_standings,
+  mlb_team_standings,
+  nba_betting_data,
+  nfl_betting_data,
+  nhl_betting_data
 }) {
   const [user] = useAuthState(auth)
 
   const [openTab, setOpenTab] = useState(1)
-
-  const [docsSnapshot] = useCollection(
-    store
-      .collection('userBlogs')
-      .doc(user.email)
-      .collection('blogs')
-      .orderBy('timestamp', 'desc')
-  )
 
   return (
     <div className='scrollbar-hide h-screen overflow-hidden bg-[#2d3642] pb-8'>
@@ -50,7 +52,7 @@ export default function Home ({
       </Head>
 
       <Header />
-      <div className='max-w-[1700px] h-screen overflow-y-scroll scrollbar-hide bg-[#2d3642] pb-[120px] mx-auto'>
+      <div className='max-w-[1700px] h-screen overflow-y-scroll scrollbar-hide bg-[#2d3642] mx-auto'>
         <Tab>
           <TabList color='teal'>
             <div className='mx-auto  flex items-center'>
@@ -128,6 +130,24 @@ export default function Home ({
                 />
                 <div className='topFeedDiv'>
                   <NewsFeed nba_results={nfl_results} />
+                  <StandingsFeed nba_team_standings={nfl_team_standings} />
+                </div>
+                <h3
+                  className='
+                text-gray-800
+                top-0
+                rounded-3xl
+                text-2xl
+                font-bold
+                underline
+                mt-3
+                font-google-sans
+                '
+                >
+                  Betting details
+                </h3>
+                <div className='p-8 h-[720px] overflow-y-scroll scrollbar-hide max-w-[1480px] mx-auto  rounded-lg'>
+                  <BettingDetails betting_results={nfl_betting_data} />
                 </div>
               </main>
             </TabPane>
@@ -157,6 +177,24 @@ export default function Home ({
                 />
                 <div className='topFeedDiv'>
                   <NewsFeed nba_results={nba_results} />
+                  <StandingsFeed nba_team_standings={nba_team_standings} />
+                </div>
+                <h3
+                  className='
+                text-gray-800
+                top-0
+                mt-3
+                rounded-3xl
+                text-2xl
+                font-bold
+                underline
+                font-google-sans
+                '
+                >
+                  Betting details
+                </h3>
+                <div className='p-8 h-[720px] overflow-y-scroll scrollbar-hide max-w-[1480px] mx-auto  rounded-lg'>
+                  <BettingDetails betting_results={nba_betting_data} />
                 </div>
               </main>
             </TabPane>
@@ -184,11 +222,27 @@ export default function Home ({
                 />
                 <div className='topFeedDiv'>
                   <NewsFeed nba_results={mlb_results} />
+                  <StandingsFeed nba_team_standings={mlb_team_standings} />
                 </div>
+                <h3
+                  className='
+                text-gray-800
+                top-0
+                rounded-3xl
+                text-2xl
+                mt-3
+                font-bold
+                underline
+                font-google-sans
+                '
+                >
+                  Betting details
+                </h3>
+                <div className='p-8 h-[720px] overflow-y-scroll scrollbar-hide max-w-[1480px] mx-auto  rounded-lg'></div>
               </main>
             </TabPane>
             <TabPane active={openTab === 4 ? true : false}>
-              <NBAHeaderScores nba_scores={nhl_scores} />
+              {/*  <NBAHeaderScores nba_scores={nhl_scores} />*/}
               <main
                 className='
               justify-center
@@ -214,23 +268,35 @@ export default function Home ({
                 />
                 <div className='topFeedDiv'>
                   <NewsFeed nba_results={nhl_results} />
+                  <StandingsFeed nba_team_standings={nhl_team_standings} />
+                </div>
+                <h3
+                  className='
+                text-gray-800
+                top-0
+                rounded-3xl
+                text-2xl
+                font-bold
+                mt-3
+                underline
+                font-google-sans
+                '
+                >
+                  Betting details
+                </h3>
+                <div className='p-8 h-[720px] overflow-y-scroll scrollbar-hide max-w-[1480px] mx-auto  rounded-lg'>
+                  <BettingDetails betting_results={nhl_scores} />
                 </div>
               </main>
             </TabPane>
           </TabContent>
         </Tab>
-        {docsSnapshot?.docs.map(doc => (
-          <BlogDocument
-            key={doc.id}
-            id={doc.id}
-            fileName={doc.data().fileName}
-            timestamp={doc.data().timestamp}
-          />
-        ))}
       </div>
     </div>
   )
 }
+
+export default scores
 
 export async function getServerSideProps (context) {
   const genre = context.query.title
@@ -267,6 +333,30 @@ export async function getServerSideProps (context) {
     `https://api.sportsdata.io/v3/${sports_news.fetchNHLNews.url}`
   ).then(res => res.json())
 
+  const nba_standing_req = await fetch(
+    `https://api.sportsdata.io/v3/${sports_standings.fetchNBAStandings.url}`
+  ).then(res => res.json())
+
+  const nfl_standing_req = await fetch(
+    `https://api.sportsdata.io/v3/${sports_standings.fetchNFLStandings.url}`
+  ).then(res => res.json())
+
+  const nhl_standing_req = await fetch(
+    `https://api.sportsdata.io/v3/${sports_standings.fetchNHLStandings.url}`
+  ).then(res => res.json())
+
+  const mlb_standing_req = await fetch(
+    `https://api.sportsdata.io/v3/${sports_standings.fetchMLBStandings.url}`
+  ).then(res => res.json())
+
+  const nba_bets = await fetch(
+    `https://api.sportsdata.io/v3/${sports_bets.fetchNBABets.url}`
+  ).then(res => res.json())
+
+  const nfl_bets = await fetch(
+    `https://api.sportsdata.io/v3/${sports_bets.fetchNFLBets.url}`
+  ).then(res => res.json())
+
   return {
     props: {
       nba_scores: nba_scores,
@@ -275,7 +365,13 @@ export async function getServerSideProps (context) {
       nba_results: nba_news,
       nfl_results: nfl_news,
       mlb_results: mlb_news,
-      nhl_results: nhl_news
+      nhl_results: nhl_news,
+      nba_team_standings: nba_standing_req,
+      nfl_team_standings: nfl_standing_req,
+      nhl_team_standings: nhl_standing_req,
+      mlb_team_standings: mlb_standing_req,
+      nba_betting_data: nba_bets,
+      nfl_betting_data: nfl_bets
     }
   }
 }

@@ -37,6 +37,13 @@ function Blog () {
         fileName: blogPost,
         timestamp: firebase.firestore.FieldValue.serverTimestamp()
       })
+
+    store.collection('blogCollection').add({
+      blogName: blogPost,
+      author: user.email,
+      timestamp: firebase.firestore.FieldValue.serverTimestamp()
+    })
+
     setShareText(false)
     setBlogPost('')
   }
