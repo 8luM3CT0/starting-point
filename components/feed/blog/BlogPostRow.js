@@ -4,12 +4,11 @@ import Icon from '@material-tailwind/react/Icon'
 //back-end
 import { useRouter } from 'next/router'
 
-function BlogDocument ({ id, fileName, timestamp, headPhoto, author }) {
+function BlogPostRow ({ id, blogName, timestamp, headPhoto, author }) {
   const router = useRouter()
 
   return (
     <div
-      onClick={() => router.push(`/blogPosts/${id}`)}
       className='
         flex
         items-center
@@ -23,8 +22,42 @@ function BlogDocument ({ id, fileName, timestamp, headPhoto, author }) {
         '
     >
       <Icon name='article' size='3xl' color='teal' />
-      <p className='flex-grow pl-5 w-10 pr-10 truncate'>{fileName}</p>
-      <p className='pr-5 text-sm'>{timestamp?.toDate().toLocaleDateString()}</p>
+      <p
+        className='
+      flex-grow 
+      pl-5 
+      w-10 
+      pr-10 
+      truncate'
+      >
+        {blogName}
+      </p>{' '}
+      <h3
+        className='
+        flex
+        text-center
+        items-center
+      pr-5 
+      text-sm 
+      text-blue-200'
+      >
+        <p
+          className='
+        mr-3
+        font-semibold
+        '
+        >
+          by
+        </p>{' '}
+        {author}
+      </h3>{' '}
+      <p
+        className='
+      pr-5 
+      text-sm'
+      >
+        {timestamp?.toDate().toLocaleDateString()}
+      </p>
       <Button
         color='teal'
         buttonType='outline'
@@ -39,4 +72,4 @@ function BlogDocument ({ id, fileName, timestamp, headPhoto, author }) {
   )
 }
 
-export default BlogDocument
+export default BlogPostRow

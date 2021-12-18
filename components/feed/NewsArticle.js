@@ -20,6 +20,8 @@ const NewsArticle = forwardRef(({ result }, ref) => {
         font-hind-font
         text-lg 
         my-4
+        flex-grow
+        mx-5
         flex
         items-center
         justify-evenly
@@ -29,6 +31,7 @@ const NewsArticle = forwardRef(({ result }, ref) => {
       <h3
         className='
          hover:underline 
+         flex-grow
          hover:animate-pulse'
       >
         {result.Title}

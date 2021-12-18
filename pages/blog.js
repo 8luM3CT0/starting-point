@@ -16,7 +16,7 @@ import BlogDocument from '../components/feed/blog/BlogDocument'
 import { useState } from 'react'
 import { store, auth } from '../firebaseFile'
 import { useAuthState } from 'react-firebase-hooks/auth'
-import { useCollection } from 'react-firebase-hooks/firestore'
+import { useCollectionOnce } from 'react-firebase-hooks/firestore'
 import firebase from 'firebase'
 
 function Blog () {
@@ -26,7 +26,7 @@ function Blog () {
   const [blogPost, setBlogPost] = useState('')
   const [user] = useAuthState(auth)
 
-  const createBlogPost = () => {
+  /*const createBlogPost = () => {
     if (!blogPost) return
 
     store
@@ -40,21 +40,18 @@ function Blog () {
 
     store.collection('blogCollection').add({
       blogName: blogPost,
-      author: user.email,
+      author: user.displayName,
       timestamp: firebase.firestore.FieldValue.serverTimestamp()
     })
 
     setShareText(false)
     setBlogPost('')
   }
+  */
 
   //return docs from userDocs
-  const [docsSnapshot] = useCollection(
-    store
-      .collection('userBlogs')
-      .doc(user.email)
-      .collection('blogs')
-      .orderBy('timestamp', 'desc')
+  const [docsSnapshot] = useCollectionOnce(
+    store.collection('blogCollection').orderBy('timestamp', 'desc')
   )
 
   return (
@@ -186,7 +183,7 @@ function Blog () {
             <Button
               disabled={!user}
               color='teal'
-              onClick={createBlogPost}
+              onClick={e => setShareText(false)}
               ripple='light'
             >
               Create

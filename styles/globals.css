@@ -68,6 +68,23 @@
     space-x-8 
   }
 
+  .homeFeedDiv{
+    @apply 
+    bg-gray-100
+    mt-8
+    grid
+    lg:flex
+    lg:items-center
+    lg:text-center
+    place-items-center
+    space-y-10
+    flex-grow
+    justify-evenly
+    px-4
+    overflow-x-scroll
+    scrollbar-hide
+  }
+
   .newsFeedDiv{
     @apply
     bg-gray-100

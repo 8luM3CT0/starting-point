@@ -2,14 +2,14 @@
 import Head from 'next/head'
 import Image from 'next/image'
 import Header from '../components/header/Header'
-import NewsFeed from '../components/feed/NewsFeed'
+import HomeNews from '../components/feed/HomeNews'
 import Tab from '@material-tailwind/react/Tab'
 import TabList from '@material-tailwind/react/TabList'
 import TabItem from '@material-tailwind/react/TabItem'
 import TabContent from '@material-tailwind/react/TabContent'
 import TabPane from '@material-tailwind/react/TabPane'
 import NBAHeaderScores from '../components/header/NBAHeaderScores'
-import BlogDocument from '../components/feed/blog/BlogDocument'
+import BlogPostRow from '../components/feed/blog/BlogPostRow'
 //back-end
 //back-end-api
 import sports_news from '../utils/sports_news'
@@ -34,11 +34,7 @@ export default function Home ({
   const [openTab, setOpenTab] = useState(1)
 
   const [docsSnapshot] = useCollection(
-    store
-      .collection('userBlogs')
-      .doc(user.email)
-      .collection('blogs')
-      .orderBy('timestamp', 'desc')
+    store.collection('blogCollection').orderBy('timestamp', 'desc')
   )
 
   return (
@@ -126,8 +122,8 @@ export default function Home ({
                   xl:h-[800px]
                   opacity-75'
                 />
-                <div className='topFeedDiv'>
-                  <NewsFeed nba_results={nfl_results} />
+                <div className='homeFeedDiv'>
+                  <HomeNews nba_results={nfl_results} />
                 </div>
               </main>
             </TabPane>
@@ -155,8 +151,8 @@ export default function Home ({
               xl:h-[720px]
               opacity-75'
                 />
-                <div className='topFeedDiv'>
-                  <NewsFeed nba_results={nba_results} />
+                <div className='homeFeedDiv'>
+                  <HomeNews nba_results={nba_results} />
                 </div>
               </main>
             </TabPane>
@@ -182,8 +178,8 @@ export default function Home ({
                 xl:h-[720px]
                 opacity-75'
                 />
-                <div className='topFeedDiv'>
-                  <NewsFeed nba_results={mlb_results} />
+                <div className='homeFeedDiv'>
+                  <HomeNews nba_results={mlb_results} />
                 </div>
               </main>
             </TabPane>
@@ -212,18 +208,19 @@ export default function Home ({
                 opacity-75
                '
                 />
-                <div className='topFeedDiv'>
-                  <NewsFeed nba_results={nhl_results} />
+                <div className='homeFeedDiv'>
+                  <HomeNews nba_results={nhl_results} />
                 </div>
               </main>
             </TabPane>
           </TabContent>
         </Tab>
         {docsSnapshot?.docs.map(doc => (
-          <BlogDocument
+          <BlogPostRow
             key={doc.id}
             id={doc.id}
-            fileName={doc.data().fileName}
+            blogName={doc.data().blogName}
+            author={doc.data().author}
             timestamp={doc.data().timestamp}
           />
         ))}
