@@ -83,7 +83,7 @@ function Header () {
           className='
         flex-1         
         py-6
-        bg-gray-800
+        bg-[#0c1727]
         text-white
         px-10
         justify-between

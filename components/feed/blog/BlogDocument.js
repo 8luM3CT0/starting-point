@@ -9,7 +9,6 @@ function BlogDocument ({ id, fileName, timestamp, headPhoto, author }) {
 
   return (
     <div
-      onClick={() => router.push(`/blogPosts/${id}`)}
       className='
         flex
         items-center

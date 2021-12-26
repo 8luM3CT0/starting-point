@@ -90,7 +90,7 @@ function BlogHeader () {
           className='
         flex-1         
         py-6
-        bg-gray-800
+        bg-[#0c1727]
         px-10
         border-b-2
         border-teal-500
@@ -147,6 +147,12 @@ function BlogHeader () {
             </h2>
             <h2 onClick={() => router.push('/blog')} className='headerOptions'>
               Blog
+            </h2>
+            <h2
+              onClick={() => router.push('/scores')}
+              className='headerOptions'
+            >
+              Scores
             </h2>
           </div>
           {!user ? (

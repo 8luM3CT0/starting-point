@@ -11,7 +11,7 @@ function SignHeader () {
     <header
       className='
         top-0 
-        bg-gray-800 
+        bg-[#0c1727]
         py-6 
         px-10 
         z-50 

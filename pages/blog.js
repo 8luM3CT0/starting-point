@@ -12,21 +12,26 @@ import TabList from '@material-tailwind/react/TabList'
 import TabItem from '@material-tailwind/react/TabItem'
 import BlogHeader from '../components/header/BlogHeader'
 import BlogDocument from '../components/feed/blog/BlogDocument'
+import Login from './login'
 //back-end
 import { useState } from 'react'
 import { store, auth } from '../firebaseFile'
 import { useAuthState } from 'react-firebase-hooks/auth'
-import { useCollectionOnce } from 'react-firebase-hooks/firestore'
+import { useCollection } from 'react-firebase-hooks/firestore'
 import firebase from 'firebase'
+import { useRouter } from 'next/router'
 
 function Blog () {
+  const [user] = useAuthState(auth)
+  if (!user) return <Login />
+  const router = useRouter()
+  const { id } = router.query
   const [shareText, setShareText] = useState(false)
   const [sharePhoto, setSharePhoto] = useState(false)
   const [shareVideo, setShareVideo] = useState(false)
   const [blogPost, setBlogPost] = useState('')
-  const [user] = useAuthState(auth)
 
-  /*const createBlogPost = () => {
+  const createBlogPost = () => {
     if (!blogPost) return
 
     store
@@ -47,11 +52,14 @@ function Blog () {
     setShareText(false)
     setBlogPost('')
   }
-  */
 
   //return docs from userDocs
-  const [docsSnapshot] = useCollectionOnce(
-    store.collection('blogCollection').orderBy('timestamp', 'desc')
+  const [docsSnapshot] = useCollection(
+    store
+      .collection('userBlogs')
+      .doc(user.email)
+      .collection('blogs')
+      .orderBy('timestamp', 'desc')
   )
 
   return (
@@ -183,7 +191,7 @@ function Blog () {
             <Button
               disabled={!user}
               color='teal'
-              onClick={e => setShareText(false)}
+              onClick={createBlogPost}
               ripple='light'
             >
               Create

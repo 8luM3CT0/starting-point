@@ -177,4 +177,13 @@
     font-medium
   }
 
+  .blogAuthor{
+    @apply
+    hidden
+    lg:flex
+    items-center
+    space-x-6
+    text-teal-400
+  }
+
 }
