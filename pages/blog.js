@@ -42,13 +42,6 @@ function Blog () {
         fileName: blogPost,
         timestamp: firebase.firestore.FieldValue.serverTimestamp()
       })
-
-    store.collection('blogCollection').add({
-      blogName: blogPost,
-      author: user.displayName,
-      timestamp: firebase.firestore.FieldValue.serverTimestamp()
-    })
-
     setShareText(false)
     setBlogPost('')
   }
@@ -107,27 +100,7 @@ function Blog () {
                 className='cursor-pointer'
               >
                 <Icon name='text_fields' size='lg' />
-                Text
-              </TabItem>
-              <TabItem
-                onClick={e => {
-                  setSharePhoto(true)
-                }}
-                ripple='light'
-                className='cursor-pointer'
-              >
-                <Icon name='add_a_photo' size='lg' />
-                Photo
-              </TabItem>
-              <TabItem
-                onClick={e => {
-                  setShareVideo(true)
-                }}
-                ripple='light'
-                className='cursor-pointer'
-              >
-                <Icon name='videocam' size='lg' />
-                Video
+                New blog ?
               </TabItem>
             </TabList>
           </Tab>
@@ -155,7 +128,7 @@ function Blog () {
           font-hind-font 
           text-teal-400'
           >
-            Add a post
+            Add here
           </h3>
         </ModalHeader>
         <ModalBody>
@@ -195,101 +168,6 @@ function Blog () {
               ripple='light'
             >
               Create
-            </Button>
-          </ModalFooter>
-        </ModalBody>
-      </Modal>
-      <Modal
-        toggler={() => setSharePhoto(false)}
-        size='regular'
-        active={sharePhoto}
-      >
-        <ModalHeader toggler={() => setSharePhoto(false)}>
-          <h3 className='text-[32px] font-medium font-hind-font text-blue-400'>
-            Share a photo
-          </h3>
-        </ModalHeader>
-        <ModalBody>
-          <div className='p-10 space-x-5 flex items-center'>
-            <Button>
-              <div className='grid border-gray-200 text-center space-y-6'>
-                <Icon name='add_photo_alternate' size='xl' />
-                <h2 className='text-gray-200 font-google-sans font-light'>
-                  import a photo
-                </h2>
-              </div>
-            </Button>
-            <Button>
-              <div className='grid  border-gray-200 text-center space-y-6'>
-                <Icon name='add_a_photo' size='xl' />
-                <h2 className='text-gray-200 font-google-sans font-light'>
-                  take a picture
-                </h2>
-              </div>
-            </Button>
-            <Button>
-              <div className='grid border-gray-200 text-center space-y-6'>
-                <Icon name='insert_photo' size='xl' />
-                <h2 className='text-gray-200 font-google-sans font-light'>
-                  add a link
-                </h2>
-              </div>
-            </Button>
-          </div>
-          <ModalFooter>
-            <Button
-              color='red'
-              buttonType='link'
-              onClick={e => setSharePhoto(false)}
-              ripple='dark'
-            >
-              Cancel
-            </Button>
-            <Button
-              color='teal'
-              onClick={e => setSharePhoto(false)}
-              ripple='light'
-            >
-              Post!
-            </Button>
-          </ModalFooter>
-        </ModalBody>
-      </Modal>
-      <Modal
-        toggler={() => setShareVideo(false)}
-        size='regular'
-        active={shareVideo}
-      >
-        <ModalHeader toggler={() => setShareVideo(false)}>
-          <h3 className='text-[32px] font-medium font-hind-font text-blue-400'>
-            Add a video
-          </h3>
-        </ModalHeader>
-        <ModalBody>
-          <div className='p-10 space-y-5'>
-            <p className='text-base leading-relaxed text-gray-600 font-normal'>
-              I always felt like I could do anything. That’s the main thing
-              people are controlled by! Thoughts- their perception of
-              themselves! They're slowed down by their perception of themselves.
-              If you're taught you can’t do anything, you won’t do anything. I
-              was taught I could do everything.
-            </p>
-          </div>
-          <ModalFooter>
-            <Button
-              color='red'
-              buttonType='link'
-              onClick={e => setShareVideo(false)}
-              ripple='dark'
-            >
-              Cancel
-            </Button>
-            <Button
-              color='teal'
-              onClick={e => setShareVideo(false)}
-              ripple='light'
-            >
-              Post!
             </Button>
           </ModalFooter>
         </ModalBody>
