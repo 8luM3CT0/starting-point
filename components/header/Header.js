@@ -140,17 +140,14 @@ function Header () {
             <h2 onClick={() => router.push('/')} className='headerOptions'>
               Home
             </h2>
-            <h2 onClick={() => router.push('/about')} className='headerOptions'>
-              About
-            </h2>
-            <h2 onClick={() => router.push('/blog')} className='headerOptions'>
-              Blog
-            </h2>
             <h2
               onClick={() => router.push('/scores')}
               className='headerOptions'
             >
               Scores
+            </h2>
+            <h2 onClick={() => router.push('/blog')} className='headerOptions'>
+              Blog
             </h2>
           </div>
           {!user ? (
@@ -290,8 +287,11 @@ function Header () {
               <HomeIcon className='headerOptionsIcon' />
               <h4 className='moreOptionsTitle'>Home</h4>
             </span>
-            <span onClick={() => router.push('/about')} className='moreOptions'>
-              <InformationCircleIcon className='headerOptionsIcon' />
+            <span
+              onClick={() => router.push('/scores')}
+              className='moreOptions'
+            >
+              <Icon name='sports_score' />
               <h4 className='moreOptionsTitle'>About</h4>
             </span>
             <span onClick={() => router.push('/blog')} className='moreOptions'>

@@ -142,8 +142,11 @@ function BlogHeader () {
             <h2 onClick={() => router.push('/')} className='headerOptions'>
               Home
             </h2>
-            <h2 onClick={() => router.push('/about')} className='headerOptions'>
-              About
+            <h2
+              onClick={() => router.push('/scores')}
+              className='headerOptions'
+            >
+              Scores
             </h2>
             <h2 onClick={() => router.push('/blog')} className='headerOptions'>
               Blog
@@ -294,9 +297,12 @@ function BlogHeader () {
               <HomeIcon className='headerOptionsIcon' />
               <h4 className='moreOptionsTitle'>Home</h4>
             </span>
-            <span onClick={() => router.push('/about')} className='moreOptions'>
-              <InformationCircleIcon className='headerOptionsIcon' />
-              <h4 className='moreOptionsTitle'>About</h4>
+            <span
+              onClick={() => router.push('/scores')}
+              className='moreOptions'
+            >
+              <Icon name='sports_score' />
+              <h4 className='moreOptionsTitle'>Scores</h4>
             </span>
             <span onClick={() => router.push('/blog')} className='moreOptions'>
               <BookOpenIcon className='headerOptionsIcon' />

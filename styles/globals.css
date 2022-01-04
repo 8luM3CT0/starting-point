@@ -167,6 +167,26 @@
     text-teal-500
   }
 
+  .blogPostDiv{
+    @apply
+    bg-gray-600
+    hover:bg-teal-700
+    grid
+    lg:flex
+    justify-center
+    rounded-lg
+    lg:items-center
+    lg:justify-evenly
+    px-10
+    py-7
+    space-y-4
+    hover:scale-105
+    transform
+    transition
+    ease-in-out
+    cursor-pointer
+  }
+
   .blogPageTitle{
     @apply
     hidden
@@ -184,6 +204,29 @@
     items-center
     space-x-6
     text-teal-400
+  }
+
+  .blogContent{
+    @apply
+    hidden
+    lg:inline-flex
+    text-base
+    font-robot-condensed
+    w-[300px]
+    lg:w-[600px]
+    line-clamp-3
+    overflow-hidden
+    font-semibold
+    text-blue-100
+  }
+
+  .blogBtn{
+    @apply
+    hidden 
+    lg:inline-flex 
+    font-light 
+    text-lg 
+    capitalize
   }
 
 }

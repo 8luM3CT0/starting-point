@@ -122,6 +122,19 @@ export default function Home ({
                   xl:h-[800px]
                   opacity-75'
                 />
+                <h3
+                  className='
+      text-gray-800 
+      top-0 
+      mt-7
+      rounded-3xl 
+      text-2xl 
+      font-medium 
+      underline 
+      font-google-sans'
+                >
+                  News
+                </h3>
                 <div className='homeFeedDiv'>
                   <HomeNews nba_results={nfl_results} />
                 </div>
@@ -151,6 +164,19 @@ export default function Home ({
               xl:h-[720px]
               opacity-75'
                 />
+                <h3
+                  className='
+      text-gray-800 
+      top-0 
+      mt-7
+      rounded-3xl 
+      text-2xl 
+      font-medium 
+      underline 
+      font-google-sans'
+                >
+                  News
+                </h3>
                 <div className='homeFeedDiv'>
                   <HomeNews nba_results={nba_results} />
                 </div>
@@ -178,6 +204,19 @@ export default function Home ({
                 xl:h-[720px]
                 opacity-75'
                 />
+                <h3
+                  className='
+      text-gray-800 
+      top-0 
+      mt-7
+      rounded-3xl 
+      text-2xl 
+      font-medium 
+      underline 
+      font-google-sans'
+                >
+                  News
+                </h3>
                 <div className='homeFeedDiv'>
                   <HomeNews nba_results={mlb_results} />
                 </div>
@@ -208,6 +247,19 @@ export default function Home ({
                 opacity-75
                '
                 />
+                <h3
+                  className='
+      text-gray-800 
+      top-0 
+      mt-7
+      rounded-3xl 
+      text-2xl 
+      font-medium 
+      underline 
+      font-google-sans'
+                >
+                  News
+                </h3>
                 <div className='homeFeedDiv'>
                   <HomeNews nba_results={nhl_results} />
                 </div>
@@ -219,9 +271,10 @@ export default function Home ({
           <BlogPostRow
             key={doc.id}
             id={doc.id}
-            blogName={doc.data().blogName}
+            fileName={doc.data().fileName}
             author={doc.data().author}
             timestamp={doc.data().timestamp}
+            blogContent={doc.data().blogContent}
           />
         ))}
       </div>

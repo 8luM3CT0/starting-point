@@ -62,7 +62,7 @@ function Build () {
       .doc(id)
       .set(
         {
-          title: snapshot?.data()?.fileName,
+          fileName: snapshot?.data()?.fileName,
           author: user?.displayName,
           blogContent: inputRef.current.value,
           timestamp: firebase.firestore.FieldValue.serverTimestamp()
@@ -102,6 +102,18 @@ function Build () {
                 flex 
                 items-center'
           >
+            <Button
+              color='teal'
+              buttonType='link'
+              iconOnly={false}
+              block={false}
+              rounded={false}
+              ripple='light'
+              onClick={() => router.push('/blog')}
+              className='flex items-center space-x-4'
+            >
+              <Icon name='arrow_back_ios' />
+            </Button>
             <div
               className='
             cursor-pointer 
@@ -118,7 +130,6 @@ function Build () {
                 block={false}
                 iconOnly={false}
                 ripple='dark'
-                onClick={() => router.push('/blog')}
                 className='flex items-center space-x-5'
               >
                 <Icon name='drafts' size='3xl' />
@@ -184,7 +195,7 @@ function Build () {
             className='
             h-[414px]
             md:h-[780px]
-            lg:h-[1080px] 
+            lg:h-[860px]
           overflow-y-scroll 
           scrollbar-hide
           rounded-2xl 

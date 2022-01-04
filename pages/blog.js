@@ -59,12 +59,13 @@ function Blog () {
     <>
       <div className='scrollbar-hide h-screen overflow-hidden bg-[#2d3642] pb-8'>
         <Head>
-          <title>Here's our blog, take your time.</title>
+          <title>Here's our blog, {user?.displayName} take your time.</title>
         </Head>
         <BlogHeader />
         <main
           className='
       max-w-7xl
+      pb-[120px]
       h-screen
       overflow-y-scroll
       scrollbar-hide
@@ -97,10 +98,10 @@ function Blog () {
                   setShareText(true)
                 }}
                 ripple='light'
-                className='cursor-pointer'
+                className='cursor-pointer space-x-5'
               >
-                <Icon name='text_fields' size='lg' />
-                New blog ?
+                <Icon name='add_box' size='lg' />
+                <h2 className='capitalize font-robot-slab'>New blog ?</h2>
               </TabItem>
             </TabList>
           </Tab>
@@ -110,6 +111,7 @@ function Blog () {
               id={doc.id}
               fileName={doc.data().fileName}
               timestamp={doc.data().timestamp}
+              blogText={doc.data().blogText}
             />
           ))}
         </main>
