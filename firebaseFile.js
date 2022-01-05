@@ -1,4 +1,5 @@
 import firebase from 'firebase'
+import {getAuth, sendPasswordResetEmail, updateProfile, onAuthStateChanged} from 'firebase/auth'
 import 'firebase/storage'
 
 const firebaseConfig = {
@@ -17,7 +18,8 @@ const app = !firebase.apps.length ?
 
 const auth = app.auth()
 const store = app.firestore()
-const storage = app.storage()
+const warehouse = app.storage()
 const provider = new firebase.auth.GoogleAuthProvider()
+//for password reset
 
-export { auth, store, provider, storage }
+export { auth, store, provider, warehouse, getAuth, sendPasswordResetEmail, onAuthStateChanged, updateProfile }

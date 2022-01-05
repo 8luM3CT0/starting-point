@@ -137,7 +137,7 @@ function Blog () {
           <form
             className='
           flex-grow 
-          p-7
+          p-[70px]
           mb-5
           space-y-5 
           border-y 

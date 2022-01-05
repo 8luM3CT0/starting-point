@@ -48,6 +48,10 @@ function Header () {
     router.push('/signup')
   }
 
+  const goToResetPass = () => {
+    router.push('/forgotPass')
+  }
+
   const [user] = useAuthState(auth)
 
   useEffect(() => {
@@ -209,6 +213,16 @@ function Header () {
                 rounded-lg outline-none 
                 bg-gray-50'
                   />
+                  <Button
+                    size='sm'
+                    buttonType='link'
+                    color='green'
+                    ripple='light'
+                    className='mt-6'
+                    onClick={goToResetPass}
+                  >
+                    Forgot Password?
+                  </Button>
                   <div className='flex mt-5 items-center space-x-3'>
                     <Button color='teal' onClick={signIn} ripple='light'>
                       Sign In
@@ -292,7 +306,7 @@ function Header () {
               className='moreOptions'
             >
               <Icon name='sports_score' />
-              <h4 className='moreOptionsTitle'>About</h4>
+              <h4 className='moreOptionsTitle'>Scores</h4>
             </span>
             <span onClick={() => router.push('/blog')} className='moreOptions'>
               <BookOpenIcon className='headerOptionsIcon' />

@@ -1,13 +1,18 @@
 //front-end
+import Modal from '@material-tailwind/react/Modal'
+import ModalHeader from '@material-tailwind/react/ModalHeader'
+import ModalBody from '@material-tailwind/react/ModalBody'
+import ModalFooter from '@material-tailwind/react/ModalFooter'
 import Button from '@material-tailwind/react/Button'
 import Icon from '@material-tailwind/react/Icon'
+import Input from '@material-tailwind/react/Input'
 import Login from '../login'
 //back-end
 import firebase from 'firebase'
 import { useEffect, useRef, useState } from 'react'
 import { useAuthState } from 'react-firebase-hooks/auth'
 import { useDocument, useDocumentOnce } from 'react-firebase-hooks/firestore'
-import { auth, provider, store, storage } from '../../firebaseFile'
+import { auth, provider, store, warehouse } from '../../firebaseFile'
 import { useRouter } from 'next/router'
 
 function Build () {
@@ -17,6 +22,11 @@ function Build () {
   const { id } = router.query
   const inputRef = useRef(null)
   const filePicker = useRef(null)
+  const [picLocal, setPicLocal] = useState(null)
+  const [showText, setShowText] = useState(false)
+  const [picOptions, setPicOptions] = useState(false)
+  const [picFromUrl, setPicFromUrl] = useState(false)
+  const [picUrl, setPicUrl] = useState('')
 
   const [docSnapshot] = useDocument(
     store
@@ -38,6 +48,33 @@ function Build () {
     router.replace('/')
   }
 
+  const addPicToBlog = e => {
+    const reader = new FileReader()
+    if (e.target.value[0]) {
+      reader.readAsDataURL(e.target.files[0])
+    }
+    reader.onload = readerEvent => {
+      setPicLocal(readerEvent.target.result)
+    }
+
+    setPicOptions(false)
+  }
+
+  const addPicFromUrl = () => {
+    {
+      /**returns pic from url */
+    }
+  }
+
+  const removePic = () => {
+    setPicLocal(null) || setPicFromUrl('')
+  }
+
+  const getPicFromWeb = () => {
+    setPicFromUrl(true)
+    setPicOptions(false)
+  }
+
   const publishBlog = e => {
     e.preventDefault()
 
@@ -48,29 +85,45 @@ function Build () {
       .doc(user.email)
       .collection('blogs')
       .doc(id)
-      .set(
-        {
-          blogText: inputRef.current.value
-        },
-        {
-          merge: true
-        }
-      )
+      .set({
+        blogText: inputRef.current.value,
+        fileName: snapshot?.data()?.fileName,
+        timestamp: firebase.firestore.FieldValue.serverTimestamp()
+      })
+      .then(doc => {
+        if (picLocal) {
+          const uploadTask = warehouse
+            .ref(`blogPosts/${doc.id}`)
+            .putString(picLocal, 'data_url')
 
-    store
-      .collection('blogCollection')
-      .doc(id)
-      .set(
-        {
-          fileName: snapshot?.data()?.fileName,
-          author: user?.displayName,
-          blogContent: inputRef.current.value,
-          timestamp: firebase.firestore.FieldValue.serverTimestamp()
-        },
-        {
-          merge: true
+          removePic()
+
+          uploadTask.on(
+            'state_change',
+            null,
+            error => console.error(error),
+            () => {
+              warehouse
+                .ref('blogPosts')
+                .child(doc.id)
+                .getDownloadURL()
+                .then(url => {
+                  store
+                    .collection('userBlogs')
+                    .doc(user.email)
+                    .collection('blogs')
+                    .doc(doc.id)
+                    .set(
+                      {
+                        picLocal: url
+                      },
+                      { merge: true }
+                    )
+                })
+            }
+          )
         }
-      )
+      })
   }
 
   return (
@@ -166,31 +219,41 @@ function Build () {
       h-screen
       overflow-y-scroll
       scrollbar-hide
-      pb-14
+      pb-[100px]
       bg-gray-600
       '
         >
-          <Button
-            color='teal'
-            buttonType='filled'
-            size='lg'
-            rounded={false}
-            block={true}
-            iconOnly={false}
-            ripple='light'
-            className='flex items-center space-x-5 mb-[72px]'
-          >
-            <Icon name='add_a_photo' />
-            <h2
-              className='
+          {!picLocal ? (
+            <Button
+              onClick={e => setPicOptions(true)}
+              color='teal'
+              buttonType='filled'
+              size='lg'
+              rounded={false}
+              block={true}
+              iconOnly={false}
+              ripple='light'
+              className='flex items-center space-x-5 mb-[72px]'
+            >
+              <Icon name='add_a_photo' />
+              <h2
+                className='
           text-lg 
           capitalize 
           font-medium 
           font-google-sans'
-            >
-              Add your subject
-            </h2>
-          </Button>
+              >
+                Add your subject
+              </h2>
+            </Button>
+          ) : (
+            <img
+              onClick={removePic}
+              src={picLocal}
+              alt=''
+              className='h-[320px] mx-auto w-[560px] p-10 hover:opacity-80'
+            />
+          )}
           <div
             className='
             h-[414px]
@@ -204,6 +267,16 @@ function Build () {
           max-w-6xl 
           bg-gray-800'
           >
+            <Button
+              color='teal'
+              type='button'
+              onClick={e => setShowText(true)}
+              ripple='light'
+            >
+              <h1 className='font-light capitalize text-lg font-robot-condensed'>
+                Show the text
+              </h1>
+            </Button>
             <textarea
               ref={inputRef}
               placeholder={`Add something, ${user?.displayName}...`}
@@ -241,6 +314,121 @@ function Build () {
           </Button>
         </main>
       </div>
+      <Modal size='lg' active={showText} toggler={() => setShowText(false)}>
+        <ModalHeader toggler={() => setShowText(false)}>
+          <h3 className='text-xl text-blue-400 font-medium'>
+            Your old text, {user?.displayName}
+          </h3>
+        </ModalHeader>
+        <ModalBody>
+          <p className='text-base font-font-robot leading-relaxed text-gray-900 font-normal'>
+            {snapshot?.data()?.blogText}
+          </p>
+        </ModalBody>
+        <ModalFooter>
+          <Button
+            onClick={e => setShowText(false)}
+            color='red'
+            buttonType='link'
+            block={false}
+            iconOnly={false}
+            rounded={false}
+            ripple='light'
+          >
+            Close
+          </Button>
+        </ModalFooter>
+      </Modal>
+      <Modal size='lg' active={picOptions} toggler={() => setPicOptions(false)}>
+        <ModalBody>
+          <div className='flex items-center space-x-5 p-[100px]'>
+            <Button
+              onClick={e => setPicFromUrl(true)}
+              color='teal'
+              buttonType='link'
+              iconOnly={false}
+              rounded={false}
+              block={false}
+              className='border-2 grid  border-teal-400'
+            >
+              <Icon name='http' />
+              <h2 className='text-lg capitalize font-medium font-source-serif'>
+                Get from web
+              </h2>
+            </Button>
+            <Button
+              onClick={() => filePicker.current.click()}
+              color='teal'
+              buttonType='link'
+              iconOnly={false}
+              rounded={false}
+              block={false}
+              className='border-2 grid border-teal-400'
+            >
+              <Icon name='insert_photo' />
+              <h2 className='text-lg capitalize font-medium font-source-serif'>
+                Get from desktop
+              </h2>
+              <input
+                type='file'
+                ref={filePicker}
+                hidden
+                onChange={addPicToBlog}
+              />
+            </Button>
+          </div>
+        </ModalBody>
+        <ModalFooter>
+          <Button
+            color='red'
+            type='button'
+            rounded={false}
+            block={false}
+            iconOnly={false}
+            onClick={e => setPicOptions(false)}
+          >
+            Cancel
+          </Button>
+        </ModalFooter>
+      </Modal>
+      <Modal>
+        <Modal size='lg' picFromUrl={true} toggler={() => setPicFromUrl(false)}>
+          <ModalHeader>
+            <h1 className='text-lg font-robot-slab font-medium text-teal-500'>
+              Get pic from the web
+            </h1>
+          </ModalHeader>
+          <ModalBody>
+            <form className='flex-grow p-[70px] mb-5 space-y-5 border-y border-teal-500'>
+              <Input
+                type='text'
+                color='blue'
+                value={picUrl}
+                onChange={e => setPicUrl(e.target.value)}
+                size='lg'
+                outline={false}
+                placeholder='Photo url...'
+              />
+            </form>
+          </ModalBody>
+          <ModalFooter>
+            <Button
+              color='red'
+              buttonType='link'
+              onClick={e => setPicFromUrl(false)}
+            >
+              Cancel
+            </Button>
+            <Button
+              color='teal'
+              buttonType='link'
+              onClick={e => setPicFromUrl(false)}
+            >
+              Add
+            </Button>
+          </ModalFooter>
+        </Modal>
+      </Modal>
     </>
   )
 }

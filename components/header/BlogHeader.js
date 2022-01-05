@@ -151,12 +151,6 @@ function BlogHeader () {
             <h2 onClick={() => router.push('/blog')} className='headerOptions'>
               Blog
             </h2>
-            <h2
-              onClick={() => router.push('/scores')}
-              className='headerOptions'
-            >
-              Scores
-            </h2>
           </div>
           {!user ? (
             <div
