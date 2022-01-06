@@ -12,12 +12,17 @@ import TabList from '@material-tailwind/react/TabList'
 import TabItem from '@material-tailwind/react/TabItem'
 import BlogHeader from '../components/header/BlogHeader'
 import BlogDocument from '../components/feed/blog/BlogDocument'
+import AddAPhotoIcon from '@material-ui/icons/AddAPhoto'
 import Login from './login'
 //back-end
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import { store, auth } from '../firebaseFile'
 import { useAuthState } from 'react-firebase-hooks/auth'
-import { useCollection } from 'react-firebase-hooks/firestore'
+import {
+  useCollection,
+  useDocument,
+  useDocumentOnce
+} from 'react-firebase-hooks/firestore'
 import firebase from 'firebase'
 import { useRouter } from 'next/router'
 
@@ -27,11 +32,28 @@ function Blog () {
   const router = useRouter()
   const { id } = router.query
   const [shareText, setShareText] = useState(false)
-  const [sharePhoto, setSharePhoto] = useState(false)
-  const [shareVideo, setShareVideo] = useState(false)
+  const [blogPhoto, setBlogPhoto] = useState(false)
   const [blogPost, setBlogPost] = useState('')
+  const filePickerRef = useRef(null)
+  const [blogPic, setBlogPic] = useState(null)
 
-  const createBlogPost = () => {
+  const addPic = e => {
+    const reader = new FileReader()
+    if (e.target.value[0]) {
+      reader.readAsDataURL(e.target.files[0])
+    }
+    reader.onload = readerEvent => {
+      setBlogPic(readerEvent.target.result)
+    }
+  }
+
+  const removePic = () => {
+    setBlogPic(null)
+  }
+
+  const createBlogPost = e => {
+    e.preventDefault()
+
     if (!blogPost) return
 
     store
@@ -40,6 +62,8 @@ function Blog () {
       .collection('blogs')
       .add({
         fileName: blogPost,
+        userEmail: user.email,
+        displayName: user.displayName,
         timestamp: firebase.firestore.FieldValue.serverTimestamp()
       })
     setShareText(false)
@@ -47,7 +71,7 @@ function Blog () {
   }
 
   //return docs from userDocs
-  const [docsSnapshot] = useCollection(
+  const [docsSnapshot] = useDocumentOnce(
     store
       .collection('userBlogs')
       .doc(user.email)
@@ -112,6 +136,7 @@ function Blog () {
               fileName={doc.data().fileName}
               timestamp={doc.data().timestamp}
               blogText={doc.data().blogText}
+              blogSubject={doc.data().blogSubject}
             />
           ))}
         </main>
@@ -137,6 +162,9 @@ function Blog () {
           <form
             className='
           flex-grow 
+          flex
+          items-center
+          space-x-5
           p-[70px]
           mb-5
           space-y-5 
@@ -153,6 +181,38 @@ function Blog () {
               outline={false}
               placeholder='Post name...'
             />
+            {!blogPic ? (
+              <button
+                onClick={() => filePickerRef.current.click()}
+                className='hover:animate-pulse text-teal-500'
+              >
+                <Icon name='add_a_photo' />
+              </button>
+            ) : (
+              <div onClick={removePic} className='removePic'>
+                <img
+                  src={blogPic}
+                  alt=''
+                  className='
+                        h-10 
+                        object-contain'
+                />
+                <p
+                  className='
+                        text-xs 
+                        text-red-400 
+                        text-center'
+                >
+                  Remove ?
+                </p>
+                <input
+                  ref={filePickerRef}
+                  type='file'
+                  hidden
+                  onChange={addPic}
+                />
+              </div>
+            )}
           </form>
           <ModalFooter>
             <Button

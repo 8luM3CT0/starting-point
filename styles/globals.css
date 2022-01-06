@@ -214,7 +214,10 @@
     font-robot-condensed
     w-[300px]
     lg:w-[600px]
+    h-[120px]
+    lg:h-[300px]
     line-clamp-3
+    text-ellipsis
     overflow-hidden
     font-semibold
     text-blue-100
@@ -227,6 +230,19 @@
     font-light 
     text-lg 
     capitalize
+  }
+
+  .removePic{
+    @apply
+    flex
+    flex-col
+    filter
+    hover:brightness-110
+    transition
+    duration-150
+    transform
+    hover:scale-105
+    cursor-pointer
   }
 
 }

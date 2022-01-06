@@ -85,45 +85,32 @@ function Build () {
       .doc(user.email)
       .collection('blogs')
       .doc(id)
-      .set({
-        blogText: inputRef.current.value,
-        fileName: snapshot?.data()?.fileName,
-        timestamp: firebase.firestore.FieldValue.serverTimestamp()
-      })
-      .then(doc => {
-        if (picLocal) {
-          const uploadTask = warehouse
-            .ref(`blogPosts/${doc.id}`)
-            .putString(picLocal, 'data_url')
-
-          removePic()
-
-          uploadTask.on(
-            'state_change',
-            null,
-            error => console.error(error),
-            () => {
-              warehouse
-                .ref('blogPosts')
-                .child(doc.id)
-                .getDownloadURL()
-                .then(url => {
-                  store
-                    .collection('userBlogs')
-                    .doc(user.email)
-                    .collection('blogs')
-                    .doc(doc.id)
-                    .set(
-                      {
-                        picLocal: url
-                      },
-                      { merge: true }
-                    )
-                })
-            }
-          )
+      .set(
+        {
+          blogText: inputRef.current.value,
+          fileName: snapshot?.data()?.fileName,
+          timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+          blogSubject: picLocal
+        },
+        {
+          merge: true
         }
-      })
+      )
+
+    store
+      .collection('blogCollection')
+      .doc(id)
+      .set(
+        {
+          fileName: snapshot?.data()?.fileName,
+          author: user?.displayName,
+          blogContent: inputRef.current.value,
+          timestamp: firebase.firestore.FieldValue.serverTimestamp()
+        },
+        {
+          merge: true
+        }
+      )
   }
 
   return (
