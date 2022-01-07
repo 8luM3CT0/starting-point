@@ -31,10 +31,12 @@ function Blog () {
   if (!user) return <Login />
   const router = useRouter()
   const { id } = router.query
+  const [picOptions, setPicOptions] = useState(false)
   const [shareText, setShareText] = useState(false)
   const [blogPhoto, setBlogPhoto] = useState(false)
   const [blogPost, setBlogPost] = useState('')
   const filePickerRef = useRef(null)
+  const filePicker = useRef(null)
   const [blogPic, setBlogPic] = useState(null)
 
   const addPic = e => {
@@ -45,6 +47,23 @@ function Blog () {
     reader.onload = readerEvent => {
       setBlogPic(readerEvent.target.result)
     }
+  }
+
+  const addPicToBlog = e => {
+    const reader = new FileReader()
+    if (e.target.value[0]) {
+      reader.readAsDataURL(e.target.files[0])
+    }
+    reader.onload = readerEvent => {
+      setBlogPic(readerEvent.target.result)
+    }
+
+    setPicOptions(false)
+  }
+
+  const getPicFromWeb = () => {
+    setPicFromUrl(true)
+    setPicOptions(false)
   }
 
   const removePic = () => {
@@ -64,7 +83,8 @@ function Blog () {
         fileName: blogPost,
         userEmail: user.email,
         displayName: user.displayName,
-        timestamp: firebase.firestore.FieldValue.serverTimestamp()
+        timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+        blogSubject: blogPic
       })
     setShareText(false)
     setBlogPost('')
@@ -159,18 +179,7 @@ function Blog () {
           </h3>
         </ModalHeader>
         <ModalBody>
-          <form
-            className='
-          flex-grow 
-          flex
-          items-center
-          space-x-5
-          p-[70px]
-          mb-5
-          space-y-5 
-          border-y 
-          border-teal-500'
-          >
+          
             {/**Tailwind input */}
             <Input
               type='text'
@@ -182,38 +191,36 @@ function Blog () {
               placeholder='Post name...'
             />
             {!blogPic ? (
-              <button
-                onClick={() => filePickerRef.current.click()}
-                className='hover:animate-pulse text-teal-500'
+              <Button
+              onClick={e => setPicOptions(true)}
+              color='teal'
+              buttonType='filled'
+              size='lg'
+              rounded={false}
+              block={true}
+              iconOnly={false}
+              ripple='light'
+              className='flex items-center space-x-5 mb-[72px]'
+            >
+              <Icon name='add_a_photo' />
+              <h2
+                className='
+          text-lg 
+          capitalize 
+          font-medium 
+          font-google-sans'
               >
-                <Icon name='add_a_photo' />
-              </button>
+                Add your subject
+              </h2>
+            </Button>
             ) : (
-              <div onClick={removePic} className='removePic'>
-                <img
-                  src={blogPic}
-                  alt=''
-                  className='
-                        h-10 
-                        object-contain'
-                />
-                <p
-                  className='
-                        text-xs 
-                        text-red-400 
-                        text-center'
-                >
-                  Remove ?
-                </p>
-                <input
-                  ref={filePickerRef}
-                  type='file'
-                  hidden
-                  onChange={addPic}
-                />
-              </div>
+              <img
+              onClick={removePic}
+              src={blogPic}
+              alt=''
+              className='h-[320px] mx-auto w-[560px] p-10 hover:opacity-80'
+            />
             )}
-          </form>
           <ModalFooter>
             <Button
               color='red'
@@ -233,6 +240,59 @@ function Blog () {
             </Button>
           </ModalFooter>
         </ModalBody>
+      </Modal>
+
+      <Modal size='lg' active={picOptions} toggler={() => setPicOptions(false)}>
+        <ModalBody>
+          <div className='flex items-center space-x-5 p-[100px]'>
+            <Button
+              onClick={e => setPicFromUrl(true)}
+              color='teal'
+              buttonType='link'
+              iconOnly={false}
+              rounded={false}
+              block={false}
+              className='border-2 grid  border-teal-400'
+            >
+              <Icon name='http' />
+              <h2 className='text-lg capitalize font-medium font-source-serif'>
+                Get from web
+              </h2>
+            </Button>
+            <Button
+              onClick={() => filePicker.current.click()}
+              color='teal'
+              buttonType='link'
+              iconOnly={false}
+              rounded={false}
+              block={false}
+              className='border-2 grid border-teal-400'
+            >
+              <Icon name='insert_photo' />
+              <h2 className='text-lg capitalize font-medium font-source-serif'>
+                Get from desktop
+              </h2>
+              <input
+                type='file'
+                ref={filePicker}
+                hidden
+                onChange={addPicToBlog}
+              />
+            </Button>
+          </div>
+        </ModalBody>
+        <ModalFooter>
+          <Button
+            color='red'
+            type='button'
+            rounded={false}
+            block={false}
+            iconOnly={false}
+            onClick={e => setPicOptions(false)}
+          >
+            Cancel
+          </Button>
+        </ModalFooter>
       </Modal>
     </>
   )
