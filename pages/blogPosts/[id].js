@@ -112,6 +112,7 @@ function Build () {
           merge: true
         }
       )
+      router.push('/blog')
   }
 
   return (
