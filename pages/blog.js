@@ -71,7 +71,7 @@ function Blog () {
   }
 
   //return docs from userDocs
-  const [docsSnapshot] = useDocumentOnce(
+  const [docsSnapshot] = useDocument(
     store
       .collection('userBlogs')
       .doc(user.email)

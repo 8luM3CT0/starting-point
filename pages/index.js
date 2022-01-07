@@ -275,6 +275,7 @@ export default function Home ({
             author={doc.data().author}
             timestamp={doc.data().timestamp}
             blogContent={doc.data().blogContent}
+            subjectPic={doc.data().subjectPic}
           />
         ))}
       </div>

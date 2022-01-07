@@ -36,7 +36,7 @@ function Build () {
       .doc(id)
   )
 
-  const [snapshot, loadingSnapshot] = useDocumentOnce(
+  const [snapshot, loadingSnapshot] = useDocument(
     store
       .collection('userBlogs')
       .doc(user.email)
@@ -105,7 +105,8 @@ function Build () {
           fileName: snapshot?.data()?.fileName,
           author: user?.displayName,
           blogContent: inputRef.current.value,
-          timestamp: firebase.firestore.FieldValue.serverTimestamp()
+          timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+          subjectPic: picLocal
         },
         {
           merge: true
@@ -379,7 +380,11 @@ function Build () {
         </ModalFooter>
       </Modal>
       <Modal>
-        <Modal size='lg' picFromUrl={true} toggler={() => setPicFromUrl(false)}>
+        <Modal
+          size='lg'
+          active={picFromUrl}
+          toggler={() => setPicFromUrl(false)}
+        >
           <ModalHeader>
             <h1 className='text-lg font-robot-slab font-medium text-teal-500'>
               Get pic from the web
