@@ -112,7 +112,7 @@ function Build () {
           merge: true
         }
       )
-      router.push('/blog')
+    router.push('/blog')
   }
 
   return (
@@ -238,7 +238,7 @@ function Build () {
           ) : (
             <img
               onClick={removePic}
-              src={picLocal}
+              src={picLocal || snapshot?.data()?.blogSubject}
               alt=''
               className='h-[320px] mx-auto w-[560px] p-10 hover:opacity-80'
             />
