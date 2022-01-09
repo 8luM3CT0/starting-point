@@ -7,6 +7,7 @@ import ModalHeader from '@material-tailwind/react/ModalHeader'
 import ModalBody from '@material-tailwind/react/ModalBody'
 import ModalFooter from '@material-tailwind/react/ModalFooter'
 import { UserIcon } from '@heroicons/react/solid'
+import Login from '../../pages/login'
 //header posting
 import Tab from '@material-tailwind/react/Tab'
 import TabList from '@material-tailwind/react/TabList'
@@ -20,10 +21,13 @@ import { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
 
 function PostHeader () {
+  const [user] = useAuthState(auth)
+  if (!user) return <Login />
   const router = useRouter()
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [showModal, setShowModal] = useState(false)
+  const [showTitle, setShowTitle] = useState(false)
 
   const signIn = e => {
     e.preventDefault()
@@ -49,9 +53,6 @@ function PostHeader () {
   const goToSignUp = () => {
     router.push('/signup')
   }
-
-  const [user] = useAuthState(auth)
-
   useEffect(() => {
     if (user) {
       store
@@ -101,7 +102,7 @@ function PostHeader () {
           >
             <div className='hover:animate-pulse'>
               <Button
-                onClick={e => router.push('/blog')}
+                onClick={e => router.push('/')}
                 color='#1f2937'
                 buttonType='solid'
                 iconOnly={true}
@@ -110,15 +111,14 @@ function PostHeader () {
                 className='border-0 h-[50px] '
               >
                 <div className='flex items-center text-center space-x-3'>
-                  <Icon
-                    color='teal'
-                    name='arrow_back_ios'
-                    className='pr-4 h-[50px]'
-                  />
+                  <Icon color='teal' name='home' className='pr-4 h-[50px]' />
                 </div>
               </Button>
             </div>
-            <div className='ml-5 flex space-x-5 items-center'>
+            <div
+              onClick={e => setShowTitle(true)}
+              className='ml-5 flex space-x-5 items-center'
+            >
               <Icon
                 name='article'
                 color='teal'
@@ -171,6 +171,7 @@ function PostHeader () {
           </div>
         </div>
       </header>
+      <Modal size='regular' active={showTitle}></Modal>
     </>
   )
 }

@@ -16,20 +16,7 @@ function BlogPostRow ({
   const router = useRouter()
 
   return (
-    <div className='blogPostDiv'>
-      {/*<img
-        src='https://wallpaperaccess.com/full/921223.jpg'
-        alt=''
-        className='
-     rounded-xl 
-     h-[190px] 
-     w-[290px] 
-     lg:h-[210px] 
-     lg:w-[330px] 
-     xl:h-[240px]
-     xl:w-[410px] 
-     opacity-90'
-      />*/}
+    <div onClick={() => router.push(`/blogColl/${id}`)} className='blogPostDiv'>
       <img
         src={subjectPic}
         alt=''
