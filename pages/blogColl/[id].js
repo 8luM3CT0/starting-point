@@ -151,7 +151,7 @@ function Post () {
           className='
             max-w-7xl
             pb-[120px]
-            space-y-6
+            space-y-4
             h-screen
             overflow-y-scroll
             scrollbar-hide
@@ -198,6 +198,7 @@ function Post () {
           <div
             className='
             bg-gray-800 
+            pb-[120px]
             h-[790px]
             max-w-2xl 
             md:max-w-5xl

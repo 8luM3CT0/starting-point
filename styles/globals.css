@@ -256,7 +256,7 @@ text-teal-700
 
   .picSubjectDoc{
     @apply
-    h-[310px]
+    h-[410px]
     md:h-[440px]
     lg:h-[630px] 
     w-full 

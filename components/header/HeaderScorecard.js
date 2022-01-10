@@ -88,12 +88,6 @@ const HeaderScorecard = forwardRef(({ result }, ref) => {
       flex space-x-10 items-center text-center justify-evenly
       '
               >
-                <h4 className='font-semibold text-[20px] text-blue-600'>
-                  {result.HomeTeam}
-                </h4>{' '}
-                <h2 className='font-normal text-blue-400 text-[12px]'>
-                  with a score of{' '}
-                </h2>{' '}
                 <h2 className='font-semibold text-[32px] text-blue-800'>
                   {result.HomeTeamScore ||
                     result.HomeScore ||
@@ -105,12 +99,6 @@ const HeaderScorecard = forwardRef(({ result }, ref) => {
       flex space-x-10 items-center text-center justify-evenly
       '
               >
-                <h4 className='font-semibold text-[20px] text-red-600'>
-                  {result.AwayTeam}
-                </h4>{' '}
-                <h2 className='font-normal text-red-500 text-[12px]'>
-                  with a score of{' '}
-                </h2>{' '}
                 <h2 className='font-semibold text-[32px] text-red-800'>
                   {result.AwayTeamScore ||
                     result.AwayScore ||
@@ -169,7 +157,9 @@ const HeaderScorecard = forwardRef(({ result }, ref) => {
                 <h4 className='font-semibold text-[20px] text-blue-600'>
                   {result.HomeTeam}
                 </h4>{' '}
-                <h2 className='font-normal text-blue-400 text-[12px]'>--- </h2>{' '}
+                <h2 className='font-normal text-blue-400 text-[12px]'>
+                  with a score of{' '}
+                </h2>{' '}
                 <h2 className='font-semibold text-[32px] text-blue-800'>
                   {result.HomeTeamScore ||
                     result.HomeScore ||
@@ -184,7 +174,9 @@ const HeaderScorecard = forwardRef(({ result }, ref) => {
                 <h4 className='font-semibold text-[20px] text-red-600'>
                   {result.AwayTeam}
                 </h4>{' '}
-                <h2 className='font-normal text-red-500 text-[12px]'>--- </h2>{' '}
+                <h2 className='font-normal text-red-500 text-[12px]'>
+                  with a score of{' '}
+                </h2>{' '}
                 <h2 className='font-semibold text-[32px] text-red-800'>
                   {result.AwayTeamScore ||
                     result.AwayScore ||
@@ -194,7 +186,7 @@ const HeaderScorecard = forwardRef(({ result }, ref) => {
               <h4
                 className='
                   text-xl
-                  text-teal-400
+                  text-teal-500
                   my-5
                     p-2
                   '
@@ -203,6 +195,24 @@ const HeaderScorecard = forwardRef(({ result }, ref) => {
                   ? moment(result.GameEndDateTime).format('LT')
                   : '...'}
               </h4>
+              <span
+                className='
+              flex
+              space-x-5 
+              text-center 
+              items-center'
+              >
+                <h4 className='text-blue-400 text-base font-light'>
+                  Updated on:
+                </h4>
+                <h3 className='text-blue-600 text-lg font-semibold font-hind-font'>
+                  {result.Updated
+                    ? moment(result.Updated).format('MM/DD/YYYY on LT')
+                    : result.DateTime
+                    ? moment(result.DateTime).format('MM/DD/YYYY on LT')
+                    : 'Loading...'}
+                </h3>
+              </span>
             </div>
           </ModalBody>
           <ModalFooter>
