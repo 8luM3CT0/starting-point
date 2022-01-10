@@ -238,7 +238,7 @@ function Build () {
           ) : (
             <img
               onClick={removePic}
-              src={picLocal || snapshot?.data()?.blogSubject}
+              src={picLocal}
               alt=''
               className='h-[320px] mx-auto w-[560px] p-10 hover:opacity-80'
             />

@@ -192,7 +192,7 @@
     hidden
     lg:inline-flex
     text-teal-300 
-    text-2xl 
+    text-base
     font-google-sans 
     font-medium
   }
@@ -243,6 +243,25 @@
     transform
     hover:scale-105
     cursor-pointer
+  }
+
+  .articleTitle{
+    @apply
+    font-robot-slab
+    text-[16px]    
+    lg:text-[24px]
+    font-normal
+text-teal-700
+  }
+
+  .picSubjectDoc{
+    @apply
+    h-[310px]
+    md:h-[440px]
+    lg:h-[630px] 
+    w-full 
+    p-14 
+    rounded-3xl
   }
 
 }

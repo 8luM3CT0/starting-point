@@ -99,7 +99,12 @@ function Post () {
                   className='text-xl'
                   size='3xl'
                 />
-                <h1 className='blogPageTitle'>{snapshot?.data()?.fileName}</h1>
+                <h1 className='blogPageTitle'>
+                  Blog article by
+                  <h4 className='ml-4 text-lg text-blue-200 font-google-sans font-semibold'>
+                    {snapshot?.data()?.author}
+                  </h4>
+                </h1>
               </div>
             </div>
             <div
@@ -146,6 +151,7 @@ function Post () {
           className='
             max-w-7xl
             pb-[120px]
+            space-y-6
             h-screen
             overflow-y-scroll
             scrollbar-hide
@@ -154,7 +160,57 @@ function Post () {
             bg-gray-600
             mx-auto
             '
-        ></main>
+        >
+          <img
+            src={snapshot?.data()?.subjectPic}
+            alt=''
+            className='picSubjectDoc'
+          />
+          <div
+            className='
+          mx-auto 
+          space-y-4
+          justify-center
+          items-center
+          text-center
+          '
+          >
+            <h1
+              className='
+          mx-auto 
+           text-teal-500 
+           font-bold 
+           text-2xl 
+           font-robot-slab'
+            >
+              {snapshot?.data()?.fileName}
+            </h1>
+            <h2
+              className='
+            text-blue-200 
+            font-normal 
+            text-xl 
+            font-font-robot'
+            >
+              by {snapshot?.data()?.author}
+            </h2>
+          </div>
+          <div
+            className='
+            bg-gray-800 
+            h-[790px]
+            max-w-2xl 
+            md:max-w-5xl
+            mx-auto
+            text-ellipsis
+            line-clamp-3
+          '
+          >
+            <p className='text-blue-100 p-12 text-xl'>
+              {snapshot?.data()?.blogContent}
+            </p>
+          </div>
+        </main>
       </div>
       <Modal
         size='regular'
@@ -195,16 +251,7 @@ function Post () {
               >
                 Title :
               </h2>
-              <h4
-                className='
-                font-robot-slab
-                    text-[24px]
-                    font-normal
-                    text-teal-700 
-                    '
-              >
-                {snapshot?.data()?.fileName}
-              </h4>
+              <h4 className='articleTitle'>{snapshot?.data()?.fileName}</h4>
             </span>
             <span
               className='
@@ -220,7 +267,7 @@ function Post () {
               >
                 Author :
               </h2>
-              <h4 className='font-robot-slab text-[20px] font-normal text-teal-700'>
+              <h4 className='font-robot-slab text-[13px] lg:text-[20px] font-normal text-teal-700'>
                 {snapshot?.data()?.author}
               </h4>
             </span>
