@@ -39,6 +39,8 @@ function scores ({
   nfl_betting_data,
   nhl_betting_data
 }) {
+  console.log(nba_team_standings)
+
   const [user] = useAuthState(auth)
 
   const [openTab, setOpenTab] = useState(1)

@@ -171,7 +171,7 @@ const TeamStandings = forwardRef(({ result }, ref) => {
           font-semibold 
           font-google-sans'
           >
-            Standing stats
+            Stats
           </h3>
         </ModalHeader>
         <ModalBody>
@@ -194,12 +194,41 @@ const TeamStandings = forwardRef(({ result }, ref) => {
             items-center 
             text-teal-500'
             >
-              <h3 className='font-semibold text-[22px]'>{result.City}</h3>
+              <h3 className='font-bold text-[30px]'>{result.City}</h3>
               {'  '}
               {'  '}
-              <h2 className='font-bold text-[24px]'>{result.Name}</h2>
+              <h2 className='font-bold text-[30px]'>{result.Name}</h2>
             </div>
+            {/**The division and the conference */}
             {/**city and name tag end */}
+            <div className='flex items-center space-x-4 text-center'>
+              <div className='grid text-center space-y-4'>
+                <h1
+                  className='
+              flex 
+              font-bold 
+              text-xl
+              space-x-3 
+              text-center 
+              text-gray-800'
+                >
+                  Division -- {result.Division}
+                </h1>
+              </div>
+              <div className='grid text-center space-y-4'>
+                <h1
+                  className='
+              flex
+              font-bold
+              text-xl
+              space-x-3 
+              text-center 
+              text-gray-800'
+                >
+                  Conference -- {result.Conference}
+                </h1>
+              </div>
+            </div>
             <div
               className='
             grid 
@@ -208,14 +237,90 @@ const TeamStandings = forwardRef(({ result }, ref) => {
             items-center 
             place-items-center'
             >
-              <span className='flex items-center space-x-7'>
-                <h4 className='text-base font-[20px] flex items-center space-x-5 text-blue-300'>
-                  Wins: {'  '} {result.Wins}
-                </h4>
-                <h4 className='text-base font-[20px] flex items-center space-x-5 text-red-500'>
-                  Losses: {'  '} {result.Losses}
-                </h4>
-              </span>
+              <div className='flex items-center space-x-7'>
+                <div className='grid text-center space-y-4'>
+                  <h1
+                    className='
+                text-xl 
+                font-robot-slab 
+                font-semibold 
+                flex 
+                items-center 
+                space-x-5 
+                text-blue-300'
+                  >
+                    Total wins: {'  '} {result.Wins}
+                  </h1>
+                  <h2
+                    className='
+                text-[18px]
+               font-robot-slab 
+               font-light
+               flex 
+               items-center 
+               space-x-3 
+               text-blue-500'
+                  >
+                    Home wins : {result.HomeWins}
+                  </h2>
+                  <h2
+                    className='
+                text-[18px]
+               font-robot-slab 
+               font-light
+               flex 
+               items-center 
+               space-x-3 
+               text-blue-500'
+                  >
+                    Away wins : {result.AwayWins}
+                  </h2>
+                </div>
+                <div
+                  className='
+                  grid
+                  text-center
+                  space-y-4
+                '
+                >
+                  <h1
+                    className='
+                  text-xl 
+                  font-robot-slab 
+                  font-semibold 
+                  flex 
+                  items-center 
+                  space-x-5 
+                  text-red-400'
+                  >
+                    Total losses: {'  '} {result.Losses}
+                  </h1>
+                  <h2
+                    className='
+                text-[18px]
+               font-robot-slab 
+               font-light
+               flex 
+               items-center 
+               space-x-3 
+               text-red-500'
+                  >
+                    Home losses : {result.HomeLosses}
+                  </h2>
+                  <h2
+                    className='
+                text-[18px]
+               font-robot-slab 
+               font-light
+               flex 
+               items-center 
+               space-x-3 
+               text-red-500'
+                  >
+                    Away losses : {result.AwayLosses}
+                  </h2>
+                </div>
+              </div>
             </div>
           </div>
         </ModalBody>
