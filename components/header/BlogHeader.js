@@ -127,7 +127,7 @@ function BlogHeader () {
               className='ml-5 flex space-x-5 items-center'
             >
               <BookIcon className='text-teal-300 text-xl' />
-              <h1 className='blogPageTitle'>Blog</h1>
+              <h1 className='blogPageTitle'>Your blogs</h1>
             </div>
           </div>
           <div
@@ -149,7 +149,7 @@ function BlogHeader () {
               Scores
             </h2>
             <h2 onClick={() => router.push('/blog')} className='headerOptions'>
-              Blog
+              Your blogs
             </h2>
           </div>
           {!user ? (
@@ -300,7 +300,7 @@ function BlogHeader () {
             </span>
             <span onClick={() => router.push('/blog')} className='moreOptions'>
               <BookOpenIcon className='headerOptionsIcon' />
-              <h4 className='moreOptionsTitle'>Blog</h4>
+              <h4 className='moreOptionsTitle'>Your blogs</h4>
             </span>
           </div>
         </ModalBody>

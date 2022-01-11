@@ -151,7 +151,11 @@ const HeaderScorecard = forwardRef(({ result }, ref) => {
             >
               <div
                 className='
-      flex space-x-10 items-center text-center justify-evenly
+      flex 
+      space-x-10 
+      items-center 
+      text-center 
+      justify-evenly
       '
               >
                 <h4 className='font-semibold text-[20px] text-blue-600'>
@@ -168,7 +172,11 @@ const HeaderScorecard = forwardRef(({ result }, ref) => {
               </div>
               <div
                 className='
-      flex space-x-10 items-center text-center justify-evenly
+      flex 
+      space-x-10 
+      items-center 
+      text-center 
+      justify-evenly
       '
               >
                 <h4 className='font-semibold text-[20px] text-red-600'>
@@ -183,6 +191,22 @@ const HeaderScorecard = forwardRef(({ result }, ref) => {
                     result.AwayTeamRuns}
                 </h2>
               </div>
+              {result.StadiumDetails ? (
+                <h3
+                  className='
+                                    flex 
+                                    text-center
+                                    text-gray-700
+                                    font-font-robot
+                                    font-semibold
+                                    text-lg 
+                                    space-x-3'
+                >
+                  Stadium: {result.StadiumDetails.Name}
+                </h3>
+              ) : (
+                ' '
+              )}
               <h4
                 className='
                   text-xl

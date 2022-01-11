@@ -37,8 +37,6 @@ export default function Home ({
     store.collection('blogCollection').orderBy('timestamp', 'desc')
   )
 
-  console.log(nfl_scores)
-
   return (
     <div className='scrollbar-hide h-screen overflow-hidden bg-[#2d3642] pb-8'>
       <Head>

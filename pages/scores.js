@@ -39,7 +39,7 @@ function scores ({
   nfl_betting_data,
   nhl_betting_data
 }) {
-  console.log(nba_team_standings)
+  console.log(nba_scores)
 
   const [user] = useAuthState(auth)
 

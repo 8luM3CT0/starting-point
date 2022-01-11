@@ -210,10 +210,25 @@ const TeamStandings = forwardRef(({ result }, ref) => {
               text-xl
               space-x-3 
               text-center 
-              text-gray-800'
+              text-gray-700'
                 >
                   Division -- {result.Division}
                 </h1>
+                {result.DivisionRank ? (
+                  <h2
+                    className='
+                  flex 
+                  font-semibold 
+                  text-lg 
+                  space-x-3 
+                  text-center 
+                  text-gray-800'
+                  >
+                    Division rank: {result.DivisionRank}
+                  </h2>
+                ) : (
+                  ' '
+                )}
                 <h2 className='flex text-center text-gray-900 font-hind-font font-light text-sm'>
                   Division wins: {result.DivisionWins}
                 </h2>
@@ -230,10 +245,25 @@ const TeamStandings = forwardRef(({ result }, ref) => {
               text-xl
               space-x-3 
               text-center 
-              text-gray-800'
+              text-gray-700'
                   >
                     Conference -- {result.Conference}
                   </h1>
+                ) : (
+                  ' '
+                )}
+                {result.ConferenceRank ? (
+                  <h2
+                    className='
+                  flex 
+                  font-semibold 
+                  text-lg 
+                  space-x-3 
+                  text-center 
+                  text-gray-700'
+                  >
+                    Conference rank: {result.ConferenceRank}
+                  </h2>
                 ) : (
                   ' '
                 )}
@@ -376,6 +406,66 @@ const TeamStandings = forwardRef(({ result }, ref) => {
                     ' '
                   )}
                 </div>
+              </div>
+              <div className='flex text-center space-x-4'>
+                {result.PointsFor ? (
+                  <h2
+                    className='
+                text-[18px]
+               font-robot-slab 
+               font-normal
+               flex 
+               items-center 
+               space-x-3 
+               text-teal-800'
+                  >
+                    Points for : {result.PointsFor}
+                  </h2>
+                ) : result.PointsPerGameFor ? (
+                  <h2
+                    className='
+              text-[18px]
+             font-robot-slab 
+             font-normal
+             flex 
+             items-center 
+             space-x-3 
+             text-teal-800'
+                  >
+                    Points for : {result.PointsPerGameFor}
+                  </h2>
+                ) : (
+                  ' '
+                )}
+                {result.PointsAgainst ? (
+                  <h2
+                    className='
+                text-[18px]
+               font-robot-slab 
+               font-normal
+               flex 
+               items-center 
+               space-x-3 
+               text-teal-800'
+                  >
+                    Points against : {result.PointsAgainst}
+                  </h2>
+                ) : result.PointsPerGameAgainst ? (
+                  <h2
+                    className='
+                text-[18px]
+               font-robot-slab 
+               font-normal
+               flex 
+               items-center 
+               space-x-3 
+               text-teal-800'
+                  >
+                    Points against : {result.PointsPerGameAgainst}
+                  </h2>
+                ) : (
+                  ' '
+                )}
               </div>
             </div>
           </div>
