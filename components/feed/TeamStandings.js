@@ -214,19 +214,59 @@ const TeamStandings = forwardRef(({ result }, ref) => {
                 >
                   Division -- {result.Division}
                 </h1>
+                <h2 className='flex text-center text-gray-900 font-hind-font font-light text-sm'>
+                  Division wins: {result.DivisionWins}
+                </h2>
+                <h2 className='flex text-center text-gray-900 font-hind-font font-light text-sm'>
+                  Division losses: {result.DivisionLosses}
+                </h2>
               </div>
               <div className='grid text-center space-y-4'>
-                <h1
-                  className='
+                {result.Conference ? (
+                  <h1
+                    className='
               flex
               font-bold
               text-xl
               space-x-3 
               text-center 
               text-gray-800'
-                >
-                  Conference -- {result.Conference}
-                </h1>
+                  >
+                    Conference -- {result.Conference}
+                  </h1>
+                ) : (
+                  ' '
+                )}
+                {result.ConferenceWins ? (
+                  <h2
+                    className='
+                                  flex 
+                                  text-center 
+                                  text-gray-900 
+                                  font-hind-font 
+                                  font-light 
+                                  text-sm'
+                  >
+                    Conference wins: {result.ConferenceWins}
+                  </h2>
+                ) : (
+                  ' '
+                )}
+                {result.ConferenceLosses ? (
+                  <h2
+                    className='
+                                  flex 
+                                  text-center 
+                                  text-gray-900 
+                                  font-hind-font 
+                                  font-light 
+                                  text-sm'
+                  >
+                    Conference losses: {result.ConferenceLosses}
+                  </h2>
+                ) : (
+                  ' '
+                )}
               </div>
             </div>
             <div
@@ -251,8 +291,25 @@ const TeamStandings = forwardRef(({ result }, ref) => {
                   >
                     Total wins: {'  '} {result.Wins}
                   </h1>
-                  <h2
-                    className='
+                  {result.HomeWins ? (
+                    <h2
+                      className='
+                                  text-[18px]
+                                 font-robot-slab 
+                                 font-light
+                                 flex 
+                                 items-center 
+                                 space-x-3 
+                                 text-blue-500'
+                    >
+                      Home wins : {result.HomeWins}
+                    </h2>
+                  ) : (
+                    ''
+                  )}
+                  {result.AwayWins ? (
+                    <h2
+                      className='
                 text-[18px]
                font-robot-slab 
                font-light
@@ -260,21 +317,12 @@ const TeamStandings = forwardRef(({ result }, ref) => {
                items-center 
                space-x-3 
                text-blue-500'
-                  >
-                    Home wins : {result.HomeWins}
-                  </h2>
-                  <h2
-                    className='
-                text-[18px]
-               font-robot-slab 
-               font-light
-               flex 
-               items-center 
-               space-x-3 
-               text-blue-500'
-                  >
-                    Away wins : {result.AwayWins}
-                  </h2>
+                    >
+                      Away wins : {result.AwayWins}
+                    </h2>
+                  ) : (
+                    ''
+                  )}
                 </div>
                 <div
                   className='
@@ -295,30 +343,38 @@ const TeamStandings = forwardRef(({ result }, ref) => {
                   >
                     Total losses: {'  '} {result.Losses}
                   </h1>
-                  <h2
-                    className='
-                text-[18px]
-               font-robot-slab 
-               font-light
-               flex 
-               items-center 
-               space-x-3 
-               text-red-500'
-                  >
-                    Home losses : {result.HomeLosses}
-                  </h2>
-                  <h2
-                    className='
-                text-[18px]
-               font-robot-slab 
-               font-light
-               flex 
-               items-center 
-               space-x-3 
-               text-red-500'
-                  >
-                    Away losses : {result.AwayLosses}
-                  </h2>
+                  {result.HomeLosses ? (
+                    <h2
+                      className='
+                                    text-[18px]
+                                   font-robot-slab 
+                                   font-light
+                                   flex 
+                                   items-center 
+                                   space-x-3 
+                                   text-red-500'
+                    >
+                      Home losses : {result.HomeLosses}
+                    </h2>
+                  ) : (
+                    ' '
+                  )}
+                  {result.AwayLosses ? (
+                    <h2
+                      className='
+                    text-[18px]
+                   font-robot-slab 
+                   font-light
+                   flex 
+                   items-center 
+                   space-x-3 
+                   text-red-500'
+                    >
+                      Away losses : {result.AwayLosses}
+                    </h2>
+                  ) : (
+                    ' '
+                  )}
                 </div>
               </div>
             </div>
