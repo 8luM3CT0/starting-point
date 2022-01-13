@@ -434,6 +434,19 @@ const TeamStandings = forwardRef(({ result }, ref) => {
                   >
                     Points for : {result.PointsPerGameFor}
                   </h2>
+                ) : result.RunsScored ? (
+                  <h2
+                    className='
+              text-[18px]
+             font-robot-slab 
+             font-normal
+             flex 
+             items-center 
+             space-x-3 
+             text-teal-800'
+                  >
+                    Runs scored : {result.RunsScored}
+                  </h2>
                 ) : (
                   ' '
                 )}
@@ -463,11 +476,66 @@ const TeamStandings = forwardRef(({ result }, ref) => {
                   >
                     Points against : {result.PointsPerGameAgainst}
                   </h2>
+                ) : result.RunsAgainst ? (
+                  <h2
+                    className='
+                text-[18px]
+               font-robot-slab 
+               font-normal
+               flex 
+               items-center 
+               space-x-3 
+               text-teal-800'
+                  >
+                    Runs against : {result.RunsAgainst}
+                  </h2>
                 ) : (
                   ' '
                 )}
               </div>
             </div>
+            <div className='flex text-center space-x-4'>
+              {result.LastTenWins ? (
+                <h4
+                  className='
+              text-blue-500 
+              text-base 
+              font-robot-slab 
+              font-normal'
+                >
+                  Last 10 wins: {result.LastTenWins}
+                </h4>
+              ) : (
+                ' '
+              )}
+              {result.LastTenLosses ? (
+                <h4
+                  className='
+              text-red-500 
+              text-base
+              font-robot-slab 
+              font-normal'
+                >
+                  Last 10 losses: {result.LastTenLosses}
+                </h4>
+              ) : (
+                ' '
+              )}
+            </div>
+            {result.GamesBack ? (
+              <h3
+                className='
+            text-gray-800 
+            text-xl 
+            font-semibold
+            mx-auto
+            '
+              >
+                Games behind: {result.GamesBack}
+              </h3>
+            ) : (
+              ' '
+            )}
           </div>
         </ModalBody>
         <ModalFooter>

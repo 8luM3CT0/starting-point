@@ -94,6 +94,17 @@ export default function Home ({
               >
                 NHL
               </TabItem>
+              <TabItem
+                onClick={e => {
+                  e.preventDefault()
+                  setOpenTab(5)
+                }}
+                ripple='light'
+                active={openTab === 5 ? true : false}
+                href='tabItem'
+              >
+                NASCAR
+              </TabItem>
             </div>
           </TabList>
 
@@ -224,6 +235,48 @@ export default function Home ({
             </TabPane>
             <TabPane active={openTab === 4 ? true : false}>
               <NBAHeaderScores nba_scores={nhl_scores} />
+              <main
+                className='
+              justify-center
+              mx-auto
+              max-w-[1680px]
+              mb-8
+              rounded-xl
+              '
+              >
+                <img
+                  loading='lazy'
+                  src='   https://thumbor.forbes.com/thumbor/0x0/smart/https%3A%2F%2Fspecials-images.forbesimg.com%2Fimageserve%2F5c06c7194bbe6f0f2aa13c1b%2F960x0.jpg%3FcropX1%3D250%26cropX2%3D2250%26cropY1%3D0%26cropY2%3D2000'
+                  alt=''
+                  className='
+                w-[720px] 
+                md:w-full 
+                h-[200px]
+                sm:h-[400px] 
+                lg:h-[620px] 
+                xl:h-[720px]
+                opacity-75
+               '
+                />
+                <h3
+                  className='
+      text-gray-800 
+      top-0 
+      mt-7
+      rounded-3xl 
+      text-2xl 
+      font-medium 
+      underline 
+      font-google-sans'
+                >
+                  News
+                </h3>
+                <div className='homeFeedDiv'>
+                  <HomeNews nba_results={nhl_results} />
+                </div>
+              </main>
+            </TabPane>
+            <TabPane active={openTab === 5 ? true : false}>
               <main
                 className='
               justify-center

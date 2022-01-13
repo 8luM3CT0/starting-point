@@ -26,7 +26,7 @@ export default {
 
     fetchNFLBetMetadata: {
         title: 'Betting Metadata (NFL)',
-        url: `nfl/odds/json/BettingMetadata?key=${process.env.nfl_key}`
+        url: 'nfl/odds/json/BettingMetadata?key=3c444c4c4ad8477b86e111fa4ecdc5c2'
     },
 
     fetchMLBBetMetadata: {

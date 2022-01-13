@@ -38,24 +38,38 @@ const NewsArticle = forwardRef(({ result }, ref) => {
       >
         {result.Title}
       </h3>
-      <h5
-        className='
+      {result.OriginalSource ? (
+        <h5
+          className='
       text-gray-500 
       text-sm 
       font-medium 
       ml-5'
-      >
-        by {result.OriginalSource}
-      </h5>
+        >
+          by {result.OriginalSource}
+        </h5>
+      ) : (
+        ' '
+      )}
 
       <Modal size='lg' active={showModal} toggler={() => setShowModal(false)}>
         <ModalHeader toggler={() => setShowModal(false)}>
           <div className='flex space-x-10 justify-evenly items-center'>
             {result.Title}
-            <p className='text-gray-500 ml-3 text-sm font-light'>
-              {' '}
-              by {result.OriginalSource}
-            </p>
+            {result.OriginalSource ? (
+              <p
+                className='
+            text-gray-500 
+            ml-3 
+            text-sm 
+            font-light'
+              >
+                {' '}
+                by {result.OriginalSource}
+              </p>
+            ) : (
+              ' '
+            )}
           </div>
         </ModalHeader>
         <ModalBody>
@@ -72,15 +86,6 @@ const NewsArticle = forwardRef(({ result }, ref) => {
           >
             Close
           </Button>
-
-          {/*<Button
-            color='green'
-            onClick={e => setShowModal(false)}
-            ripple='light'
-          >
-            Read more
-          </Button>
-          */}
         </ModalFooter>
       </Modal>
     </div>

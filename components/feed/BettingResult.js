@@ -158,18 +158,49 @@ const BettingResult = forwardRef(({ result }, ref) => {
       >
         <div className='grid items-center p-10'>
           <ModalHeader toggler={() => setShowMoreDetails(false)}>
-            <h1 className='text-yellow-400 font-bold font-google-sans'>
-              {result.Name}
-            </h1>
+            {result.Name ? (
+              <h1
+                className='
+            text-yellow-400 
+            font-bold 
+            font-google-sans'
+              >
+                {result.Name}
+              </h1>
+            ) : (
+              <h1
+                className='
+            text-yellow-400 
+            font-bold 
+            font-google-sans'
+              >
+                {result.AwayTeam} @ {result.HomeTeam}
+              </h1>
+            )}
           </ModalHeader>
           <ModalBody>
-            <p className='text-base leading-relaxed text-gray-600 font-normal'>
-              I always felt like I could do anything. That’s the main thing
-              people are controlled by! Thoughts- their perception of
-              themselves! They're slowed down by their perception of themselves.
-              If you're taught you can’t do anything, you won’t do anything. I
-              was taught I could do everything.
-            </p>
+            <div
+              className='
+            grid 
+            items-center
+            mx-auto 
+            p-[180px] 
+            '
+            >
+              {result.Season ? (
+                <h4
+                  className='
+                              text-gray-800 
+                              font-robot-slab
+                              font-semibold 
+                              text-2xl'
+                >
+                  Season: {result.Season}
+                </h4>
+              ) : (
+                ' '
+              )}
+            </div>
           </ModalBody>
           <ModalFooter>
             <Button

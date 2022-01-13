@@ -1,7 +1,7 @@
 //front-end
 import Head from 'next/head'
 import Image from 'next/image'
-import Header from '../components/header/Header'
+import ScoresHeader from '../components/header/ScoresHeader'
 import NewsFeed from '../components/feed/NewsFeed'
 import Tab from '@material-tailwind/react/Tab'
 import TabList from '@material-tailwind/react/TabList'
@@ -39,7 +39,7 @@ function scores ({
   nfl_betting_data,
   nhl_betting_data
 }) {
-  console.log(nba_scores)
+  console.log(nfl_betting_data)
 
   const [user] = useAuthState(auth)
 
@@ -53,7 +53,7 @@ function scores ({
         <link rel='icon' href='/favicon.ico' />
       </Head>
 
-      <Header />
+      <ScoresHeader />
       <div className='max-w-[1700px] h-screen overflow-y-scroll scrollbar-hide bg-[#2d3642] mx-auto'>
         <Tab>
           <TabList color='teal'>
@@ -101,6 +101,17 @@ function scores ({
                 href='tabItem'
               >
                 NHL
+              </TabItem>
+              <TabItem
+                onClick={e => {
+                  e.preventDefault()
+                  setOpenTab(5)
+                }}
+                ripple='light'
+                active={openTab === 5 ? true : false}
+                href='tabItem'
+              >
+                NASCAR
               </TabItem>
             </div>
           </TabList>
@@ -244,6 +255,54 @@ function scores ({
               </main>
             </TabPane>
             <TabPane active={openTab === 4 ? true : false}>
+              {/*  <NBAHeaderScores nba_scores={nhl_scores} />*/}
+              <main
+                className='
+              justify-center
+              mx-auto
+              max-w-[1680px]
+              mb-8
+              rounded-xl
+              '
+              >
+                <img
+                  loading='lazy'
+                  src='   https://thumbor.forbes.com/thumbor/0x0/smart/https%3A%2F%2Fspecials-images.forbesimg.com%2Fimageserve%2F5c06c7194bbe6f0f2aa13c1b%2F960x0.jpg%3FcropX1%3D250%26cropX2%3D2250%26cropY1%3D0%26cropY2%3D2000'
+                  alt=''
+                  className='
+                w-[720px] 
+                md:w-full 
+                h-[200px]
+                sm:h-[400px] 
+                lg:h-[620px] 
+                xl:h-[720px]
+                opacity-75
+               '
+                />
+                <div className='topFeedDiv'>
+                  <NewsFeed nba_results={nhl_results} />
+                  <StandingsFeed nba_team_standings={nhl_team_standings} />
+                </div>
+                <h3
+                  className='
+                text-gray-800
+                top-0
+                rounded-3xl
+                text-2xl
+                font-bold
+                mt-3
+                underline
+                font-google-sans
+                '
+                >
+                  Betting details
+                </h3>
+                <div className='p-8 h-[720px] overflow-y-scroll scrollbar-hide max-w-[1480px] mx-auto  rounded-lg'>
+                  <BettingDetails betting_results={nhl_scores} />
+                </div>
+              </main>
+            </TabPane>
+            <TabPane active={openTab === 5 ? true : false}>
               {/*  <NBAHeaderScores nba_scores={nhl_scores} />*/}
               <main
                 className='

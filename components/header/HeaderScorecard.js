@@ -229,7 +229,7 @@ const HeaderScorecard = forwardRef(({ result }, ref) => {
                 <h4 className='text-blue-400 text-base font-light'>
                   Updated on:
                 </h4>
-                <h3 className='text-blue-600 text-lg font-semibold font-hind-font'>
+                <h3 className='text-blue-600 text-sm font-semibold font-hind-font'>
                   {result.Updated
                     ? moment(result.Updated).format('MM/DD/YYYY on LT')
                     : result.DateTime
