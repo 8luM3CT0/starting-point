@@ -141,9 +141,6 @@ function Header () {
         text-[#4bb6af]
         '
           >
-            <h2 onClick={() => router.push('/')} className='headerOptions'>
-              Home
-            </h2>
             <h2
               onClick={() => router.push('/scores')}
               className='headerOptions'
@@ -297,10 +294,6 @@ function Header () {
         </ModalHeader>
         <ModalBody>
           <div className='grid text-center space-y-7'>
-            <span onClick={() => router.push('/')} className='moreOptions'>
-              <HomeIcon className='headerOptionsIcon' />
-              <h4 className='moreOptionsTitle'>Home</h4>
-            </span>
             <span
               onClick={() => router.push('/scores')}
               className='moreOptions'

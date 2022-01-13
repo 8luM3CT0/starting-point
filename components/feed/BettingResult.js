@@ -5,6 +5,7 @@ import ModalHeader from '@material-tailwind/react/ModalHeader'
 import ModalBody from '@material-tailwind/react/ModalBody'
 import ModalFooter from '@material-tailwind/react/ModalFooter'
 import Button from '@material-tailwind/react/Button'
+import moment from 'moment'
 //back-end
 import { useState } from 'react'
 import { useRouter } from 'next/router'
@@ -183,8 +184,9 @@ const BettingResult = forwardRef(({ result }, ref) => {
               className='
             grid 
             items-center
-            mx-auto 
-            p-[180px] 
+            mx-auto
+            space-y-5 
+            p-[40px] 
             '
             >
               {result.Season ? (
@@ -200,7 +202,113 @@ const BettingResult = forwardRef(({ result }, ref) => {
               ) : (
                 ' '
               )}
+              {result.GameStartTime ? (
+                <h4
+                  className='
+                text-lg 
+                text-gray-900 
+                font-font-robot 
+                font-normal'
+                >
+                  Start of the game:{' '}
+                  {result.GameStartTime
+                    ? moment(result.GameStartTime).format('MM/DD/YYYY, LT')
+                    : 'Loading...'}
+                </h4>
+              ) : (
+                ' '
+              )}
+              {result.StartDate ? (
+                <h4
+                  className='
+                text-base 
+                text-teal-600 
+                font-google-sans 
+                font-normal'
+                >
+                  Betting start:{' '}
+                  {result.StartDate
+                    ? moment(result.StartDate).format('MM/DD/YYYY on LT')
+                    : 'Loading...'}
+                </h4>
+              ) : (
+                ' '
+              )}
+              {result.Updated ? (
+                <h4
+                  className='
+                text-sm 
+                text-teal-800 
+                font-robot-slab 
+                font-light'
+                >
+                  {result.Updated
+                    ? moment(result.Updated).format('MM/DD/YYYY on LT')
+                    : 'Loading...'}
+                </h4>
+              ) : (
+                ' '
+              )}
+              <h3
+                className='
+            capitalize 
+            text-xl 
+            font-semibold 
+            font-robot-slab 
+            text-yellow-600'
+              >
+                Teams
+              </h3>
+              <h4
+                className='
+                text-lg  
+              text-blue-400 
+              font-semibold 
+              font-robot-condensed 
+              space-x-4'
+              >
+                {result.HomeTeam} -- {result.HomeTeamScore}
+              </h4>
+              <h4
+                className='
+              text-lg 
+              text-red-600 
+              font-semibold 
+              font-robot-condensed 
+              space-x-4'
+              >
+                {result.AwayTeam} -- {result.AwayTeamScore}
+              </h4>
+              {result.TotalScore ? (
+                <h2
+                  className='
+                              text-xl 
+                              font-robot-slab 
+                              font-semibold 
+                              text-gray-700 '
+                >
+                  Total score: {result.TotalScore}
+                </h2>
+              ) : (
+                ' '
+              )}
             </div>
+            {result.Updated ? (
+              <p
+                className='
+                              text-gray-300 
+                              justify-right 
+                              text-sm 
+                              font-light'
+              >
+                Updated on:
+                {result.Updated
+                  ? moment(result.Updated).format('MM/DD/YYYY on LT')
+                  : 'Loading...'}
+              </p>
+            ) : (
+              ''
+            )}
           </ModalBody>
           <ModalFooter>
             <Button

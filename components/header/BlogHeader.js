@@ -148,9 +148,6 @@ function BlogHeader () {
             >
               Scores
             </h2>
-            <h2 onClick={() => router.push('/blog')} className='headerOptions'>
-              Your blogs
-            </h2>
           </div>
           {!user ? (
             <div
@@ -297,10 +294,6 @@ function BlogHeader () {
             >
               <Icon name='sports_score' />
               <h4 className='moreOptionsTitle'>Scores</h4>
-            </span>
-            <span onClick={() => router.push('/blog')} className='moreOptions'>
-              <BookOpenIcon className='headerOptionsIcon' />
-              <h4 className='moreOptionsTitle'>Your blogs</h4>
             </span>
           </div>
         </ModalBody>
