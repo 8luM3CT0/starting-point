@@ -38,16 +38,8 @@ function Blog () {
   const filePickerRef = useRef(null)
   const filePicker = useRef(null)
   const [blogPic, setBlogPic] = useState(null)
-
-  const addPic = e => {
-    const reader = new FileReader()
-    if (e.target.value[0]) {
-      reader.readAsDataURL(e.target.files[0])
-    }
-    reader.onload = readerEvent => {
-      setBlogPic(readerEvent.target.result)
-    }
-  }
+  const [picFromUrl, setPicFromURL] = useState(null)
+  const [jpgWeb, setJpgWeb] = useState('')
 
   const addPicToBlog = e => {
     const reader = new FileReader()
@@ -58,11 +50,6 @@ function Blog () {
       setBlogPic(readerEvent.target.result)
     }
 
-    setPicOptions(false)
-  }
-
-  const getPicFromWeb = () => {
-    setPicFromUrl(true)
     setPicOptions(false)
   }
 
@@ -179,19 +166,18 @@ function Blog () {
           </h3>
         </ModalHeader>
         <ModalBody>
-          
-            {/**Tailwind input */}
-            <Input
-              type='text'
-              color='lightBlue'
-              value={blogPost}
-              onChange={e => setBlogPost(e.target.value)}
-              size='lg'
-              outline={false}
-              placeholder='Post name...'
-            />
-            {!blogPic ? (
-              <Button
+          {/**Tailwind input */}
+          <Input
+            type='text'
+            color='lightBlue'
+            value={blogPost}
+            onChange={e => setBlogPost(e.target.value)}
+            size='lg'
+            outline={false}
+            placeholder='Post name...'
+          />
+          {!blogPic ? (
+            <Button
               onClick={e => setPicOptions(true)}
               color='teal'
               buttonType='filled'
@@ -213,14 +199,14 @@ function Blog () {
                 Add your subject
               </h2>
             </Button>
-            ) : (
-              <img
+          ) : (
+            <img
               onClick={removePic}
               src={blogPic}
               alt=''
               className='h-[320px] mx-auto w-[560px] p-10 hover:opacity-80'
             />
-            )}
+          )}
           <ModalFooter>
             <Button
               color='red'
@@ -245,20 +231,6 @@ function Blog () {
       <Modal size='lg' active={picOptions} toggler={() => setPicOptions(false)}>
         <ModalBody>
           <div className='flex items-center space-x-5 p-[100px]'>
-            <Button
-              onClick={e => setPicFromUrl(true)}
-              color='teal'
-              buttonType='link'
-              iconOnly={false}
-              rounded={false}
-              block={false}
-              className='border-2 grid  border-teal-400'
-            >
-              <Icon name='http' />
-              <h2 className='text-lg capitalize font-medium font-source-serif'>
-                Get from web
-              </h2>
-            </Button>
             <Button
               onClick={() => filePicker.current.click()}
               color='teal'

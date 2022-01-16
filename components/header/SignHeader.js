@@ -30,7 +30,7 @@ function SignHeader () {
             '
       >
         <Button
-          color='#1f2937'
+          color='teal'
           buttonType='solid'
           iconOnly={true}
           ripple='light'
@@ -39,7 +39,7 @@ function SignHeader () {
         >
           <Icon name='sports' className='pr-4 h-[50px]' />
         </Button>
-        <h1 className='appName'>StartUp</h1>
+        <h1 className='appName'>Sign up</h1>
       </div>
     </header>
   )
