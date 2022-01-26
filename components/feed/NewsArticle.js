@@ -15,7 +15,7 @@ const NewsArticle = forwardRef(({ result }, ref) => {
     <div
       onClick={e => setShowModal(true)}
       className='
-      max-w-[740px]
+      w-[740px]
         text-blue-400 
         font-semibold 
         font-hind-font
@@ -33,7 +33,7 @@ const NewsArticle = forwardRef(({ result }, ref) => {
         className='
          hover:underline 
          flex-grow
-         max-w-[640px]
+         w-[640px]
          hover:animate-pulse'
       >
         {result.Title}

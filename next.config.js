@@ -6,6 +6,7 @@ module.exports = {
         second_nhl_key: 'r3zwhhb4xxgyhzrt3wyw9rk7',
         mlb_key: 'cc79a7278cfc4babb39717ab5fed7b44',
         cbb_key: '15ce0463757e4b4494594a63e7d91053',
-        soccer_key: '1fb11b80-5365-11ec-9a7e-0b18f3a6d34e'
+        soccer_key: '1fb11b80-5365-11ec-9a7e-0b18f3a6d34e',
+        github_login_key: '2356f484ea53a148cc2f'
     }
 }

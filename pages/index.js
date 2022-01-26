@@ -29,6 +29,7 @@ export default function Home ({
   mlb_results,
   nhl_results
 }) {
+  console.log(nba_scores)
   const [user] = useAuthState(auth)
 
   const [openTab, setOpenTab] = useState(1)

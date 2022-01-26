@@ -79,6 +79,7 @@
     place-items-center
     space-y-10
     flex-grow
+    max-w-[1500px]
     justify-evenly
     px-4
     overflow-x-scroll
