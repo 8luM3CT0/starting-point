@@ -136,7 +136,7 @@ export default function Home ({
                 >
                   News
                 </h3>
-                <div className='homeFeedDiv'>
+                <div className='homeFeedDiv mx-auto'>
                   <HomeNews nba_results={nfl_results} />
                 </div>
               </main>
@@ -178,7 +178,7 @@ export default function Home ({
                 >
                   News
                 </h3>
-                <div className='homeFeedDiv'>
+                <div className='homeFeedDiv mx-auto'>
                   <HomeNews nba_results={nba_results} />
                 </div>
               </main>
@@ -218,7 +218,7 @@ export default function Home ({
                 >
                   News
                 </h3>
-                <div className='homeFeedDiv'>
+                <div className='homeFeedDiv mx-auto'>
                   <HomeNews nba_results={mlb_results} />
                 </div>
               </main>
@@ -261,7 +261,7 @@ export default function Home ({
                 >
                   News
                 </h3>
-                <div className='homeFeedDiv'>
+                <div className='homeFeedDiv mx-auto'>
                   <HomeNews nba_results={nhl_results} />
                 </div>
               </main>
