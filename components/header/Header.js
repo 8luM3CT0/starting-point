@@ -200,12 +200,6 @@ function Header () {
                     <Button className='mt-5' color='lightBlue' ripple='light'>
                       Facebook sign in
                     </Button>
-                    <p className=' mt-4 text-sm leading-relaxed text-gray-600 font-normal'>
-                      Sign in with GitHub
-                    </p>
-                    <Button className='mt-5' color='gray' ripple='light'>
-                      GitHub sign in
-                    </Button>
                   </div>
                 </ModalBody>
               </Modal>
