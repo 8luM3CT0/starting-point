@@ -176,67 +176,26 @@ function ScoresHeader () {
                 <ModalHeader toggler={() => setShowModal(false)}>
                   Sign In
                 </ModalHeader>
-                <ModalBody className='justify-center grid'>
-                  <p className='text-base leading-relaxed text-gray-600 font-normal'>
-                    Email
-                  </p>
-                  <input
-                    value={email}
-                    onChange={e => setEmail(e.target.value)}
-                    type='text'
-                    className='
-                border 
-                text-gray-800
-                border-blue-100 
-                rounded-lg outline-none 
-                bg-gray-50'
-                  />
-                  <p className='text-base leading-relaxed text-gray-600 font-normal'>
-                    Password
-                  </p>
-                  <input
-                    value={password}
-                    onChange={e => setPassword(e.target.value)}
-                    type='password'
-                    className='
-                border 
-                text-gray-800
-                border-blue-100 
-                rounded-lg outline-none 
-                bg-gray-50'
-                  />
-                  <div className='flex mt-5 items-center space-x-3'>
-                    <Button color='teal' onClick={signIn} ripple='light'>
-                      Sign In
+                <ModalBody>
+                  <div className='p-[70px] spacey-5 justify-center grid'>
+                    <p className='text-sm leading-relaxed text-gray-600 font-normal'>
+                      Sign in with Google
+                    </p>
+                    <Button
+                      className='mt-5'
+                      color='green'
+                      onClick={logInWithGoogle}
+                      ripple='light'
+                    >
+                      Google sign in
+                    </Button>
+                    <p className=' mt-4 text-sm leading-relaxed text-gray-600 font-normal'>
+                      Sign in with Facebook
+                    </p>
+                    <Button className='mt-5' color='lightBlue' ripple='light'>
+                      Facebook sign in
                     </Button>
                   </div>
-                </ModalBody>
-                <ModalBody className='justify-center space-y-5'>
-                  <p className='text-base leading-relaxed text-gray-600 font-normal'>
-                    Otherwise, sign in with Google
-                  </p>
-                  <Button
-                    className='mt-5'
-                    color='blue'
-                    onClick={logInWithGoogle}
-                    ripple='light'
-                  >
-                    Google sign in
-                  </Button>
-                </ModalBody>
-                <ModalBody className='justify-center space-y-5'>
-                  <p className='text-base leading-relaxed text-gray-600 font-normal'>
-                    Or, if you don't have an account yet, then sign up
-                  </p>
-                  <Button
-                    onClick={goToSignUp}
-                    buttonType='link'
-                    className='mt-5'
-                    color='orange'
-                    ripple='light'
-                  >
-                    Sign up
-                  </Button>
                 </ModalBody>
               </Modal>
             </div>
